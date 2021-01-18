@@ -1,0 +1,19 @@
+
+K
+src/products/Jewellery.java,e\1\e123bf04bd601e4c0cc34b36673d9fefb178cf75
+K
+src/products/Furniture.java,8\f\8f43475fe8cf86af9cdb77f6388ab3ce61ed7624
+I
+src/products/Product.java,a\2\a2fcff8f4467b09584d745556c7d82e332ea5d71
+J
+src/products/Painting.java,1\5\1564214ab9fdbc930a3fe7945afc1d3c4a360d38
+F
+src/client/Client.java,0\a\0a0f52bfa1f6460b3903514958536b4739b6a9a4
+P
+ src/client/IndividualPerson.java,0\f\0fa0e451b6f281f15e9c88f43bd95d7ea6c9afeb
+K
+src/client/LegalPerson.java,3\9\3935a7879d7c9781a7b6a4d18e88683599e59920
+H
+src/auction/Auction.java,0\3\03884093c28e1def86b54d8a0cc74a470761ff59
+R
+"src/auctionHouse/AuctionHouse.java,5\c\5cab37091441578bfd9ec2728ea9a22f5ec607d2
