@@ -1,6 +1,6 @@
 package loginsql.clientconnection;
 
-public enum TableNames {
+public enum TableNamesClient {
     LEGAL_PERSON,
     INDIVIDUAL_PERSON,
     CLIENT

@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 public class AddUserSQL {
     MySQLConnectionClient mySQLConnectionClient = Main.mySQLConnectionClient;
 
-    public void addUserClient(Client client) {
+    public void addClientSQL(Client client) {
         String query = "INSERT INTO client (idClient, first_name, last_name, address, noParticipation, noAuctionsWon)" +
                 " values (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = mySQLConnectionClient.getConnection().prepareStatement(query)){

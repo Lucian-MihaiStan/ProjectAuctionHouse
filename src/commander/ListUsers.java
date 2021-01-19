@@ -1,6 +1,6 @@
 package commander;
 
-import auctionHouse.AuctionHouse;
+import auction_house.AuctionHouse;
 
 import static java.lang.System.*;
 

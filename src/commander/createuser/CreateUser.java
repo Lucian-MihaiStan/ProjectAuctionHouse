@@ -1,6 +1,6 @@
 package commander.createuser;
 
-import auctionHouse.AuctionHouse;
+import auction_house.AuctionHouse;
 import client.Client;
 import client.IndividualPerson;
 import client.LegalPerson;
@@ -39,7 +39,7 @@ public class CreateUser implements ICommand {
                         )
         );
         Client lastClient = auctionHouse.getLastClient();
-        new AddUserSQL().addUserClient(lastClient);
+        new AddUserSQL().addClientSQL(lastClient);
     }
 
     public int getId() {

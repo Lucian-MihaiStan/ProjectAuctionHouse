@@ -1,0 +1,32 @@
+package products.painting;
+
+import products.Product;
+
+public class Painting extends Product {
+//    make them final
+    private String nameArtist;
+    private Colors colors;
+
+    public enum Colors{
+        oil,
+        tempera,
+        acrylic
+    }
+
+    public String getNameArtist() {
+        return nameArtist;
+    }
+
+    public void setNameArtist(String nameArtist) {
+        this.nameArtist = nameArtist;
+    }
+
+    public Colors getColors() {
+        return colors;
+    }
+
+    public void setColors(Colors colors) {
+        this.colors = colors;
+    }
+}
+

@@ -41,7 +41,7 @@ public class MySQLConnectionClient {
     }
 
     public void cleanUpTables() {
-        for (TableNames value : TableNames.values()) {
+        for (TableNamesClient value : TableNamesClient.values()) {
             String tableName = String.valueOf(value).toLowerCase().replace("_", "");
             String query = "DELETE FROM " + tableName;
             String queryId = "ALTER TABLE " + tableName + " auto_increment=1";

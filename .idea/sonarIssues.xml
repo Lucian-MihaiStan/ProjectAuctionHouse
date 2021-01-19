@@ -38,6 +38,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/auction_house/AuctionHouse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/client/Client.java">
           <value>
             <set />
@@ -88,6 +93,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/addproduct/HelperAP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/addproduct/ProductBuilder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/addproduct/ProductBuilderCommander.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/createuser/CreateUser.java">
           <value>
             <set />
@@ -104,6 +124,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/createuser/HelperCUIndividualPerson.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/createuser/UserBuilderCommander.java">
           <value>
             <set />
           </value>
@@ -188,6 +213,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/product_connection/TableNamesProduct.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/product_connection/productsql/AddProductSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/loginsql/user/AddUserSQL.java">
           <value>
             <set />
@@ -229,6 +264,36 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/products/Tablou.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/products/furniture/Furniture.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/products/furniture/FurnitureBuilder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/products/jewellery/Jewellery.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/products/jewellery/JewelleryBuilder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/products/painting/Painting.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/products/painting/PaintingBuilder.java">
           <value>
             <set />
           </value>
