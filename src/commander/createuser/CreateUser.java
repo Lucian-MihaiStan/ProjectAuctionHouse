@@ -1,38 +1,45 @@
 package commander.createuser;
 
+import auctionHouse.AuctionHouse;
+import client.Client;
+import client.IndividualPerson;
+import client.LegalPerson;
 import commander.ICommand;
+import loginsql.clientconnection.usersql.AddUserSQL;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 
 public class CreateUser implements ICommand {
     private int id;
     private String firstName;
     private String lastName;
     private String address;
-    private int noParticipation;
-    private int noAuctionsWon;
-
-    public CreateUser() {
-
-    }
-
-    @Override
-    public Map<String, Object> extractParameters(List<String> listParameters) {
-        Map<String, Object> mapParameters = new HashMap<>();
-        mapParameters.put("id", Integer.parseInt(listParameters.get(0)));
-        mapParameters.put("first_name", listParameters.get(1));
-        mapParameters.put("last_name", listParameters.get(2));
-        mapParameters.put("address", listParameters.get(3));
-        mapParameters.put("noParticipation", Integer.parseInt(listParameters.get(4)));
-        mapParameters.put("noAuctionWon", Integer.parseInt(listParameters.get(5)));
-        return mapParameters;
-    }
+    private List<String> restParameters;
 
     @Override
     public void execute() {
-
+        AuctionHouse auctionHouse = AuctionHouse.getInstance();
+        auctionHouse.addNewClient(
+                restParameters.size() == 1 ?
+                        new IndividualPerson(
+                                id,
+                                firstName,
+                                lastName,
+                                address,
+                                HelperCU.convertParamIP(restParameters)
+                        ) :
+                        new LegalPerson(
+                                id,
+                                firstName,
+                                lastName,
+                                address,
+                                HelperCU.convertParamLP(restParameters).getLeft(),
+                                LegalPerson.TypeCompany.valueOf(HelperCU.convertParamLP(restParameters).getRight())
+                        )
+        );
+        Client lastClient = auctionHouse.getLastClient();
+        new AddUserSQL().addUserClient(lastClient);
     }
 
     public int getId() {
@@ -67,19 +74,11 @@ public class CreateUser implements ICommand {
         this.address = address;
     }
 
-    public int getNoParticipation() {
-        return noParticipation;
+    public List<String> getRestParameters() {
+        return restParameters;
     }
 
-    public void setNoParticipation(int noParticipation) {
-        this.noParticipation = noParticipation;
-    }
-
-    public int getNoAuctionsWon() {
-        return noAuctionsWon;
-    }
-
-    public void setNoAuctionsWon(int noAuctionsWon) {
-        this.noAuctionsWon = noAuctionsWon;
+    public void setRestParameters(List<String> restParameters) {
+        this.restParameters = restParameters;
     }
 }

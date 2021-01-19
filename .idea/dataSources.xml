@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/AuctionHouse</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="AuctionHouseProduct" uuid="3f1900a4-1767-4688-80e3-6c5323b8e92b">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/AuctionHouseProduct</jdbc-url>
+    </data-source>
   </component>
 </project>

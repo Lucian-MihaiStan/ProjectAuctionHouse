@@ -1,17 +1,46 @@
 package main;
 
-import loginsql.MySQLConnection;
+import loginsql.clientconnection.MySQLConnectionClient;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 import static java.lang.System.*;
+import static commander.Caller.addCommand;
+import static commander.Caller.executeCommands;
 
 public class Main {
-    public static void main(String[] args) {
-        MySQLConnection mySQLConnection = MySQLConnection.getInstance();
 
-        mySQLConnection.closeConnection();
+    public static final MySQLConnectionClient mySQLConnectionClient = MySQLConnectionClient.getInstance();
+
+    public static void addCommandToList(String commandLine) {
+        List<String> parameters = Arrays.asList(commandLine.split(" "));
+        addCommand(parameters);
+    }
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(in);
+
+        String command = scanner.nextLine();
+        addCommandToList(command);
+
+        command = scanner.nextLine();
+        addCommandToList(command);
+
+
+        command = scanner.nextLine();
+        addCommandToList(command);
+
+        command = scanner.nextLine();
+        addCommandToList(command);
+
+        executeCommands();
+
+        mySQLConnectionClient.closeConnection();
     }
 }
+
+
+// 6463

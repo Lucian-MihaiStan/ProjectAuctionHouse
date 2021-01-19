@@ -1,6 +1,7 @@
 package features;
 
 public enum Features {
-    createUser,
-    addProduct,
+    CREATE_USER,
+    ADD_PRODUCT,
+    LIST_USERS
 }

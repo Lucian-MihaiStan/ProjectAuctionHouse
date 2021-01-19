@@ -1,12 +1,18 @@
 package products;
 
 public class Painting extends Product{
-    private String nameArtist;
-    private Enum color;
+    private final String nameArtist;
+    private final Colors colors;
+
+    public Painting(String nameArtist, Colors colors) {
+        this.nameArtist = nameArtist;
+        this.colors = colors;
+    }
+
+    public enum Colors{
+        oil,
+        tempera,
+        acrylic
+    }
 }
 
-enum Colors{
-    oil,
-    tempera,
-    acrylic
-}

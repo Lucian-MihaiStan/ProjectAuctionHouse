@@ -73,6 +73,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/ListUsers.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/addproduct/AddProduct.java">
           <value>
             <set />
@@ -93,6 +98,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/createuser/HelperCU.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/createuser/HelperCUIndividualPerson.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/features/Features.java">
           <value>
             <set />
@@ -103,7 +118,77 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/IMySQLConnection.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/loginsql/MySQLConnection.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/MySQLConnectionClient.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/client/AddUserSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/client/CreateUserSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/client_connection/AddUserSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/client_connection/MySQLConnectionClient.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/client_connection/TableNames.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/client_connection/user/AddUserSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/client_connection/usersql/AddUserSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/clientconnection/MySQLConnectionClient.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/clientconnection/usersql/AddUserSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/product_connection/AddProductSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/product_connection/MySQLConnectionProduct.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/user/AddUserSQL.java">
           <value>
             <set />
           </value>

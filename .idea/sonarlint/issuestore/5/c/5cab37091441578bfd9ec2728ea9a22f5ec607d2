@@ -1,8 +1,4 @@
 
 n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Óåé=
-Q
-java:S1068"/Remove this unused "clientsList" private field.(ºı×‚üÿÿÿÿ8ÍëŞñ.
-R
-java:S1068"0Remove this unused "productsList" private field.(Û˜’Ëıÿÿÿÿ8ÍëŞñ.
-N
-java:S1068"2Remove this unused "auctionsActive" private field.(Ã¹¬C8ñ¹àñ.
+V
+java:S1128"4Remove this unused import 'client.IndividualPerson'.(œÃÖıÿÿÿÿ8Íù¸Îñ.

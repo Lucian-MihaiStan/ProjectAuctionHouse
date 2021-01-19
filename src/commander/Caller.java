@@ -18,15 +18,16 @@ public class Caller {
 
     private static ICommand getCommand(List<String> elements) {
         return switch (Features.valueOf(elements.get(0))) {
-            case createUser ->
+            case CREATE_USER ->
                     new CreateUserBuilder()
                             .withId(Integer.parseInt(elements.get(1)))
                             .withFirstName(elements.get(2))
                             .withLastName(elements.get(3))
-                            .withNoParticipation(Integer.parseInt(elements.get(4)))
-                            .withNoAuctionWon(Integer.parseInt(elements.get(5)))
+                            .withAddress(elements.get(4))
+                            .withOtherParameters(elements.subList(5, elements.size()))
                             .build();
-            case addProduct -> new AddProduct();
+            case ADD_PRODUCT -> new AddProduct();
+            case LIST_USERS -> new ListUsers();
         };
     }
     

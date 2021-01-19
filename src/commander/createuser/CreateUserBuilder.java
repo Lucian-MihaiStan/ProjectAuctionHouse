@@ -1,5 +1,7 @@
 package commander.createuser;
 
+import java.util.List;
+
 public class CreateUserBuilder {
 
     private final CreateUser createUser = new CreateUser();
@@ -19,13 +21,13 @@ public class CreateUserBuilder {
         return this;
     }
 
-    public CreateUserBuilder withNoParticipation(int noParticipation) {
-        createUser.setNoParticipation(noParticipation);
+    public CreateUserBuilder withAddress(String address) {
+        createUser.setAddress(address);
         return this;
     }
 
-    public CreateUserBuilder withNoAuctionWon(int noAuctionWon) {
-        createUser.setNoAuctionsWon(noAuctionWon);
+    public CreateUserBuilder withOtherParameters(List<String> otherParameters) {
+        createUser.setRestParameters(otherParameters);
         return this;
     }
 
