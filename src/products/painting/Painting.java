@@ -3,7 +3,6 @@ package products.painting;
 import products.Product;
 
 public class Painting extends Product {
-//    make them final
     private String nameArtist;
     private Colors colors;
 
@@ -27,6 +26,19 @@ public class Painting extends Product {
 
     public void setColors(Colors colors) {
         this.colors = colors;
+    }
+
+    @Override
+    public String toString() {
+        return "Painting{" +
+                this.getId() + " " +
+                this.getName() + " " +
+                this.getSellingPrice() + " " +
+                this.getMinimumPrice() + " " +
+                this.getYear() + " " +
+                "nameArtist='" + nameArtist + '\'' +
+                ", colors=" + colors +
+                '}';
     }
 }
 

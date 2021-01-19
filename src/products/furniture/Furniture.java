@@ -21,4 +21,17 @@ public class Furniture extends Product {
     public void setMaterial(String material) {
         this.material = material;
     }
+
+    @Override
+    public String toString() {
+        return "Furniture{" +
+                this.getId() + " " +
+                this.getName() + " " +
+                this.getSellingPrice() + " " +
+                this.getMinimumPrice() + " " +
+                this.getYear() + " " +
+                "type='" + type + '\'' +
+                ", material='" + material + '\'' +
+                '}';
+    }
 }

@@ -21,4 +21,17 @@ public class Jewellery extends Product {
     public void setGemstone(boolean gemstone) {
         this.gemstone = gemstone;
     }
+
+    @Override
+    public String toString() {
+        return "Jewellery{" +
+                this.getId() + " " +
+                this.getName() + " " +
+                this.getSellingPrice() + " " +
+                this.getMinimumPrice() + " " +
+                this.getYear() + " " +
+                "material='" + material + '\'' +
+                ", gemstone=" + gemstone +
+                '}';
+    }
 }

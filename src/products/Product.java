@@ -46,4 +46,15 @@ public abstract class Product {
     public void setYear(int year) {
         this.year = year;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sellingPrice=" + sellingPrice +
+                ", minimumPrice=" + minimumPrice +
+                ", year=" + year +
+                '}';
+    }
 }

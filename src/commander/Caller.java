@@ -29,13 +29,15 @@ public class Caller {
             case ADD_PRODUCT ->
                     new ProductBuilderCommander()
                             .withId(Integer.parseInt(elements.get(1)))
-                            .withName(elements.get(2))
-                            .withSellingPrice(Double.parseDouble(elements.get(3)))
-                            .withMinimumPrice(Double.parseDouble(elements.get(4)))
-                            .withYear(Integer.parseInt(elements.get(5)))
-                            .withOtherParameters(elements.subList(6, elements.size()))
+                            .withProductType(Integer.parseInt(elements.get(2)))
+                            .withName(elements.get(3))
+                            .withSellingPrice(Double.parseDouble(elements.get(4)))
+                            .withMinimumPrice(Double.parseDouble(elements.get(5)))
+                            .withYear(Integer.parseInt(elements.get(6)))
+                            .withOtherParameters(elements.subList(7, elements.size()))
                             .build();
             case LIST_USERS -> new ListUsers();
+            case LIST_PRODUCTS -> new ListProducts();
         };
     }
     

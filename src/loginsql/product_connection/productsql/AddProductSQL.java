@@ -9,15 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AddProductSQL {
-    MySQLConnectionProduct mySQLConnectionProduct = Main.mySQLConnectionProduct;
+//    MySQLConnectionProduct mySQLConnectionProduct = Main.mySQLConnectionProduct;
 
     public void addProductSQL(Product product) {
-        String query = "INSERT INTO product ()";
+        String query = "";
 
-        try(PreparedStatement preparedStatement = mySQLConnectionProduct.getConnection().prepareStatement(query)) {
+        /*try(PreparedStatement preparedStatement = mySQLConnectionProduct.getConnection().prepareStatement(query)) {
 
         } catch (SQLException errorSQL) {
             errorSQL.printStackTrace();
-        }
+        }*/
     }
 }

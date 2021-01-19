@@ -78,6 +78,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/ListProducts.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/ListUsers.java">
           <value>
             <set />
@@ -294,6 +299,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/products/painting/PaintingBuilder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/tests/input/commands.txt">
           <value>
             <set />
           </value>

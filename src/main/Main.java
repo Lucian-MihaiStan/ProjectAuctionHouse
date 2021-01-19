@@ -14,7 +14,7 @@ import static commander.Caller.executeCommands;
 public class Main {
 
     public static final MySQLConnectionClient mySQLConnectionClient = MySQLConnectionClient.getInstance();
-    public static final MySQLConnectionProduct mySQLConnectionProduct = MySQLConnectionProduct.getInstance();
+//    public static final MySQLConnectionProduct mySQLConnectionProduct = MySQLConnectionProduct.getInstance();
 
     public static void addCommandToList(String commandLine) {
         List<String> parameters = Arrays.asList(commandLine.split(" "));
@@ -31,17 +31,20 @@ public class Main {
         command = scanner.nextLine();
         addCommandToList(command);
 
+        /*command = scanner.nextLine();
+        addCommandToList(command);
+
 
         command = scanner.nextLine();
         addCommandToList(command);
 
         command = scanner.nextLine();
-        addCommandToList(command);
+        addCommandToList(command);*/
 
         executeCommands();
 
-        mySQLConnectionClient.closeConnection();
-        mySQLConnectionProduct.closeConnection();
+//        mySQLConnectionClient.closeConnection();
+//        mySQLConnectionProduct.closeConnection();
     }
 }
 

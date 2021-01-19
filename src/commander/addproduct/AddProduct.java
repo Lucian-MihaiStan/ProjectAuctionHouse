@@ -32,7 +32,8 @@ public class AddProduct implements ICommand {
                         .withYear(year)
                         .withNameArtist(HelperAP.setParamPainting(restParameters).getLeft())
                         .withColors(HelperAP.setParamPainting(restParameters).getRight())
-                        .build());
+                        .build()
+                );
         else if(productType == 2) auctionHouse.addNewProduct(
                 new FurnitureBuilder()
                         .withId(id)
