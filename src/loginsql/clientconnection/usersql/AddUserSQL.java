@@ -3,8 +3,7 @@ package loginsql.clientconnection.usersql;
 import client.Client;
 import client.IndividualPerson;
 import client.LegalPerson;
-import loginsql.clientconnection.MySQLConnectionClient;
-import main.Main;
+import loginsql.MySQLConnection;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,12 +11,14 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 public class AddUserSQL {
-    MySQLConnectionClient mySQLConnectionClient = Main.mySQLConnectionClient;
+    private MySQLConnection mySQLConnection;
 
     public void addClientSQL(Client client) {
+        mySQLConnection = MySQLConnection.getInstance();
+
         String query = "INSERT INTO client (idClient, first_name, last_name, address, noParticipation, noAuctionsWon)" +
                 " values (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = mySQLConnectionClient.getConnection().prepareStatement(query)){
+        try (PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
             preparedStatement.setInt(1, client.getId());
             preparedStatement.setString(2, client.getFirstName());
             preparedStatement.setString(3, client.getLastName());
@@ -38,7 +39,7 @@ public class AddUserSQL {
         String query = "INSERT INTO legalperson (id_legalPerson, socialCapital, company)" +
                 " VALUES ((SELECT id FROM client WHERE id = (SELECT MAX(id) FROM client)), ?, ?)";
 
-        try(PreparedStatement preparedStatement = mySQLConnectionClient.getConnection().prepareStatement(query)) {
+        try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)) {
             preparedStatement.setDouble(1, legalPerson.getSocialCapital());
             preparedStatement.setString(2, String.valueOf(legalPerson.getTypeCompany()));
             preparedStatement.execute();
@@ -51,7 +52,7 @@ public class AddUserSQL {
         String query = "INSERT INTO individualperson (id_individualPerson, birthDate)" +
                 " VALUES ((SELECT id FROM client WHERE id = (SELECT MAX(id) FROM client)), ?)";
 
-        try(PreparedStatement preparedStatement = mySQLConnectionClient.getConnection().prepareStatement(query)){
+        try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
             java.util.Date individualDate = individualPerson.getBirthDate();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String date = dateFormat.format(individualDate);

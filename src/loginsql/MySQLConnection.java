@@ -1,22 +1,24 @@
-package loginsql.clientconnection;
+package loginsql;
+
+import loginsql.clientconnection.TableNamesClient;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class MySQLConnectionClient {
-    private static MySQLConnectionClient instance;
+public class MySQLConnection {
+    private static MySQLConnection instance;
     private Connection connection;
 
-    public static MySQLConnectionClient getInstance() {
+    public static MySQLConnection getInstance() {
         if(instance == null) {
-            instance = new MySQLConnectionClient();
+            instance = new MySQLConnection();
         }
         return instance;
     }
 
-    private MySQLConnectionClient() {
+    private MySQLConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String jdbcURL = "jdbc:mysql://localhost:3306/AuctionHouse";

@@ -4,3 +4,4 @@ CREATE_USER 10 Lucian Stan Ploiesti 2000/03/28
 CREATE_USER 11 Claudiu Stan Ploiesti 1975/11/04
 CREATE_USER 12 Marius Alexandru Ploiesti 55.5 SRL
 LIST_USERS
+EXIT

@@ -1,8 +1,0 @@
-
-J
-java:S1068".Remove this unused "nameArtist" private field.(ÉĞÂ/8Ôû£ñ.
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(úÄ÷Ğ8ÖåùÖñ.
-{	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ë»“şÿÿÿÿ8ÖåùÖñ.
-G
-java:S1068"*Remove this unused "colors" private field.(®æığ8Ò¾´Ùñ.
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(áè³â8ÖåùÖñ.
