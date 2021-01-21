@@ -12,7 +12,6 @@ import java.util.List;
 
 
 public class AddProduct implements ICommand {
-    private int id;
     private int productType;
     private String name;
     private double sellingPrice;
@@ -25,7 +24,6 @@ public class AddProduct implements ICommand {
         AuctionHouse auctionHouse = AuctionHouse.getInstance();
         if(productType == 1) auctionHouse.addNewProduct(
                 new PaintingBuilder()
-                        .withId(id)
                         .withName(name)
                         .withSellingPrice(sellingPrice)
                         .withMinimumPrice(minimumPrice)
@@ -36,7 +34,6 @@ public class AddProduct implements ICommand {
                 );
         else if(productType == 2) auctionHouse.addNewProduct(
                 new FurnitureBuilder()
-                        .withId(id)
                         .withName(name)
                         .withSellingPrice(sellingPrice)
                         .withMinimPrice(minimumPrice)
@@ -47,7 +44,6 @@ public class AddProduct implements ICommand {
                 );
         else auctionHouse.addNewProduct(
                 new JewelleryBuilder()
-                        .withId(id)
                         .withName(name)
                         .withSellingPrice(sellingPrice)
                         .withMinimumPrice(minimumPrice)
@@ -57,14 +53,6 @@ public class AddProduct implements ICommand {
                 );
         Product lastProduct = auctionHouse.getLastProduct();
         new AddProductSQL().addProductSQL(lastProduct);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setProductType(int productType) {

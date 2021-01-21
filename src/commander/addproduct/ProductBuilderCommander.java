@@ -5,11 +5,6 @@ import java.util.List;
 public class ProductBuilderCommander {
     private final AddProduct productInfo = new AddProduct();
 
-    public ProductBuilderCommander withId(int id) {
-        productInfo.setId(id);
-        return this;
-    }
-
     public ProductBuilderCommander withProductType(int productType) {
         productInfo.setProductType(productType);
         return this;

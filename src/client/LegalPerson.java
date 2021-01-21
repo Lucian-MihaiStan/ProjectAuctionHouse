@@ -10,8 +10,7 @@ public class LegalPerson extends Client {
         SA
     }
 
-    public LegalPerson(int id, String firstName, String lastName, String address, double socialCapital, TypeCompany typeCompany) {
-        this.setId(id);
+    public LegalPerson(String firstName, String lastName, String address, double socialCapital, TypeCompany typeCompany) {
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setAddress(address);
@@ -32,7 +31,6 @@ public class LegalPerson extends Client {
     @Override
     public String toString() {
         return "LegalPerson{" +
-                this.getId() + " " +
                 this.getFirstName() + " " +
                 this.getLastName() + " " +
                 this.getAddress() + " " +

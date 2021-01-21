@@ -8,8 +8,7 @@ import java.util.Date;
 public class IndividualPerson extends Client {
     private final Date birthDate;
 
-    public IndividualPerson(int id, String firstName, String lastName, String address, Date date) {
-        this.setId(id);
+    public IndividualPerson(String firstName, String lastName, String address, Date date) {
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setAddress(address);
@@ -25,7 +24,6 @@ public class IndividualPerson extends Client {
     @Override
     public String toString() {
         return "IndividualPerson{" +
-                this.getId() + " " +
                 this.getFirstName() + " " +
                 this.getLastName() + " " +
                 this.getAddress() + " " +

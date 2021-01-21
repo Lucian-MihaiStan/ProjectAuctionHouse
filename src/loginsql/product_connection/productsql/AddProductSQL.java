@@ -1,6 +1,7 @@
 package loginsql.product_connection.productsql;
 
 import loginsql.MySQLConnection;
+import socketserver.Main;
 import products.Product;
 import products.furniture.Furniture;
 import products.jewellery.Jewellery;
@@ -10,10 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AddProductSQL {
-    private MySQLConnection mySQLConnection;
+    private static final MySQLConnection mySQLConnection = Main.mySQLConnection;
 
     public void addProductSQL(Product product) {
-        mySQLConnection = MySQLConnection.getInstance();
         int typeProduct;
         if(product instanceof Painting) typeProduct = 1;
         else if(product instanceof Furniture) typeProduct = 2;

@@ -23,6 +23,31 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../MultiThreadingSocketServer/src/multithreading/MultithreadedSocketServer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../MultiThreadingSocketServer/src/multithreading/ServerClientThread.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/SocketServer/ClientMain.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/SocketServer/Main.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/SocketServer/ServerClientThread.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/auction/Auction.java">
           <value>
             <set />
@@ -54,6 +79,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/client/LegalPerson.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client_main/Client.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client_main/ClientMain.java">
           <value>
             <set />
           </value>
@@ -238,6 +273,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/ServerClientThread.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/main.java">
           <value>
             <set />
@@ -303,6 +343,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/socketserver/ClientMain.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/socketserver/Main.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/socketserver/ServerClientThread.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/tests/input/commands.txt">
           <value>
             <set />
@@ -314,6 +369,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../Teme/Tema 2/src/command/CalculateTotal.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Teme/Tema 2/src/discount/Discount.java">
           <value>
             <set />
           </value>

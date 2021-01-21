@@ -19,15 +19,7 @@ public class MySQLConnection {
     }
 
     private MySQLConnection() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String jdbcURL = "jdbc:mysql://localhost:3306/AuctionHouse";
-            String username = "root";
-            String password = "lucian2000";
-            connection = DriverManager.getConnection(jdbcURL, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+        //
     }
 
     public Connection getConnection() {
@@ -40,6 +32,15 @@ public class MySQLConnection {
         } catch (SQLException sqlError) {
             sqlError.printStackTrace();
         }
+    }
+
+    public void realizeConnection(String username, String password) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String jdbcURL = "jdbc:mysql://localhost:3306/AuctionHouse";
+        System.out.println(username + " " + password);
+//        String username = "root";
+//        String password = "lucian2000";
+        connection = DriverManager.getConnection(jdbcURL, username, password);
     }
 
     public void cleanUpTables() {

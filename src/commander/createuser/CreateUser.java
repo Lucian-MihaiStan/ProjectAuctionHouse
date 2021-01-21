@@ -23,14 +23,12 @@ public class CreateUser implements ICommand {
         auctionHouse.addNewClient(
                 restParameters.size() == 1 ?
                         new IndividualPerson(
-                                id,
                                 firstName,
                                 lastName,
                                 address,
                                 HelperCU.convertParamIP(restParameters)
                         ) :
                         new LegalPerson(
-                                id,
                                 firstName,
                                 lastName,
                                 address,

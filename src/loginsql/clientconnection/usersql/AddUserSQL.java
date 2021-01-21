@@ -4,6 +4,7 @@ import client.Client;
 import client.IndividualPerson;
 import client.LegalPerson;
 import loginsql.MySQLConnection;
+import socketserver.Main;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -11,20 +12,18 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 public class AddUserSQL {
-    private MySQLConnection mySQLConnection;
+    private static final MySQLConnection mySQLConnection = Main.mySQLConnection;
 
     public void addClientSQL(Client client) {
-        mySQLConnection = MySQLConnection.getInstance();
 
-        String query = "INSERT INTO client (idClient, first_name, last_name, address, noParticipation, noAuctionsWon)" +
-                " values (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO client (first_name, last_name, address, noParticipation, noAuctionsWon)" +
+                " values (?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
-            preparedStatement.setInt(1, client.getId());
-            preparedStatement.setString(2, client.getFirstName());
-            preparedStatement.setString(3, client.getLastName());
-            preparedStatement.setString(4, client.getAddress());
-            preparedStatement.setInt(5, client.getNoParticipation());
-            preparedStatement.setInt(6, client.getWonAuctions());
+            preparedStatement.setString(1, client.getFirstName());
+            preparedStatement.setString(2, client.getLastName());
+            preparedStatement.setString(3, client.getAddress());
+            preparedStatement.setInt(4, client.getNoParticipation());
+            preparedStatement.setInt(5, client.getWonAuctions());
 
             preparedStatement.execute();
 

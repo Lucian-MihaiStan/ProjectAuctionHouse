@@ -23,14 +23,10 @@ X
 (src/commander/createuser/CreateUser.java,9\f\9f02d5ec02fa62987740142aaa10ec28db3b7611
 L
 src/commander/ListUsers.java,9\2\9204c1bca3afd9c4b2b75776c93c6344dada6b66
-k
-;src/loginsql/product_connection/MySQLConnectionProduct.java,7\2\72b07074abac6b96f7c704b80fec10c799678b54
 V
 &src/commander/createuser/HelperCU.java,0\0\0045daef607ebcb60561827f6387c86548fc926d
 e
 5src/loginsql/clientconnection/usersql/AddUserSQL.java,4\3\43ee1d1e2bee584adc4bdcfecbe447485acf19c0
-h
-8src/loginsql/clientconnection/MySQLConnectionClient.java,7\8\78c8140d6c82d448ca427eb4dc6cbf238ada9c8f
 f
 6src/loginsql/product_connection/TableNamesProduct.java,f\0\f03e23650390e4a33599b0e4e04c2a4df003dcb3
 ;
@@ -61,3 +57,7 @@ H
 tests/input/commands.txt,d\3\d36f9ef8986b3603a09b5ab74f5d3e5362b38f38
 S
 #src/products/painting/Painting.java,3\8\38e0fdc6a9b08801418ce7d2af2b8197339327af
+Q
+!src/loginsql/MySQLConnection.java,7\4\744a793b63ca9a5f17f7a46701009881be5e8c62
+O
+src/client_main/ClientMain.java,2\c\2c314cee9aa0e603439146085b9042b40310d82e
