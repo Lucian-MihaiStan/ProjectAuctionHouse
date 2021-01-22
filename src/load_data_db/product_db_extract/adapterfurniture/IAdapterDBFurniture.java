@@ -1,6 +1,5 @@
 package load_data_db.product_db_extract.adapterfurniture;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 import products.furniture.Furniture;
 

@@ -18,7 +18,7 @@ public class DBFurniture implements IAdapterDBFurniture {
 
     @Override
     public List<Furniture> getFurnitureFromDB() {
-        List<Furniture> furnitureListList = new ArrayList<>();
+        List<Furniture> furnitureList = new ArrayList<>();
         String query = "SELECT * FROM furniture";
         List<Triple<Integer, String, String>> listDataFurniture = new ArrayList<>();
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)) {
@@ -27,17 +27,17 @@ public class DBFurniture implements IAdapterDBFurniture {
                 Triple<Integer, String, String> dataFurniture = loadFurniture(resultSet);
                 listDataFurniture.add(dataFurniture);
             }
-            furnitureListList = searchByDataFurniture(listDataFurniture);
+            furnitureList = searchByDataFurniture(listDataFurniture);
         } catch (SQLException errorSQL) {
             errorSQL.printStackTrace();
         }
-        return furnitureListList;
+        return furnitureList;
     }
 
     @Override
     public List<Furniture> searchByDataFurniture(List<Triple<Integer, String, String>> listDataFurniture) {
         List<Furniture> furnitureList = new ArrayList<>();
-        String query = "SELECT * FROM auctionhouseproduct.client WHERE id = ?";
+        String query = "SELECT * FROM auctionhouseproduct.furniture WHERE id = ?";
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
             listDataFurniture.forEach(integerDoubleStringTriple -> {
                 try {

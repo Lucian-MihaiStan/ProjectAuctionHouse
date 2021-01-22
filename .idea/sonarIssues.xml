@@ -443,6 +443,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterpainting/DBPainting.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterpainting/IAdapterDBPainting.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_ip/AdapterDBIP.java">
           <value>
             <set />

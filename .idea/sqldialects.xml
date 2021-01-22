@@ -3,6 +3,8 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/load_data_db/LoadDBDataAdmin.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterfurniture/DBFurniture.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterjewellery/DBJewellery.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterpainting/DBPainting.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_ip/IPersonDBExtract.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_lp/LPersonDBExtract.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/loginsql/MySQLConnection.java" dialect="Oracle" />

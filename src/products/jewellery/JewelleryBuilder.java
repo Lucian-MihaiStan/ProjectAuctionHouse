@@ -1,12 +1,9 @@
 package products.jewellery;
 
+import products.furniture.FurnitureBuilder;
+
 public class JewelleryBuilder {
     private Jewellery jewellery = new Jewellery();
-
-    public JewelleryBuilder withId(int id) {
-        jewellery.setId(id);
-        return this;
-    }
 
     public JewelleryBuilder withName(String name) {
         jewellery.setName(name);
@@ -15,6 +12,11 @@ public class JewelleryBuilder {
 
     public JewelleryBuilder withSellingPrice(double sellingPrice) {
         jewellery.setSellingPrice(sellingPrice);
+        return this;
+    }
+
+    public JewelleryBuilder withMinimPrice(double minimumPrice) {
+        jewellery.setMinimumPrice(minimumPrice);
         return this;
     }
 

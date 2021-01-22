@@ -1,19 +1,10 @@
 package products;
 
 public abstract class Product {
-    private int id;
     private String name;
     private double sellingPrice;
     private double minimumPrice;
     private int year;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -50,7 +41,6 @@ public abstract class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", sellingPrice=" + sellingPrice +
                 ", minimumPrice=" + minimumPrice +
