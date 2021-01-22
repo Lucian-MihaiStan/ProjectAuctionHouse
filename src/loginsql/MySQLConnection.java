@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class MySQLConnection {
     private static MySQLConnection instance;
     private Connection connection;
+    private String username;
 
     public static synchronized MySQLConnection getInstance() {
         if(instance == null) {
@@ -35,9 +36,14 @@ public class MySQLConnection {
     }
 
     public void realizeConnection(String username, String password) throws SQLException, ClassNotFoundException {
+        this.username = username;
         Class.forName("com.mysql.cj.jdbc.Driver");
         String jdbcURL = "jdbc:mysql://localhost:3306/AuctionHouse";
         connection = DriverManager.getConnection(jdbcURL, username, password);
+    }
+
+    public synchronized String getUsername() {
+        return username;
     }
 
     public void cleanUpTables() {

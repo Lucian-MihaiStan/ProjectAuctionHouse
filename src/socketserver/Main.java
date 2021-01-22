@@ -10,10 +10,8 @@ import static java.lang.System.*;
 
 public class Main {
 
-    private static final AuctionHouse auctionHouse = AuctionHouse.getInstance();
 
     public static void main(String[] args) {
-        auctionHouse.loadAsAdmin();
         try(ServerSocket serverSocket = new ServerSocket(4999)) {
             int counter = 0;
             out.println("Server Started....");
@@ -27,8 +25,5 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }

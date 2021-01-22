@@ -40,10 +40,10 @@ public class IPersonDBExtract implements IAdapterDBIP {
         List<IndividualPerson> individualPeople = new ArrayList<>();
         String query = "SELECT * FROM auctionhouse.client WHERE id = ?";
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
-            listDataIP.forEach(integerDateMap -> {
+            listDataIP.forEach(iteratorID -> {
                 try {
-                    preparedStatement.setInt(1, integerDateMap.getLeft());
-                    ResultSet rs = preparedStatement.executeQuery(query);
+                    preparedStatement.setInt(1, iteratorID.getLeft());
+                    ResultSet rs = preparedStatement.executeQuery();
                     while(rs.next()) {
                         individualPeople.add(
                                 new IndividualPersonBuilder()
@@ -51,8 +51,8 @@ public class IPersonDBExtract implements IAdapterDBIP {
                                         .withLastName(rs.getString("last_name"))
                                         .withAddress(rs.getString("address"))
                                         .withNoParticipation(rs.getInt("noParticipation"))
-                                        .withWonAction(rs.getInt("noAuctionsWon"))
-                                        .withBirthDate(rs.getDate("birthDate"))
+                                        .withWonAction(iteratorID.getLeft())
+                                        .withBirthDate(iteratorID.getRight())
                                         .build()
                         );
                     }

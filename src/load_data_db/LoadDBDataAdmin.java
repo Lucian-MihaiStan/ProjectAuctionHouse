@@ -43,6 +43,7 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
         mapUsers.put(
                 "products", Collections.singletonList(productListDB)
         );
+        System.out.println(userListDB);
 //        mapUsers.put(
 //              "auctions", Collections.singletonList(auctionsDB)
 //        );

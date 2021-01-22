@@ -1,5 +1,6 @@
 package socketserver;
 
+import auction_house.AuctionHouse;
 import loginsql.MySQLConnection;
 
 import java.io.DataInputStream;
@@ -16,19 +17,20 @@ import static commander.Caller.executeCommands;
 import static java.lang.System.*;
 
 public class ServerClientThread extends Thread {
+    private final Socket serverClient;
+    private final int clientNo;
+
+    public ServerClientThread(Socket inSocket, int counter){
+        serverClient = inSocket;
+        clientNo = counter;
+    }
 
     public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
+
 
     public static void addCommandToList(String commandLine) {
         List<String> parameters = Arrays.asList(commandLine.split(" "));
         addCommand(parameters);
-    }
-
-    private final Socket serverClient;
-    private final int clientNo;
-    public ServerClientThread(Socket inSocket, int counter){
-        serverClient = inSocket;
-        clientNo = counter;
     }
 
     @Override
@@ -53,6 +55,10 @@ public class ServerClientThread extends Thread {
                     if(clientMessage.equalsIgnoreCase("logout")) {
                         mySQLConnection.closeConnection();
                         break;
+                    }
+                    if(clientMessage.equalsIgnoreCase("show")) {
+                        out.println(mySQLConnection.getUsername());
+                        continue;
                     }
                     if(clientCommand.get(0).equalsIgnoreCase("execute")) {
                         executeCommands();

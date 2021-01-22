@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.System.*;
 
 public class AuctionHouse {
     private static AuctionHouse instance;
@@ -20,7 +21,7 @@ public class AuctionHouse {
 
     public static AuctionHouse getInstance() {
         if(instance == null) {
-           instance = new AuctionHouse();
+            instance = new AuctionHouse();
         }
         return instance;
     }
@@ -71,7 +72,7 @@ public class AuctionHouse {
         return productsList.get(productsList.size() - 1);
     }
 
-    public void loadAsAdmin() {
+    public AuctionHouse load() {
         IAdapterAdmin adapter = new LoadDBDataAdmin();
         Map<String, List<Object>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
         try{
@@ -91,5 +92,6 @@ public class AuctionHouse {
         } catch (ClassCastException e){
             //
         }*/
+        return this;
     }
 }

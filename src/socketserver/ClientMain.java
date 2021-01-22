@@ -1,5 +1,7 @@
 package socketserver;
 
+import auction_house.AuctionHouse;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
@@ -7,6 +9,8 @@ import java.util.Scanner;
 import static java.lang.System.*;
 
 public class ClientMain {
+
+    public static final AuctionHouse auctionHouse = AuctionHouse.getInstance().load();
 
     public static void main(String[] args) {
         String serverMessage;

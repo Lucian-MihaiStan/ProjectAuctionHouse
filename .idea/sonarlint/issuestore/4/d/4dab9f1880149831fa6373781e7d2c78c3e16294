@@ -1,5 +1,0 @@
-
-Ø
-java:S1192-"ºDefine a constant instead of duplicating this literal " VALUES ((SELECT id FROM auctionhouseproduct.product WHERE id = (SELECT MAX(id) FROM auctionhouseproduct.product)), ?, ?)" 3 times.(Èúƒæ8™–èñ.
-V
-java:S1128"4Remove this unused import 'socketserver.ClientMain'.(û ÿ¤şÿÿÿÿ8îÇŸ¯ò.
