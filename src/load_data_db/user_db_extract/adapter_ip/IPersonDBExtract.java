@@ -20,7 +20,7 @@ public class IPersonDBExtract implements IAdapterDBIP {
     @Override
     public List<IndividualPerson> getIPFromDB() {
         List<IndividualPerson> ipList = new ArrayList<>();
-        String query = "SELECT * FROM individualperson";
+        String query = "SELECT * FROM auctionhouse.individualperson";
         List<Pair<Integer, Date>> listDataIP = new ArrayList<>();
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery(query);
@@ -38,7 +38,7 @@ public class IPersonDBExtract implements IAdapterDBIP {
     @Override
     public List<IndividualPerson> searchByDataIP(List<Pair<Integer, Date>> listDataIP) {
         List<IndividualPerson> individualPeople = new ArrayList<>();
-        String query = "SELECT * FROM client WHERE id = ?";
+        String query = "SELECT * FROM auctionhouse.client WHERE id = ?";
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
             listDataIP.forEach(integerDateMap -> {
                 try {

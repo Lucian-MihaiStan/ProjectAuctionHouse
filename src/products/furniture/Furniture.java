@@ -25,7 +25,6 @@ public class Furniture extends Product {
     @Override
     public String toString() {
         return "Furniture{" +
-                this.getId() + " " +
                 this.getName() + " " +
                 this.getSellingPrice() + " " +
                 this.getMinimumPrice() + " " +

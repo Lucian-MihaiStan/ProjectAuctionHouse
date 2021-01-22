@@ -19,7 +19,7 @@ public class DBFurniture implements IAdapterDBFurniture {
     @Override
     public List<Furniture> getFurnitureFromDB() {
         List<Furniture> furnitureList = new ArrayList<>();
-        String query = "SELECT * FROM furniture";
+        String query = "SELECT * FROM auctionhouseproduct.furniture";
         List<Triple<Integer, String, String>> listDataFurniture = new ArrayList<>();
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery(query);

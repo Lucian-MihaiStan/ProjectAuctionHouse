@@ -19,7 +19,7 @@ public class LPersonDBExtract implements IAdapterDBLP {
     @Override
     public List<LegalPerson> getLPFromDB() {
         List<LegalPerson> lpList = new ArrayList<>();
-        String query = "SELECT * FROM legalperson";
+        String query = "SELECT * FROM auctionhouse.legalperson";
         List<Triple<Integer, Double, String>> listDataLP = new ArrayList<>();
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery(query);
@@ -39,9 +39,9 @@ public class LPersonDBExtract implements IAdapterDBLP {
         List<LegalPerson> legalPeople = new ArrayList<>();
         String query = "SELECT * FROM auctionhouse.client WHERE id = ?";
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
-            listDataLP.forEach(integerDoubleStringTriple -> {
+            listDataLP.forEach(iteratorIDS -> {
                 try {
-                    preparedStatement.setInt(1, integerDoubleStringTriple.getLeft());
+                    preparedStatement.setInt(1, iteratorIDS.getLeft());
                     ResultSet rs = preparedStatement.executeQuery();
                     while(rs.next()) {
                         legalPeople.add(
@@ -51,8 +51,8 @@ public class LPersonDBExtract implements IAdapterDBLP {
                                         .withAddress(rs.getString("address"))
                                         .withNoParticipation(rs.getInt("noParticipation"))
                                         .withWonAction(rs.getInt("noAuctionsWon"))
-                                        .withSocialCapital(rs.getDouble("socialCapital"))
-                                        .withTypeCompany(LegalPerson.TypeCompany.valueOf(rs.getString("company")))
+                                        .withSocialCapital(iteratorIDS.getMiddle())
+                                        .withTypeCompany(LegalPerson.TypeCompany.valueOf(iteratorIDS.getRight()))
                                         .build()
                         );
                     }

@@ -31,7 +31,6 @@ public class Painting extends Product {
     @Override
     public String toString() {
         return "Painting{" +
-                this.getId() + " " +
                 this.getName() + " " +
                 this.getSellingPrice() + " " +
                 this.getMinimumPrice() + " " +

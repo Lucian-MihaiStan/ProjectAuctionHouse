@@ -74,15 +74,22 @@ public class AuctionHouse {
     public void loadAsAdmin() {
         IAdapterAdmin adapter = new LoadDBDataAdmin();
         Map<String, List<Object>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
-        try {
-            auctionHouseData.get("IP").forEach(client -> userList.add((User) client));
-        } catch (ClassCastException e){
+        try{
+            auctionHouseData.get("users").forEach(user -> userList.add((User) user));
+        } catch (ClassCastException e) {
             //
         }
-        try {
-            auctionHouseData.get("LP").forEach(client -> userList.add((User) client));
-        } catch (ClassCastException e){
+
+        try{
+            auctionHouseData.get("products").forEach(product -> productsList.add((Product) product));
+        } catch (ClassCastException e) {
             //
         }
+
+        /*try {
+            auctionHouseData.get("auctions").forEach(auction -> auctionsActive.add(auction));
+        } catch (ClassCastException e){
+            //
+        }*/
     }
 }

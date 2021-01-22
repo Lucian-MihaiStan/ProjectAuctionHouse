@@ -3,11 +3,6 @@ package products.furniture;
 public class FurnitureBuilder {
     private final Furniture furniture = new Furniture();
 
-    public FurnitureBuilder withId(int id) {
-        furniture.setId(id);
-        return this;
-    }
-
     public FurnitureBuilder withName(String name) {
         furniture.setName(name);
         return this;

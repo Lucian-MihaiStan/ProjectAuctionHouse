@@ -1,6 +1,12 @@
 package load_data_db;
 
 import client.User;
+import load_data_db.product_db_extract.adapterfurniture.DBFurniture;
+import load_data_db.product_db_extract.adapterfurniture.IAdapterDBFurniture;
+import load_data_db.product_db_extract.adapterjewellery.DBJewellery;
+import load_data_db.product_db_extract.adapterjewellery.IAdapterDBJewellery;
+import load_data_db.product_db_extract.adapterpainting.DBPainting;
+import load_data_db.product_db_extract.adapterpainting.IAdapterDBPainting;
 import load_data_db.user_db_extract.adapter_lp.LPersonDBExtract;
 import load_data_db.user_db_extract.adapter_lp.IAdapterDBLP;
 import load_data_db.user_db_extract.adapter_ip.IPersonDBExtract;
@@ -32,7 +38,7 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
         List<Product> productListDB = extractProductsDB();
 
         mapUsers.put(
-                "clients", Collections.singletonList(userListDB)
+                "users", Collections.singletonList(userListDB)
         );
         mapUsers.put(
                 "products", Collections.singletonList(productListDB)
@@ -45,7 +51,13 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
 
     private List<Product> extractProductsDB() {
         List<Product> productListDB = new ArrayList<>();
+        IAdapterDBPainting adapterDBPainting = new DBPainting();
+        IAdapterDBJewellery adapterDBJewellery = new DBJewellery();
+        IAdapterDBFurniture adapterDBFurniture = new DBFurniture();
 
+        productListDB.addAll(adapterDBFurniture.getFurnitureFromDB());
+        productListDB.addAll(adapterDBJewellery.getJewelleryFromDB());
+        productListDB.addAll(adapterDBPainting.getPaintingFromDB());
         return productListDB;
     }
 
@@ -58,9 +70,5 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
         userListDB.addAll(adapterDataLP.getLPFromDB());
 
         return userListDB;
-    }
-
-    private List<Product> getPFromDB() {
-        return null;
     }
 }
