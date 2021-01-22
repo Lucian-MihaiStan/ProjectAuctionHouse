@@ -11,8 +11,6 @@ H
 src/auction/Auction.java,0\3\03884093c28e1def86b54d8a0cc74a470761ff59
 J
 src/features/Features.java,d\7\d7b3baaab585bc0bbed236e1e0b511779c1ab6a9
-B
-src/main/Main.java,f\e\fe03b4fd3afe162c6e01309b98a22588e093d274
 I
 src/commander/Caller.java,b\c\bc05e26215d3a8f1c8e80ebebbbb06b7eb018a3a
 X
@@ -59,5 +57,13 @@ S
 #src/products/painting/Painting.java,3\8\38e0fdc6a9b08801418ce7d2af2b8197339327af
 Q
 !src/loginsql/MySQLConnection.java,7\4\744a793b63ca9a5f17f7a46701009881be5e8c62
+J
+src/socketserver/Main.java,f\c\fc6c5355ad2162befd00ae9b7667dcc2d238ca6c
 O
-src/client_main/ClientMain.java,2\c\2c314cee9aa0e603439146085b9042b40310d82e
+src/adapter/AdapterAdminAC.java,c\8\c892b5d109a293216badba111a614750d8fcf423
+I
+src/adapter/IAdapter.java,4\0\40792b9787842c080626ced2a97fd6376f9263ee
+P
+ src/socketserver/ClientMain.java,d\8\d82e33ef132de9065d82e420cad05199654456dc
+X
+(src/socketserver/ServerClientThread.java,3\5\3529111b702fc8d224c25c00559635f7a9e1ec30

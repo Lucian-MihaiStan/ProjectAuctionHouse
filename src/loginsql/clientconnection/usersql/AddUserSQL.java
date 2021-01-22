@@ -1,10 +1,9 @@
 package loginsql.clientconnection.usersql;
 
 import client.Client;
-import client.IndividualPerson;
-import client.LegalPerson;
+import client.legalperson.LegalPerson;
 import loginsql.MySQLConnection;
-import socketserver.Main;
+import socketserver.ServerClientThread;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 public class AddUserSQL {
-    private static final MySQLConnection mySQLConnection = Main.mySQLConnection;
+    private static final MySQLConnection mySQLConnection = ServerClientThread.mySQLConnection;
 
     public void addClientSQL(Client client) {
 
@@ -27,7 +26,7 @@ public class AddUserSQL {
 
             preparedStatement.execute();
 
-            if (client instanceof IndividualPerson) addUserIndividualPerson((IndividualPerson) client);
+            if (client instanceof client.individualperson.IndividualPerson) addUserIndividualPerson((client.individualperson.IndividualPerson) client);
             else addUserLegalPerson((LegalPerson) client);
         } catch (SQLException errorSQL) {
             errorSQL.printStackTrace();
@@ -47,7 +46,7 @@ public class AddUserSQL {
         }
     }
 
-    private void addUserIndividualPerson(IndividualPerson individualPerson) {
+    private void addUserIndividualPerson(client.individualperson.IndividualPerson individualPerson) {
         String query = "INSERT INTO individualperson (id_individualPerson, birthDate)" +
                 " VALUES ((SELECT id FROM client WHERE id = (SELECT MAX(id) FROM client)), ?)";
 

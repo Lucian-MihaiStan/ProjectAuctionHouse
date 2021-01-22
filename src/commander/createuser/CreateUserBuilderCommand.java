@@ -2,26 +2,26 @@ package commander.createuser;
 
 import java.util.List;
 
-public class UserBuilderCommander {
+public class CreateUserBuilderCommand {
 
     private final CreateUser createUser = new CreateUser();
 
-    public UserBuilderCommander withFirstName(String firstName) {
+    public CreateUserBuilderCommand withFirstName(String firstName) {
         createUser.setFirstName(firstName);
         return this;
     }
 
-    public UserBuilderCommander withLastName(String lastName) {
+    public CreateUserBuilderCommand withLastName(String lastName) {
         createUser.setLastName(lastName);
         return this;
     }
 
-    public UserBuilderCommander withAddress(String address) {
+    public CreateUserBuilderCommand withAddress(String address) {
         createUser.setAddress(address);
         return this;
     }
 
-    public UserBuilderCommander withOtherParameters(List<String> otherParameters) {
+    public CreateUserBuilderCommand withOtherParameters(List<String> otherParameters) {
         createUser.setRestParameters(otherParameters);
         return this;
     }

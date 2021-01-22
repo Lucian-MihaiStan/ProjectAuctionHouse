@@ -11,7 +11,7 @@ public class MySQLConnection {
     private static MySQLConnection instance;
     private Connection connection;
 
-    public static MySQLConnection getInstance() {
+    public static synchronized MySQLConnection getInstance() {
         if(instance == null) {
             instance = new MySQLConnection();
         }
@@ -37,9 +37,6 @@ public class MySQLConnection {
     public void realizeConnection(String username, String password) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         String jdbcURL = "jdbc:mysql://localhost:3306/AuctionHouse";
-        System.out.println(username + " " + password);
-//        String username = "root";
-//        String password = "lucian2000";
         connection = DriverManager.getConnection(jdbcURL, username, password);
     }
 

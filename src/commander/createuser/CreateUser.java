@@ -2,8 +2,10 @@ package commander.createuser;
 
 import auction_house.AuctionHouse;
 import client.Client;
-import client.IndividualPerson;
-import client.LegalPerson;
+import client.individualperson.IndividualPerson;
+import client.individualperson.IndividualPersonBuilder;
+import client.legalperson.LegalPerson;
+import client.legalperson.LegalPersonBuilder;
 import commander.ICommand;
 import loginsql.clientconnection.usersql.AddUserSQL;
 
@@ -11,7 +13,6 @@ import loginsql.clientconnection.usersql.AddUserSQL;
 import java.util.List;
 
 public class CreateUser implements ICommand {
-    private int id;
     private String firstName;
     private String lastName;
     private String address;
@@ -22,30 +23,28 @@ public class CreateUser implements ICommand {
         AuctionHouse auctionHouse = AuctionHouse.getInstance();
         auctionHouse.addNewClient(
                 restParameters.size() == 1 ?
-                        new IndividualPerson(
-                                firstName,
-                                lastName,
-                                address,
-                                HelperCU.convertParamIP(restParameters)
-                        ) :
-                        new LegalPerson(
-                                firstName,
-                                lastName,
-                                address,
-                                HelperCU.convertParamLP(restParameters).getLeft(),
-                                LegalPerson.TypeCompany.valueOf(HelperCU.convertParamLP(restParameters).getRight())
-                        )
+                        new IndividualPersonBuilder()
+                                .withFirstName(firstName)
+                                .withLastName(lastName)
+                                .withAddress(address)
+                                .withNoParticipation(0)
+                                .withWonAction(0)
+                                .withBirthDate(HelperCU.convertParamIP(restParameters))
+                                .build()
+                        :
+                        new LegalPersonBuilder()
+                                .withFirstName(firstName)
+                                .withLastName(lastName)
+                                .withAddress(address)
+                                .withNoParticipation(0)
+                                .withWonAction(0)
+                                .withSocialCapital(HelperCU.convertParamLP(restParameters).getLeft())
+                                .withTypeCompany(LegalPerson.TypeCompany
+                                        .valueOf(HelperCU.convertParamLP(restParameters).getRight()))
+                                .build()
         );
         Client lastClient = auctionHouse.getLastClient();
         new AddUserSQL().addClientSQL(lastClient);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFirstName() {

@@ -1,17 +1,18 @@
 package loginsql.product_connection.productsql;
 
 import loginsql.MySQLConnection;
-import socketserver.Main;
 import products.Product;
 import products.furniture.Furniture;
 import products.jewellery.Jewellery;
 import products.painting.Painting;
+import socketserver.ServerClientThread;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AddProductSQL {
-    private static final MySQLConnection mySQLConnection = Main.mySQLConnection;
+    private static final MySQLConnection mySQLConnection = ServerClientThread.mySQLConnection;
+    private static final String QUERY_CONSTANT = " VALUES ((SELECT id FROM auctionhouseproduct.product WHERE id = (SELECT MAX(id) FROM auctionhouseproduct.product)), ?, ?)";
 
     public void addProductSQL(Product product) {
         int typeProduct;
@@ -40,8 +41,7 @@ public class AddProductSQL {
     }
 
     private void addProductJewellery(Jewellery product) {
-        String query = "INSERT INTO auctionhouseproduct.jewellery (id_jewellery, material, gemstone)" +
-                " VALUES ((SELECT id FROM auctionhouseproduct.product WHERE id = (SELECT MAX(id) FROM auctionhouseproduct.product)), ?, ?)";
+        String query = "INSERT INTO auctionhouseproduct.jewellery (id_jewellery, material, gemstone)" + QUERY_CONSTANT;
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, product.getMaterial());
             preparedStatement.setBoolean(2, product.isGemstone());
@@ -53,8 +53,7 @@ public class AddProductSQL {
     }
 
     private void addProductFurniture(Furniture product) {
-        String query = "INSERT INTO auctionhouseproduct.furniture (id_furniture, type, material)" +
-                " VALUES ((SELECT id FROM auctionhouseproduct.product WHERE id = (SELECT MAX(id) FROM auctionhouseproduct.product)), ?, ?)";
+        String query = "INSERT INTO auctionhouseproduct.furniture (id_furniture, type, material)" + QUERY_CONSTANT;
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, product.getType());
             preparedStatement.setString(2, product.getMaterial());
@@ -66,8 +65,7 @@ public class AddProductSQL {
     }
 
     private void addProductPainting(Painting product) {
-        String query = "INSERT INTO auctionhouseproduct.painting (id_painting, name_artist, color)" +
-                " VALUES ((SELECT id FROM auctionhouseproduct.product WHERE id = (SELECT MAX(id) FROM auctionhouseproduct.product)), ?, ?)";
+        String query = "INSERT INTO auctionhouseproduct.painting (id_painting, name_artist, color)" + QUERY_CONSTANT;
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)) {
             preparedStatement.setString(1, product.getNameArtist());
             preparedStatement.setString(2, String.valueOf(product.getColors()));

@@ -1,11 +1,15 @@
 package auction_house;
 
+import adapter.AdapterAdminAC;
+import adapter.IAdapterAdmin;
 import auction.Auction;
 import client.Client;
 import products.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 
 public class AuctionHouse {
     private static AuctionHouse instance;
@@ -25,10 +29,6 @@ public class AuctionHouse {
         productsList = new ArrayList<>();
         clientsList = new ArrayList<>();
         auctionsActive = new ArrayList<>();
-    }
-
-    public static void setInstance(AuctionHouse instance) {
-        AuctionHouse.instance = instance;
     }
 
     public List<Product> getProductsList() {
@@ -69,5 +69,20 @@ public class AuctionHouse {
 
     public Product getLastProduct() {
         return productsList.get(productsList.size() - 1);
+    }
+
+    public void loadAsAdmin() {
+        IAdapterAdmin adapter = new AdapterAdminAC();
+        Map<String, List<Object>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
+        try {
+            auctionHouseData.get("IP").forEach(client -> clientsList.add((Client) client));
+        } catch (ClassCastException e){
+            //
+        }
+        try {
+            auctionHouseData.get("LP").forEach(client -> clientsList.add((Client) client));
+        } catch (ClassCastException e){
+            //
+        }
     }
 }

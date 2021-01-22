@@ -1,7 +1,7 @@
 package commander;
 
 import commander.addproduct.ProductBuilderCommander;
-import commander.createuser.UserBuilderCommander;
+import commander.createuser.CreateUserBuilderCommand;
 import features.Features;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class Caller {
     private static ICommand getCommand(List<String> elements) {
         return switch (Features.valueOf(elements.get(0))) {
             case CREATE_USER ->
-                    new UserBuilderCommander()
+                    new CreateUserBuilderCommand()
                             .withFirstName(elements.get(1))
                             .withLastName(elements.get(2))
                             .withAddress(elements.get(3))

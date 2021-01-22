@@ -48,6 +48,46 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/adapter/Adapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/adapter/AdapterAdminAC.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/adapter/IAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/adapter/adapterindividualperson/AdapterDataIP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/adapter/adapterindividualperson/IAdapterDataIP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/adapter/adapterindividualperson/IAdapterDataLP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/adapter/adapterlegalperson/AdapterDataLP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/adapter/adapterlegalperson/IAdapterDataLP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/auction/Auction.java">
           <value>
             <set />
@@ -79,6 +119,36 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/client/LegalPerson.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/individualperson/IndividualPerson.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/individualperson/IndividualPersonBuilder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/legalperson/IndividualPerson.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/legalperson/IndividualPersonBuilder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/legalperson/LegalPerson.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/legalperson/LegalPersonBuilder.java">
           <value>
             <set />
           </value>
@@ -154,6 +224,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/createuser/CreateUserBuilder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/createuser/CreateUserBuilderCommand.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/createuser/CreateUserBuilderCommander.java">
           <value>
             <set />
           </value>

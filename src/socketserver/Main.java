@@ -1,26 +1,19 @@
 package socketserver;
 
-import loginsql.MySQLConnection;
+import auction_house.AuctionHouse;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
-import java.util.List;
 
 import static java.lang.System.*;
-import static commander.Caller.*;
 
 public class Main {
-    public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
 
-    public static void addCommandToList(String commandLine) {
-        List<String> parameters = Arrays.asList(commandLine.split(" "));
-        addCommand(parameters);
-    }
+    private static final AuctionHouse auctionHouse = AuctionHouse.getInstance();
 
     public static void main(String[] args) {
-
+        auctionHouse.loadAsAdmin();
         try(ServerSocket serverSocket = new ServerSocket(4999)) {
             int counter = 0;
             out.println("Server Started....");
