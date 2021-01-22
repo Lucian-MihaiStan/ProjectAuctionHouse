@@ -353,6 +353,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/LoadDBDataAdmin.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/LoadDataAdmin.java">
           <value>
             <set />
@@ -418,12 +423,52 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterfurniture/DBFurniture.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterfurniture/IAdapterDBFurniture.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterjewellery/DBJewellery.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterjewellery/IAdapterDBJewellery.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_ip/AdapterDBIP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_ip/AdapterDataIP.java">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_ip/IAdapterDBIP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_ip/IAdapterDataIP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_ip/IPersonDBExtract.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_lp/AdapterDBLP.java">
           <value>
             <set />
           </value>
@@ -434,6 +479,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_lp/IAdapterDataLP.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_lp/LPersonDBExtract.java">
           <value>
             <set />
           </value>

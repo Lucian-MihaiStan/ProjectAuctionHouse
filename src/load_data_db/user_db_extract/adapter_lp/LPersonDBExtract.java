@@ -2,7 +2,7 @@ package load_data_db.user_db_extract.adapter_lp;
 
 import client.legalperson.LegalPerson;
 import client.legalperson.LegalPersonBuilder;
-import load_data_db.LoadDataAdmin;
+import load_data_db.LoadDBDataAdmin;
 import loginsql.MySQLConnection;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
@@ -13,8 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterDataLP implements IAdapterDataLP {
-    private static final MySQLConnection mySQLConnection = LoadDataAdmin.mySQLConnection;
+public class LPersonDBExtract implements IAdapterDBLP {
+    private static final MySQLConnection mySQLConnection = LoadDBDataAdmin.mySQLConnection;
 
     @Override
     public List<LegalPerson> getLPFromDB() {
@@ -51,6 +51,8 @@ public class AdapterDataLP implements IAdapterDataLP {
                                         .withAddress(rs.getString("address"))
                                         .withNoParticipation(rs.getInt("noParticipation"))
                                         .withWonAction(rs.getInt("noAuctionsWon"))
+                                        .withSocialCapital(rs.getDouble("socialCapital"))
+                                        .withTypeCompany(LegalPerson.TypeCompany.valueOf(rs.getString("company")))
                                         .build()
                         );
                     }

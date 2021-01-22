@@ -2,7 +2,7 @@ package load_data_db.user_db_extract.adapter_ip;
 
 import client.individualperson.IndividualPerson;
 import client.individualperson.IndividualPersonBuilder;
-import load_data_db.LoadDataAdmin;
+import load_data_db.LoadDBDataAdmin;
 import loginsql.MySQLConnection;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterDataIP implements IAdapterDataIP{
-    private static final MySQLConnection mySQLConnection = LoadDataAdmin.mySQLConnection;
+public class IPersonDBExtract implements IAdapterDBIP {
+    private static final MySQLConnection mySQLConnection = LoadDBDataAdmin.mySQLConnection;
 
     @Override
     public List<IndividualPerson> getIPFromDB() {
@@ -52,6 +52,7 @@ public class AdapterDataIP implements IAdapterDataIP{
                                         .withAddress(rs.getString("address"))
                                         .withNoParticipation(rs.getInt("noParticipation"))
                                         .withWonAction(rs.getInt("noAuctionsWon"))
+                                        .withBirthDate(rs.getDate("birthDate"))
                                         .build()
                         );
                     }

@@ -1,7 +1,7 @@
 package auction_house;
 
 import client.User;
-import load_data_db.LoadDataAdmin;
+import load_data_db.LoadDBDataAdmin;
 import load_data_db.IAdapterAdmin;
 import auction.Auction;
 import products.Product;
@@ -72,7 +72,7 @@ public class AuctionHouse {
     }
 
     public void loadAsAdmin() {
-        IAdapterAdmin adapter = new LoadDataAdmin();
+        IAdapterAdmin adapter = new LoadDBDataAdmin();
         Map<String, List<Object>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
         try {
             auctionHouseData.get("IP").forEach(client -> userList.add((User) client));

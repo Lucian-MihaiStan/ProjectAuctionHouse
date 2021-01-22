@@ -1,17 +1,17 @@
 package load_data_db;
 
 import client.User;
-import load_data_db.user_db_extract.adapter_lp.AdapterDataLP;
-import load_data_db.user_db_extract.adapter_lp.IAdapterDataLP;
-import load_data_db.user_db_extract.adapter_ip.AdapterDataIP;
-import load_data_db.user_db_extract.adapter_ip.IAdapterDataIP;
+import load_data_db.user_db_extract.adapter_lp.LPersonDBExtract;
+import load_data_db.user_db_extract.adapter_lp.IAdapterDBLP;
+import load_data_db.user_db_extract.adapter_ip.IPersonDBExtract;
+import load_data_db.user_db_extract.adapter_ip.IAdapterDBIP;
 import loginsql.MySQLConnection;
 import products.Product;
 
 import java.sql.SQLException;
 import java.util.*;
 
-public class LoadDataAdmin implements IAdapterAdmin {
+public class LoadDBDataAdmin implements IAdapterAdmin {
     public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
 
     @Override
@@ -51,8 +51,8 @@ public class LoadDataAdmin implements IAdapterAdmin {
 
     private List<User> extractUsersDB() {
         List<User> userListDB = new ArrayList<>();
-        IAdapterDataLP adapterDataLP = new AdapterDataLP();
-        IAdapterDataIP adapterDataIP = new AdapterDataIP();
+        IAdapterDBLP adapterDataLP = new LPersonDBExtract();
+        IAdapterDBIP adapterDataIP = new IPersonDBExtract();
 
         userListDB.addAll(adapterDataIP.getIPFromDB());
         userListDB.addAll(adapterDataLP.getLPFromDB());
