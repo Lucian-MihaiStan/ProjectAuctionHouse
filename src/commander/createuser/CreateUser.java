@@ -1,8 +1,7 @@
 package commander.createuser;
 
 import auction_house.AuctionHouse;
-import client.Client;
-import client.individualperson.IndividualPerson;
+import client.User;
 import client.individualperson.IndividualPersonBuilder;
 import client.legalperson.LegalPerson;
 import client.legalperson.LegalPersonBuilder;
@@ -43,8 +42,8 @@ public class CreateUser implements ICommand {
                                         .valueOf(HelperCU.convertParamLP(restParameters).getRight()))
                                 .build()
         );
-        Client lastClient = auctionHouse.getLastClient();
-        new AddUserSQL().addClientSQL(lastClient);
+        User lastUser = auctionHouse.getLastClient();
+        new AddUserSQL().addClientSQL(lastUser);
     }
 
     public String getFirstName() {

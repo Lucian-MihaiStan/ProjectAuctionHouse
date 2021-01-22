@@ -1,13 +1,13 @@
 package client.individualperson;
 
-import client.Client;
+import client.User;
 
 import java.util.Date;
 
 /**
  *
  */
-public class IndividualPerson extends Client {
+public class IndividualPerson extends User {
     private Date birthDate;
 
     public IndividualPerson() {

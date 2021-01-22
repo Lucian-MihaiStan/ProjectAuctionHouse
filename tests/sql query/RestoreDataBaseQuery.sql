@@ -1,4 +1,4 @@
-ALTER TABLE client auto_increment=1;
+ALTER TABLE user auto_increment=1;
 ALTER TABLE individualperson auto_increment=1;
 ALTER TABLE legalperson auto_increment=1;
 

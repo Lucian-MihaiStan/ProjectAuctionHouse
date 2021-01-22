@@ -1,4 +1,4 @@
-package adapter;
+package load_data_db;
 
 import java.util.List;
 import java.util.Map;

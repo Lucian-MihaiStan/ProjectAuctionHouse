@@ -1,9 +1,9 @@
 package auction_house;
 
-import adapter.AdapterAdminAC;
-import adapter.IAdapterAdmin;
+import client.User;
+import load_data_db.LoadDataAdmin;
+import load_data_db.IAdapterAdmin;
 import auction.Auction;
-import client.Client;
 import products.Product;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class AuctionHouse {
     private static AuctionHouse instance;
 
     private List<Product> productsList;
-    private List<Client> clientsList;
+    private List<User> userList;
     private List<Auction> auctionsActive;
 
     public static AuctionHouse getInstance() {
@@ -27,7 +27,7 @@ public class AuctionHouse {
 
     private AuctionHouse() {
         productsList = new ArrayList<>();
-        clientsList = new ArrayList<>();
+        userList = new ArrayList<>();
         auctionsActive = new ArrayList<>();
     }
 
@@ -39,12 +39,12 @@ public class AuctionHouse {
         this.productsList = productsList;
     }
 
-    public List<Client> getClientsList() {
-        return clientsList;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setClientsList(List<Client> clientsList) {
-        this.clientsList = clientsList;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public List<Auction> getAuctionsActive() {
@@ -55,12 +55,12 @@ public class AuctionHouse {
         this.auctionsActive = auctionsActive;
     }
 
-    public void addNewClient(Client client) {
-        clientsList.add(client);
+    public void addNewClient(User user) {
+        userList.add(user);
     }
 
-    public Client getLastClient() {
-        return clientsList.get(clientsList.size() - 1);
+    public User getLastClient() {
+        return userList.get(userList.size() - 1);
     }
 
     public void addNewProduct(Product product) {
@@ -72,15 +72,15 @@ public class AuctionHouse {
     }
 
     public void loadAsAdmin() {
-        IAdapterAdmin adapter = new AdapterAdminAC();
+        IAdapterAdmin adapter = new LoadDataAdmin();
         Map<String, List<Object>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
         try {
-            auctionHouseData.get("IP").forEach(client -> clientsList.add((Client) client));
+            auctionHouseData.get("IP").forEach(client -> userList.add((User) client));
         } catch (ClassCastException e){
             //
         }
         try {
-            auctionHouseData.get("LP").forEach(client -> clientsList.add((Client) client));
+            auctionHouseData.get("LP").forEach(client -> userList.add((User) client));
         } catch (ClassCastException e){
             //
         }

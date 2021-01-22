@@ -1,6 +1,6 @@
 package loginsql.clientconnection.usersql;
 
-import client.Client;
+import client.User;
 import client.legalperson.LegalPerson;
 import loginsql.MySQLConnection;
 import socketserver.ServerClientThread;
@@ -13,21 +13,21 @@ import java.text.SimpleDateFormat;
 public class AddUserSQL {
     private static final MySQLConnection mySQLConnection = ServerClientThread.mySQLConnection;
 
-    public void addClientSQL(Client client) {
+    public void addClientSQL(User user) {
 
         String query = "INSERT INTO client (first_name, last_name, address, noParticipation, noAuctionsWon)" +
                 " values (?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
-            preparedStatement.setString(1, client.getFirstName());
-            preparedStatement.setString(2, client.getLastName());
-            preparedStatement.setString(3, client.getAddress());
-            preparedStatement.setInt(4, client.getNoParticipation());
-            preparedStatement.setInt(5, client.getWonAuctions());
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(3, user.getAddress());
+            preparedStatement.setInt(4, user.getNoParticipation());
+            preparedStatement.setInt(5, user.getWonAuctions());
 
             preparedStatement.execute();
 
-            if (client instanceof client.individualperson.IndividualPerson) addUserIndividualPerson((client.individualperson.IndividualPerson) client);
-            else addUserLegalPerson((LegalPerson) client);
+            if (user instanceof client.individualperson.IndividualPerson) addUserIndividualPerson((client.individualperson.IndividualPerson) user);
+            else addUserLegalPerson((LegalPerson) user);
         } catch (SQLException errorSQL) {
             errorSQL.printStackTrace();
         }

@@ -1,9 +1,9 @@
 package client.legalperson;
 
 
-import client.Client;
+import client.User;
 
-public class LegalPerson extends Client {
+public class LegalPerson extends User {
     private TypeCompany typeCompany;
     private double socialCapital;
 
