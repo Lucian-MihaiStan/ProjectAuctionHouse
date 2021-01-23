@@ -1,6 +1,6 @@
 package socketserver;
 
-import auction_house.AuctionHouse;
+//import auction_house.AuctionHouse;
 
 import java.io.*;
 import java.net.Socket;
@@ -10,7 +10,7 @@ import static java.lang.System.*;
 
 public class ClientMain {
 
-    public static final AuctionHouse auctionHouse = AuctionHouse.getInstance().load();
+//    public static final AuctionHouse auctionHouse = AuctionHouse.getInstance().load();
 
     public static void main(String[] args) {
         String serverMessage;
@@ -19,16 +19,20 @@ public class ClientMain {
         boolean accountClient = loginMessages();
 
         try(Socket socket = new Socket("localhost", 4999)) {
-            DataInputStream inputStream = new DataInputStream(socket.getInputStream());
-            DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+            DataInputStream inputStream = new DataInputStream(socket.getInputStream()); // input de la server
+            DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream()); // trimit la server
+
+            InputStream input = socket.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(input));
+
             while(!clientMessage.equalsIgnoreCase("exit")) {
                 out.print(">> ");
                 clientMessage = bufferedReader.readLine();
+                out.println(clientMessage + " nu stiu ce e asta ");
                 outputStream.writeUTF(clientMessage);
                 outputStream.flush();
-                serverMessage = inputStream.readUTF();
-                out.println(serverMessage);
+                serverMessage = inputStream.readUTF(); // ?! cred ca citesc input de la server
+                out.println(serverMessage + " DADADA ");
             }
             inputStream.close();
             outputStream.close();

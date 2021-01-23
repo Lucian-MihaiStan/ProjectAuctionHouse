@@ -1,11 +1,8 @@
 package commander;
 
-
 import loginsql.MySQLConnection;
 import socketserver.ClientMain;
-import socketserver.Main;
 import socketserver.ServerClientThread;
-
 
 import static java.lang.System.*;
 
@@ -19,10 +16,10 @@ public class ListUsers implements ICommand {
             out.println("Access Denied");
         }
         else {
-            out.println("DA");
-            ClientMain.auctionHouse.getUserList().forEach(
-                    out::println
-            );
+            /*ClientMain.dataFlow = new StringBuilder();
+            ClientMain.auctionHouse.getUserList().forEach(user ->
+                ClientMain.dataFlow.append(user.toString())
+            );*/
         }
 
     }

@@ -91,3 +91,5 @@ Esrc/load_data_db/product_db_extract/adapterfurniture/DBFurniture.java,4\a\4ac0
 Msrc/load_data_db/product_db_extract/adapterjewellery/IAdapterDBJewellery.java,7\1\7166fdcd750d71a80ae55b6f0fa8ae8978c26782
 u
 Esrc/load_data_db/product_db_extract/adapterjewellery/DBJewellery.java,4\3\43b52e85f57f4dc32c1bd3043f8b6149f89d7e2c
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0

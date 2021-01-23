@@ -1,13 +1,10 @@
 package socketserver;
 
-import auction_house.AuctionHouse;
 import loginsql.MySQLConnection;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.EOFException;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.nio.Buffer;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +16,7 @@ import static java.lang.System.*;
 public class ServerClientThread extends Thread {
     private final Socket serverClient;
     private final int clientNo;
+
 
     public ServerClientThread(Socket inSocket, int counter){
         serverClient = inSocket;
@@ -40,15 +38,17 @@ public class ServerClientThread extends Thread {
         boolean connection = false;
         try(DataInputStream inStream = new DataInputStream(serverClient.getInputStream());
             DataOutputStream outStream = new DataOutputStream(serverClient.getOutputStream())){
+
             while(!clientMessage.equalsIgnoreCase("exit")){
                 clientMessage = inStream.readUTF();
+                outStream.writeUTF(clientMessage + " din server client thread");
                 List<String> clientCommand = Arrays.asList(clientMessage.split(" "));
                 if(!connection){
                     try {
                         mySQLConnection.realizeConnection(clientCommand.get(1), clientCommand.get(2));
                         connection = true;
-                    } catch (SQLException | ClassNotFoundException throwables) {
-                        throwables.printStackTrace();
+                    } catch (SQLException | ClassNotFoundException errorSQL) {
+                        errorSQL.printStackTrace();
                     }
                 }
                 else {
@@ -57,6 +57,7 @@ public class ServerClientThread extends Thread {
                         break;
                     }
                     if(clientMessage.equalsIgnoreCase("show")) {
+//                        incearca ceva cu outstream puii mei
                         out.println(mySQLConnection.getUsername());
                         continue;
                     }
@@ -67,7 +68,7 @@ public class ServerClientThread extends Thread {
                         addCommandToList(clientMessage);
                     }
                 }
-                serverMessage = clientMessage + " command released with successfully";
+                serverMessage = "";
                 outStream.writeUTF(serverMessage);
                 outStream.flush();
             }
