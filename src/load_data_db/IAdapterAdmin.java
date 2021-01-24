@@ -5,5 +5,5 @@ import java.util.Map;
 
 public interface IAdapterAdmin {
     IAdapterAdmin connectToDatabaseAsAdmin();
-    Map<String, List<Object>> extractFromDatabase();
+    Map<String, List<?>> extractFromDatabase();
 }

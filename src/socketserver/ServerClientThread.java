@@ -1,90 +1,102 @@
 package socketserver;
 
+import auction_house.AuctionHouse;
 import loginsql.MySQLConnection;
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.Buffer;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 import static commander.Caller.addCommand;
 import static commander.Caller.executeCommands;
 import static java.lang.System.*;
 
 public class ServerClientThread extends Thread {
-    private final Socket serverClient;
-    private final int clientNo;
+    private Socket serverClient;
+    private int clientNo;
+    private String hostAddress;
 
+    /* nusj ce e asta dar il las aici*/
     public static String commandUser;
 
+    public static class Helper {
+        private static Helper instance;
+        private StringBuilder commandResult = new StringBuilder();
 
-    public ServerClientThread(Socket inSocket, int counter){
-        serverClient = inSocket;
-        clientNo = counter;
+        public static Helper getInstance() {
+            if(instance == null) {
+                instance = new Helper();
+            }
+            return instance;
+        }
+
+        private Helper() {}
+        public StringBuilder getCommandResult() {
+            return commandResult;
+        }
+
+        public void setCommandResult(StringBuilder commandResult) {
+            this.commandResult = commandResult;
+        }
+
+        public void printCommand() {
+            out.println(commandResult);
+        }
     }
 
     public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
 
+    public ServerClientThread() {}
 
-    public static void addCommandToList(String commandLine) {
-        List<String> parameters = Arrays.asList(commandLine.split(" "));
+    public ServerClientThread(Socket inSocket, int counter, String hostAddress){
+        this.serverClient = inSocket;
+        this.clientNo = counter;
+        this.hostAddress = hostAddress;
+    }
+
+
+    public static void addCommandToList(List<String> parameters) {
         addCommand(parameters);
     }
 
+    public static final AuctionHouse auctionHouse = AuctionHouse.getInstance().load();
+
     @Override
     public void run(){
-        String clientMessage = "";
-        String serverMessage;
-        boolean connection = false;
-        try(DataInputStream inStream = new DataInputStream(serverClient.getInputStream());
-            DataOutputStream outStream = new DataOutputStream(serverClient.getOutputStream())){
-
-            while(!clientMessage.equalsIgnoreCase("exit")){
-                /*primeste de la server*/
-                clientMessage = inStream.readUTF();
-                outStream.writeUTF(clientMessage + " din server client thread");
-
-                List<String> clientCommand = Arrays.asList(commandUser.split(" "));
-
-                if(!connection){
-                    try {
-                        mySQLConnection.realizeConnection(clientCommand.get(1), clientCommand.get(2));
-                        connection = true;
-                    } catch (SQLException | ClassNotFoundException errorSQL) {
-                        errorSQL.printStackTrace();
-                    }
+        BufferedReader inBR;
+        StringBuilder result = null;
+        try(PrintWriter outWriter = new PrintWriter(serverClient.getOutputStream(), true)) {
+             inBR = new BufferedReader(
+                    new InputStreamReader(serverClient.getInputStream()));
+            String commandUserBR;
+            while((commandUserBR = inBR.readLine()) != null) {
+                out.println("   Sent from the client " + commandUserBR);
+                evalCommand(commandUserBR);
+                if("execute".equalsIgnoreCase(commandUserBR.split(" ")[0])) {
+                    executeCommands();
+                    result = Helper.getInstance().getCommandResult();
                 }
-                else {
-                    if(clientMessage.equalsIgnoreCase("logout")) {
-                        mySQLConnection.closeConnection();
-                        break;
-                    }
-                    if(clientMessage.equalsIgnoreCase("show")) {
-//                        incearca ceva cu outstream puii mei
-                        out.println(mySQLConnection.getUsername());
-                        continue;
-                    }
-                    if(clientCommand.get(0).equalsIgnoreCase("execute")) {
-                        executeCommands();
-                    }
-                    else {
-                        addCommandToList(clientMessage);
-                    }
-                }
-                serverMessage = "";
-                outStream.writeUTF(serverMessage);
-                outStream.flush();
+                if(result!=null) outWriter.println(result);
+                else outWriter.println("Instruction registered");
             }
-            serverClient.close();
-        } catch (EOFException e) {
-            //
         } catch (IOException e) {
-            err.println("<< !! Client " + clientNo + " closed connection forced!");
-        } finally{
-            out.println("<< !! Client " + clientNo + " closed connection");
+            e.printStackTrace();
+        }
+    }
+
+    private void evalCommand(String commandUser) {
+        List<String> commandParams = Arrays.asList(commandUser.split(" "));
+        if("login".equalsIgnoreCase(commandParams.get(0))) {
+            try {
+                mySQLConnection.realizeConnection(commandParams.get(1), commandParams.get(2));
+            } catch (SQLException | ClassNotFoundException errorSQL) {
+                errorSQL.printStackTrace();
+            }
+        }
+        else if(!"EXECUTE".equalsIgnoreCase(commandParams.get(0))) {
+            addCommandToList(commandParams);
         }
     }
 }

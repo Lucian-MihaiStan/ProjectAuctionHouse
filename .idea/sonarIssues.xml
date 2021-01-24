@@ -368,6 +368,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/IAdapterAdmin.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/LoadDBDataAdmin.java">
           <value>
             <set />

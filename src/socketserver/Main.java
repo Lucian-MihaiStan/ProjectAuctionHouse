@@ -10,27 +10,20 @@ import static java.lang.System.*;
 
 public class Main {
 
-    // String builder sa trimiti mesaj la client in loc de text
-
     public static void main(String[] args) {
+
         try(ServerSocket serverSocket = new ServerSocket(4999)) {
             int counter = 0;
+            serverSocket.setReuseAddress(true);
             out.println("Server Started....");
             while(true){
                 counter++;
-                Socket serverClient = serverSocket.accept();
-                out.println(">> Client No: " + counter + " started!");
-                ServerClientThread sct = new ServerClientThread(serverClient, counter);
-
-                /* comunica cu serverul */
-                OutputStream outputStream = serverClient.getOutputStream();
-                PrintWriter writer = new PrintWriter(outputStream, true);
-
-                String text = "Ala bala portocala";
-                writer.println(text);
-
-                sct.start();
-
+                Socket client = serverSocket.accept();
+                String clientIP = client.getInetAddress().getHostAddress();
+                out.println(">> Client No: " + counter + " with IP: " + client
+                         + " started!");
+                ServerClientThread socketClientThread = new ServerClientThread(client, counter, clientIP);
+                new Thread(socketClientThread).start();
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -7,6 +7,7 @@ import auction.Auction;
 import products.Product;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class AuctionHouse {
     private List<User> userList;
     private List<Auction> auctionsActive;
 
-    public static AuctionHouse getInstance() {
+    public static synchronized AuctionHouse getInstance() {
         if(instance == null) {
             instance = new AuctionHouse();
         }
@@ -74,17 +75,21 @@ public class AuctionHouse {
 
     public AuctionHouse load() {
         IAdapterAdmin adapter = new LoadDBDataAdmin();
-        Map<String, List<Object>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
+        Map<String, List<?>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
         try{
-            auctionHouseData.get("users").forEach(user -> userList.add((User) user));
+            auctionHouseData.get("users").forEach(
+                    user -> userList.add((User) user)
+            );
         } catch (ClassCastException e) {
-            //
+            e.printStackTrace();
         }
 
         try{
-            auctionHouseData.get("products").forEach(product -> productsList.add((Product) product));
+            auctionHouseData.get("products").forEach(
+                    product -> productsList.add((Product) product)
+            );
         } catch (ClassCastException e) {
-            //
+            e.printStackTrace();
         }
 
         /*try {
@@ -92,6 +97,16 @@ public class AuctionHouse {
         } catch (ClassCastException e){
             //
         }*/
+
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "AuctionHouse{" +
+                "productsList=" + productsList +
+                ", userList=" + userList +
+                ", auctionsActive=" + auctionsActive +
+                '}';
     }
 }

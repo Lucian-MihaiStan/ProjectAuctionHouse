@@ -1,8 +1,9 @@
 
-z	java:S135*"YReduce the total number of break and continue statements in this loop to use at most one.(ðï“ úÿÿÿÿ8ê‡¼Ýò.
-o
-java:S3776#"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(“–ýþ8‡¿È´ò.
+S
+java:S1444"1Make this "public static commandUser" field final(”³‘Ôþÿÿÿÿ8 ö¡šó.
+y
+java:S1104"WMake commandUser a static final constant or non-public and provide accessors if needed.(”³‘Ôþÿÿÿÿ8 ö¡šó.
 I
-java:S1128",Remove this unused import 'java.nio.Buffer'.(î¦Ïî8ëôðóò.
-W
-java:S1141/"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8žƒ©´ò.
+java:S1068",Remove this unused "clientNo" private field.(Ùíþõ8®žž™ó.
+L
+java:S1068"/Remove this unused "hostAddress" private field.(ãšü²8ù¾”™ó.

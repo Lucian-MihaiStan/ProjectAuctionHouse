@@ -37,11 +37,11 @@ public class DBJewellery implements IAdapterDBJewellery {
     @Override
     public List<Jewellery> searchByDataJewellery(List<Triple<Integer, String, Boolean>> listDataJewellery) {
         List<Jewellery> jewelleryList = new ArrayList<>();
-        String query = "SELECT * FROM auctionhouseproduct.jewellery WHERE id = ?";
+        String query = "SELECT * FROM auctionhouseproduct.product WHERE id = ?";
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
-            listDataJewellery.forEach(integerDoubleStringTriple -> {
+            listDataJewellery.forEach(iteratorISB -> {
                 try {
-                    preparedStatement.setInt(1, integerDoubleStringTriple.getLeft());
+                    preparedStatement.setInt(1, iteratorISB.getLeft());
                     ResultSet rs = preparedStatement.executeQuery();
                     while(rs.next()) {
                         jewelleryList.add(
@@ -50,8 +50,8 @@ public class DBJewellery implements IAdapterDBJewellery {
                                         .withSellingPrice(rs.getDouble("sellingPrice"))
                                         .withMinimPrice(rs.getDouble("minimumPrice"))
                                         .withYear(rs.getInt("year"))
-                                        .withMaterial(rs.getString("material"))
-                                        .withGemstone(rs.getBoolean("gemstone"))
+                                        .withMaterial(iteratorISB.getMiddle())
+                                        .withGemstone(iteratorISB.getRight())
                                         .build()
                         );
                     }

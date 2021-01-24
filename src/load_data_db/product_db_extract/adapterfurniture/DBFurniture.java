@@ -37,11 +37,11 @@ public class DBFurniture implements IAdapterDBFurniture {
     @Override
     public List<Furniture> searchByDataFurniture(List<Triple<Integer, String, String>> listDataFurniture) {
         List<Furniture> furnitureList = new ArrayList<>();
-        String query = "SELECT * FROM auctionhouseproduct.furniture WHERE id = ?";
+        String query = "SELECT * FROM auctionhouseproduct.product WHERE id = ?";
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
-            listDataFurniture.forEach(integerDoubleStringTriple -> {
+            listDataFurniture.forEach(iteratorISS -> {
                 try {
-                    preparedStatement.setInt(1, integerDoubleStringTriple.getLeft());
+                    preparedStatement.setInt(1, iteratorISS.getLeft());
                     ResultSet rs = preparedStatement.executeQuery();
                     while(rs.next()) {
                         furnitureList.add(
@@ -50,8 +50,8 @@ public class DBFurniture implements IAdapterDBFurniture {
                                         .withSellingPrice(rs.getDouble("sellingPrice"))
                                         .withMinimPrice(rs.getDouble("minimumPrice"))
                                         .withYear(rs.getInt("year"))
-                                        .withType(rs.getString("type"))
-                                        .withMaterial(rs.getString("material"))
+                                        .withType(iteratorISS.getMiddle())
+                                        .withMaterial(iteratorISS.getRight())
                                         .build()
                         );
                     }

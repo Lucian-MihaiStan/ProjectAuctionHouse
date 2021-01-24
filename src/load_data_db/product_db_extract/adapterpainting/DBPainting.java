@@ -37,11 +37,11 @@ public class DBPainting implements IAdapterDBPainting {
     @Override
     public List<Painting> searchByDataPainting(List<Triple<Integer, String, Painting.Colors>> listDataPainting) {
         List<Painting> paintingListList = new ArrayList<>();
-        String query = "SELECT * FROM auctionhouseproduct.painting WHERE id = ?";
+        String query = "SELECT * FROM auctionhouseproduct.product WHERE id = ?";
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
-            listDataPainting.forEach(integerDoubleStringTriple -> {
+            listDataPainting.forEach(iteraetorISC -> {
                 try {
-                    preparedStatement.setInt(1, integerDoubleStringTriple.getLeft());
+                    preparedStatement.setInt(1, iteraetorISC.getLeft());
                     ResultSet rs = preparedStatement.executeQuery();
                     while(rs.next()) {
                         paintingListList.add(
@@ -50,8 +50,8 @@ public class DBPainting implements IAdapterDBPainting {
                                         .withSellingPrice(rs.getDouble("sellingPrice"))
                                         .withMinimumPrice(rs.getDouble("minimumPrice"))
                                         .withYear(rs.getInt("year"))
-                                        .withNameArtist(rs.getString("name_artist"))
-                                        .withColors(Painting.Colors.valueOf(rs.getString("color")))
+                                        .withNameArtist(iteraetorISC.getMiddle())
+                                        .withColors(iteraetorISC.getRight())
                                         .build()
                         );
                     }

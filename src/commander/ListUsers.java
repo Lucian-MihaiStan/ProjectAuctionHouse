@@ -1,10 +1,8 @@
 package commander;
 
 import loginsql.MySQLConnection;
-import socketserver.ClientMain;
 import socketserver.ServerClientThread;
 
-import static java.lang.System.*;
 
 public class ListUsers implements ICommand {
     @Override
@@ -12,15 +10,16 @@ public class ListUsers implements ICommand {
 
         MySQLConnection mySQLConnection = ServerClientThread.mySQLConnection;
 
-        if(!mySQLConnection.getUsername().equals("admin")) {
-            out.println("Access Denied");
+        ServerClientThread.Helper helper = ServerClientThread.Helper.getInstance();
+        if(!("admin").equals(mySQLConnection.getUsername())) {
+            helper.setCommandResult(helper.getCommandResult().append("Access Denied to see all users"));
         }
         else {
-            /*ClientMain.dataFlow = new StringBuilder();
-            ClientMain.auctionHouse.getUserList().forEach(user ->
-                ClientMain.dataFlow.append(user.toString())
-            );*/
+            StringBuilder usersSB = new StringBuilder();
+            ServerClientThread.auctionHouse.getUserList().forEach(
+                    user -> usersSB.append(user.toString())
+            );
+            helper.setCommandResult(helper.getCommandResult().append(usersSB));
         }
-
     }
 }

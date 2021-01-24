@@ -17,6 +17,8 @@ import products.Product;
 import java.sql.SQLException;
 import java.util.*;
 
+import static java.lang.System.*;
+
 public class LoadDBDataAdmin implements IAdapterAdmin {
     public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
 
@@ -31,22 +33,23 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
     }
 
     @Override
-    public Map<String, List<Object>> extractFromDatabase() {
-        Map<String, List<Object>> mapUsers = new HashMap<>();
+    public Map<String, List<?>> extractFromDatabase() {
+        Map<String, List<?>> mapData = new HashMap<>();
 
         List<User> userListDB = extractUsersDB();
         List<Product> productListDB = extractProductsDB();
 
-        mapUsers.put(
-                "users", Collections.singletonList(userListDB)
+        mapData.put(
+                "users", userListDB
         );
-        mapUsers.put(
-                "products", Collections.singletonList(productListDB)
+        mapData.put(
+                "products", productListDB
         );
 //        mapUsers.put(
 //              "auctions", Collections.singletonList(auctionsDB)
 //        );
-        return mapUsers;
+
+        return mapData;
     }
 
     private List<Product> extractProductsDB() {
