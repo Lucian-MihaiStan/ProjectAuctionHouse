@@ -2,7 +2,9 @@ package commander;
 
 import commander.addproduct.ProductBuilderCommander;
 import commander.createuser.CreateUserBuilderCommand;
+import commander.deleteproduct.DeleteProduct;
 import features.Features;
+import socketserver.ServerClientThread;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +39,16 @@ public class Caller {
                             .build();
             case LIST_USERS -> new ListUsers();
             case LIST_PRODUCTS -> new ListProducts();
-            case DELETE_PRODUCT -> null;
+            case DELETE_PRODUCT -> new DeleteProduct(Integer.parseInt(elements.get(1)));
             case EXIT -> null;
         };
     }
     
     public static void executeCommands() {
-        commands.forEach(ICommand::execute);
+        commands.forEach(iCommand -> {
+            ServerClientThread.auctionHouse.load();
+            iCommand.execute();
+        });
         commands = new ArrayList<>();
     }
 }

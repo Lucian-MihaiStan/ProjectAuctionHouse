@@ -40,11 +40,17 @@ public class DeleteFromDB {
     private static String buildQueryString(int productId, int productType) {
         String deleteFromSubClass = "DELETE FROM auctionhouseproduct.";
         switch (productType) {
-            case 1 -> deleteFromSubClass += "painting";
-            case 2 -> deleteFromSubClass += "furniture";
-            case 3 -> deleteFromSubClass += "jewellery";
+            case 1 -> deleteFromSubClass += "painting ";
+            case 2 -> deleteFromSubClass += "furniture ";
+            case 3 -> deleteFromSubClass += "jewellery ";
         }
-        deleteFromSubClass += "WHERE id = " + productId;
+        deleteFromSubClass += "WHERE id_";
+        switch (productType) {
+            case 1 -> deleteFromSubClass += "painting =";
+            case 2 -> deleteFromSubClass += "furniture =";
+            case 3 -> deleteFromSubClass += "jewellery =";
+        }
+        deleteFromSubClass += productId;
         return deleteFromSubClass;
     }
 

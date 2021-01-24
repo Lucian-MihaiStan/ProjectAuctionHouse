@@ -46,6 +46,7 @@ public class DBJewellery implements IAdapterDBJewellery {
                     while(rs.next()) {
                         jewelleryList.add(
                                 new JewelleryBuilder()
+                                        .withId(rs.getInt("id"))
                                         .withName(rs.getString("name"))
                                         .withSellingPrice(rs.getDouble("sellingPrice"))
                                         .withMinimPrice(rs.getDouble("minimumPrice"))

@@ -7,6 +7,7 @@ import products.furniture.FurnitureBuilder;
 import products.jewellery.JewelleryBuilder;
 import products.painting.PaintingBuilder;
 import products.Product;
+import socketserver.ServerClientThread;
 
 import java.util.List;
 
@@ -19,9 +20,16 @@ public class AddProduct implements ICommand {
     private int year;
     private List<String> restParameters;
 
+
     @Override
     public void execute() {
-        AuctionHouse auctionHouse = AuctionHouse.getInstance();
+        AuctionHouse auctionHouse = ServerClientThread.auctionHouse;
+        String username = ServerClientThread.mySQLConnection.getUsername();
+        if(!"admin".equals(username)) {
+            ServerClientThread.Helper outCommand = ServerClientThread.Helper.getInstance();
+            outCommand.setCommandResult(outCommand.getCommandResult().append("You are not admin to modify the list fo products"));
+            return;
+        }
         if(productType == 1) auctionHouse.addNewProduct(
                 new PaintingBuilder()
                         .withName(name)

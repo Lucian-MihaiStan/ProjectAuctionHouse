@@ -5,6 +5,11 @@ import products.furniture.FurnitureBuilder;
 public class JewelleryBuilder {
     private Jewellery jewellery = new Jewellery();
 
+    public JewelleryBuilder withId(int id) {
+        jewellery.setId(id);
+        return this;
+    }
+
     public JewelleryBuilder withName(String name) {
         jewellery.setName(name);
         return this;

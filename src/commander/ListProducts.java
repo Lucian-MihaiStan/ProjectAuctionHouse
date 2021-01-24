@@ -13,7 +13,6 @@ public class ListProducts implements ICommand {
             id++;
             productSB.append(id);
             productSB.append(") ");
-            productSB.append('\n');
             productSB.append(product.toString());
         }
         helper.setCommandResult(helper.getCommandResult().append(productSB));

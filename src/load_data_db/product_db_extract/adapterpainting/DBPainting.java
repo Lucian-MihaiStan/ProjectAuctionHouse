@@ -46,6 +46,7 @@ public class DBPainting implements IAdapterDBPainting {
                     while(rs.next()) {
                         paintingListList.add(
                                 new PaintingBuilder()
+                                        .withId(rs.getInt("id"))
                                         .withName(rs.getString("name"))
                                         .withSellingPrice(rs.getDouble("sellingPrice"))
                                         .withMinimumPrice(rs.getDouble("minimumPrice"))

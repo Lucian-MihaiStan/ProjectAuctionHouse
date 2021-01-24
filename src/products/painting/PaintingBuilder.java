@@ -5,6 +5,11 @@ import products.jewellery.JewelleryBuilder;
 public class PaintingBuilder {
     private final Painting painting = new Painting();
 
+    public PaintingBuilder withId(int id) {
+        painting.setId(id);
+        return this;
+    }
+
     public PaintingBuilder withName(String name) {
         painting.setName(name);
         return this;

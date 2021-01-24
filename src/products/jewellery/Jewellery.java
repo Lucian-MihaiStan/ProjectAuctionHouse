@@ -25,6 +25,7 @@ public class Jewellery extends Product {
     @Override
     public String toString() {
         return "Jewellery{" +
+                "id = " + this.getId() +
                 this.getName() + " " +
                 this.getSellingPrice() + " " +
                 this.getMinimumPrice() + " " +

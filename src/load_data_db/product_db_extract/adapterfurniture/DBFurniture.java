@@ -46,6 +46,7 @@ public class DBFurniture implements IAdapterDBFurniture {
                     while(rs.next()) {
                         furnitureList.add(
                                 new FurnitureBuilder()
+                                        .withId(rs.getInt("id"))
                                         .withName(rs.getString("name"))
                                         .withSellingPrice(rs.getDouble("sellingPrice"))
                                         .withMinimPrice(rs.getDouble("minimumPrice"))

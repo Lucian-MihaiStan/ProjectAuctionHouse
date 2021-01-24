@@ -75,6 +75,9 @@ public class AuctionHouse {
 
     public AuctionHouse load() {
         IAdapterAdmin adapter = new LoadDBDataAdmin();
+        userList = new ArrayList<>();
+        productsList = new ArrayList<>();
+        auctionsActive = new ArrayList<>();
         Map<String, List<?>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
         try{
             auctionHouseData.get("users").forEach(
