@@ -6,6 +6,11 @@ public class CreateUserBuilderCommand {
 
     private final CreateUser createUser = new CreateUser();
 
+    public CreateUserBuilderCommand withUsername(String username) {
+        createUser.setUsername(username);
+        return this;
+    }
+
     public CreateUserBuilderCommand withFirstName(String firstName) {
         createUser.setFirstName(firstName);
         return this;

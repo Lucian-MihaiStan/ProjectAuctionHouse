@@ -1,11 +1,20 @@
 package client;
 
 public abstract class User {
+    private String username;
     private String firstName;
     private String lastName;
     private String address;
     private int noParticipation;
     private int wonAuctions;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -49,8 +58,9 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "firstName='" + firstName + '\'' +
+        return "User{" +
+                "Username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
                 ", noParticipation=" + noParticipation +

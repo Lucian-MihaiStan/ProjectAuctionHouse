@@ -34,6 +34,7 @@ public class IndividualPerson extends User {
     @Override
     public String toString() {
         return "IndividualPerson{" +
+                this.getUsername() + " " +
                 this.getFirstName() + " " +
                 this.getLastName() + " " +
                 this.getAddress() + " " +

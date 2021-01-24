@@ -12,6 +12,7 @@ import loginsql.clientconnection.usersql.AddUserSQL;
 import java.util.List;
 
 public class CreateUser implements ICommand {
+    private String username;
     private String firstName;
     private String lastName;
     private String address;
@@ -23,6 +24,7 @@ public class CreateUser implements ICommand {
         auctionHouse.addNewClient(
                 restParameters.size() == 1 ?
                         new IndividualPersonBuilder()
+                                .withUsername(username)
                                 .withFirstName(firstName)
                                 .withLastName(lastName)
                                 .withAddress(address)
@@ -32,6 +34,7 @@ public class CreateUser implements ICommand {
                                 .build()
                         :
                         new LegalPersonBuilder()
+                                .withUsername(username)
                                 .withFirstName(firstName)
                                 .withLastName(lastName)
                                 .withAddress(address)
@@ -44,6 +47,14 @@ public class CreateUser implements ICommand {
         );
         User lastUser = auctionHouse.getLastClient();
         new AddUserSQL().addClientSQL(lastUser);
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getFirstName() {

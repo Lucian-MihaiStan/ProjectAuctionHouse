@@ -5,6 +5,11 @@ import java.util.Date;
 public class IndividualPersonBuilder {
     private final IndividualPerson individualPerson = new IndividualPerson();
 
+    public IndividualPersonBuilder withUsername(String username) {
+        individualPerson.setUsername(username);
+        return this;
+    }
+
     public IndividualPersonBuilder withFirstName(String firstName) {
         individualPerson.setFirstName(firstName);
         return this;

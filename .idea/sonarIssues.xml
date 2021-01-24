@@ -23,6 +23,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../MultiThreadingSocketServer/src/multithreading/MultithreadedSocketServer.java">
           <value>
             <set />
@@ -198,6 +203,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/DeleteProduct.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/ICommand.java">
           <value>
             <set />
@@ -269,6 +279,36 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/createuser/UserBuilderCommander.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/deleteproduct/DeleteFromDB.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/deleteproduct/DeleteProduct.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/Admin.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/Broker.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/Employee.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/employee.java">
           <value>
             <set />
           </value>

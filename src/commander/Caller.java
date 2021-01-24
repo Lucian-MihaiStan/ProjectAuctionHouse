@@ -20,10 +20,11 @@ public class Caller {
         return switch (Features.valueOf(elements.get(0))) {
             case CREATE_USER ->
                     new CreateUserBuilderCommand()
-                            .withFirstName(elements.get(1))
-                            .withLastName(elements.get(2))
-                            .withAddress(elements.get(3))
-                            .withOtherParameters(elements.subList(4, elements.size()))
+                            .withUsername(elements.get(1))
+                            .withFirstName(elements.get(2))
+                            .withLastName(elements.get(3))
+                            .withAddress(elements.get(4))
+                            .withOtherParameters(elements.subList(5, elements.size()))
                             .build();
             case ADD_PRODUCT ->
                     new ProductBuilderCommander()
@@ -36,6 +37,8 @@ public class Caller {
                             .build();
             case LIST_USERS -> new ListUsers();
             case LIST_PRODUCTS -> new ListProducts();
+            case DELETE_PRODUCT -> null;
+            case EXIT -> null;
         };
     }
     

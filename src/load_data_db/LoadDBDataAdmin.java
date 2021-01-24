@@ -17,8 +17,6 @@ import products.Product;
 import java.sql.SQLException;
 import java.util.*;
 
-import static java.lang.System.*;
-
 public class LoadDBDataAdmin implements IAdapterAdmin {
     public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
 

@@ -7,6 +7,7 @@ import socketserver.ServerClientThread;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
@@ -15,14 +16,15 @@ public class AddUserSQL {
 
     public void addClientSQL(User user) {
 
-        String query = "INSERT INTO client (first_name, last_name, address, noParticipation, noAuctionsWon)" +
-                " values (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO client (username, first_name, last_name, address, noParticipation, noAuctionsWon)" +
+                " values (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setString(3, user.getAddress());
-            preparedStatement.setInt(4, user.getNoParticipation());
-            preparedStatement.setInt(5, user.getWonAuctions());
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getFirstName());
+            preparedStatement.setString(3, user.getLastName());
+            preparedStatement.setString(4, user.getAddress());
+            preparedStatement.setInt(5, user.getNoParticipation());
+            preparedStatement.setInt(6, user.getWonAuctions());
 
             preparedStatement.execute();
 

@@ -1,17 +1,21 @@
 package commander;
 
+import products.Product;
 import socketserver.ServerClientThread;
-
-import static java.lang.System.*;
 
 public class ListProducts implements ICommand {
     @Override
     public void execute() {
         ServerClientThread.Helper helper = ServerClientThread.Helper.getInstance();
         StringBuilder productSB = new StringBuilder();
-        ServerClientThread.auctionHouse.getProductsList().forEach(
-                product -> productSB.append(product.toString())
-        );
+        int id = 0;
+        for (Product product : ServerClientThread.auctionHouse.getProductsList()) {
+            id++;
+            productSB.append(id);
+            productSB.append(") ");
+            productSB.append('\n');
+            productSB.append(product.toString());
+        }
         helper.setCommandResult(helper.getCommandResult().append(productSB));
     }
 }

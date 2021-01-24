@@ -20,6 +20,7 @@ public class ClientMain {
                 line = clientScanner.nextLine();
                 printWriter.println(line);
                 printWriter.flush();
+                if("exit".equalsIgnoreCase(line)) break;
                 String repliedServer = inBR.readLine();
                 out.println("Server replied " + repliedServer);
             }

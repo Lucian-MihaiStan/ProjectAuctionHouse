@@ -93,3 +93,15 @@ u
 Esrc/load_data_db/product_db_extract/adapterjewellery/DBJewellery.java,4\3\43b52e85f57f4dc32c1bd3043f8b6149f89d7e2c
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+j
+:.idea/dataSources/606ff5d0-8d16-427b-aead-1434f464c75c.xml,8\4\84bad40ce5d31a44bfa776d4d112606a917c0d1c
+H
+src/employee/Broker.java,8\8\88b3fb05f90e5fe89587b6e82cfee91879cd4c5b
+J
+src/employee/Employee.java,7\7\770ca7c3dfa744733d6b0c015d061110190f9b48
+G
+src/employee/Admin.java,5\c\5c3ab28d3fc09f5692af21543ddcb6a5fe504a41
+]
+-src/commander/deleteproduct/DeleteFromDB.java,f\2\f2a32d17dbd93efd348dee09c99521c8956aa669
+^
+.src/commander/deleteproduct/DeleteProduct.java,c\8\c859ce5f7b212902a3efd0f8ade43c4625db34be
