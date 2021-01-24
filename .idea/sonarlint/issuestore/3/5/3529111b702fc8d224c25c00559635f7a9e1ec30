@@ -1,8 +1,8 @@
 
+z	java:S135*"YReduce the total number of break and continue statements in this loop to use at most one.(ðï“ úÿÿÿÿ8ê‡¼Ýò.
+o
+java:S3776#"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(“–ýþ8‡¿È´ò.
 I
 java:S1128",Remove this unused import 'java.nio.Buffer'.(î¦Ïî8ëôðóò.
 W
-java:S11410"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8žƒ©´ò.
-o
-java:S3776#"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(“–ýþ8‡¿È´ò.
-z	java:S135+"YReduce the total number of break and continue statements in this loop to use at most one.(ðï“ úÿÿÿÿ8ê‡¼Ýò.
+java:S1141/"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8žƒ©´ò.

@@ -8,6 +8,7 @@ import java.nio.Buffer;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static commander.Caller.addCommand;
 import static commander.Caller.executeCommands;
@@ -16,6 +17,8 @@ import static java.lang.System.*;
 public class ServerClientThread extends Thread {
     private final Socket serverClient;
     private final int clientNo;
+
+    public static String commandUser;
 
 
     public ServerClientThread(Socket inSocket, int counter){
@@ -40,9 +43,12 @@ public class ServerClientThread extends Thread {
             DataOutputStream outStream = new DataOutputStream(serverClient.getOutputStream())){
 
             while(!clientMessage.equalsIgnoreCase("exit")){
+                /*primeste de la server*/
                 clientMessage = inStream.readUTF();
                 outStream.writeUTF(clientMessage + " din server client thread");
-                List<String> clientCommand = Arrays.asList(clientMessage.split(" "));
+
+                List<String> clientCommand = Arrays.asList(commandUser.split(" "));
+
                 if(!connection){
                     try {
                         mySQLConnection.realizeConnection(clientCommand.get(1), clientCommand.get(2));

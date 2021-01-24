@@ -22,6 +22,7 @@ public class Main {
                 out.println(">> Client No: " + counter + " started!");
                 ServerClientThread sct = new ServerClientThread(serverClient, counter);
 
+                /* comunica cu serverul */
                 OutputStream outputStream = serverClient.getOutputStream();
                 PrintWriter writer = new PrintWriter(outputStream, true);
 

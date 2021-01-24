@@ -28,11 +28,18 @@ public class ClientMain {
             while(!clientMessage.equalsIgnoreCase("exit")) {
                 out.print(">> ");
                 clientMessage = bufferedReader.readLine();
+                /* primeste de la server */
                 out.println(clientMessage + " nu stiu ce e asta ");
                 outputStream.writeUTF(clientMessage);
                 outputStream.flush();
                 serverMessage = inputStream.readUTF(); // ?! cred ca citesc input de la server
                 out.println(serverMessage + " DADADA ");
+
+                BufferedReader userInput = new BufferedReader(new InputStreamReader(in));
+                out.println("Enter a command");
+                String commandUser = userInput.readLine();
+                ServerClientThread.commandUser =  commandUser;
+
             }
             inputStream.close();
             outputStream.close();
