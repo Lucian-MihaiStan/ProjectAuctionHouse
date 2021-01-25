@@ -8,19 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class MySQLConnection {
-    private static MySQLConnection instance;
     private Connection connection;
     private String username;
     private String password;
 
-    public static synchronized MySQLConnection getInstance() {
-        if(instance == null) {
-            instance = new MySQLConnection();
-        }
-        return instance;
-    }
-
-    private MySQLConnection() {
+    public MySQLConnection() {
         //
     }
 

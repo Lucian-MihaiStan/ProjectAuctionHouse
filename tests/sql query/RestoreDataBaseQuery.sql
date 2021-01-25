@@ -1,6 +1,6 @@
-ALTER TABLE user auto_increment=1;
-ALTER TABLE individualperson auto_increment=1;
-ALTER TABLE legalperson auto_increment=1;
+-- ALTER TABLE auctionhouse.client auto_increment=1;
+-- ALTER TABLE auctionhouse.individualperson auto_increment=1;
+-- ALTER TABLE auctionhouse.legalperson auto_increment=1;
 
 ALTER TABLE auctionhouseproduct.furniture auto_increment=1;
 ALTER TABLE auctionhouseproduct.jewellery auto_increment=1;

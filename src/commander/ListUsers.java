@@ -7,8 +7,8 @@ import static java.lang.System.*;
 
 public class ListUsers implements ICommand {
     @Override
-    public void execute() {
-        MySQLConnection mySQLConnection = ServerClientThread.mySQLConnection;
+    public void execute(ServerClientThread sct) {
+        MySQLConnection mySQLConnection = sct.mySQLConnection;
 
         ServerClientThread.Helper helper = ServerClientThread.Helper.getInstance();
 
@@ -17,7 +17,7 @@ public class ListUsers implements ICommand {
         }
         else {
             StringBuilder usersSB = new StringBuilder();
-            ServerClientThread.auctionHouse.getUserList().forEach(
+            sct.getAuctionHouse().getUserList().forEach(
                     user -> usersSB.append(user.toString())
             );
             helper.setCommandResult(helper.getCommandResult().append(usersSB));

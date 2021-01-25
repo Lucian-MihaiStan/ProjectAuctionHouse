@@ -1,5 +1,6 @@
 package commander;
 
+import auction_house.AuctionHouse;
 import commander.addproduct.ProductBuilderCommander;
 import commander.createuser.CreateUserBuilderCommand;
 import commander.deleteproduct.DeleteProduct;
@@ -14,12 +15,11 @@ public class Caller {
 
     private Caller() {}
 
-    public static synchronized void addCommand(List<String> parameters) {
-        commands.add(getCommand(parameters));
-        System.out.println(commands);
+    public static synchronized void addCommand(List<String> parameters, AuctionHouse ah) {
+        commands.add(getCommand(parameters, ah));
     }
 
-    private static synchronized ICommand getCommand(List<String> elements) {
+    private static synchronized ICommand getCommand(List<String> elements, AuctionHouse ah) {
         return switch (Features.valueOf(elements.get(0))) {
             case CREATE_USER ->
                     new CreateUserBuilderCommand()
@@ -47,13 +47,13 @@ public class Caller {
         };
     }
     
-    public static synchronized void executeCommands() {
+    public static synchronized void executeCommands(ServerClientThread sct, AuctionHouse ah) {
         commands.forEach(iCommand -> {
             if(iCommand != null) {
                 ServerClientThread.Helper resultCommands = ServerClientThread.Helper.getInstance();
                 resultCommands.setCommandResult(new StringBuilder());
-                ServerClientThread.auctionHouse.load();
-                iCommand.execute();
+                ah.load(sct.getMySQLConnection());
+                iCommand.execute(sct);
             }
         });
         commands = new ArrayList<>();

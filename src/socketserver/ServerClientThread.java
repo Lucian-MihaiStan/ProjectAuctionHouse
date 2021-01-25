@@ -52,13 +52,17 @@ public class ServerClientThread extends Thread {
         this.hostAddress = hostAddress;
     }
 
-    public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
+    public final MySQLConnection mySQLConnection = new MySQLConnection();
 
-    public static void addCommandToList(List<String> parameters) {
-        addCommand(parameters);
+    public MySQLConnection getMySQLConnection() {
+        return mySQLConnection;
     }
 
-    public static final AuctionHouse auctionHouse = AuctionHouse.getInstance().load();
+    public final AuctionHouse auctionHouse = AuctionHouse.getInstance();
+
+    public void addCommandToList(List<String> parameters) {
+        addCommand(parameters, this.auctionHouse);
+    }
 
     @Override
     public void run(){
@@ -72,7 +76,7 @@ public class ServerClientThread extends Thread {
                 out.println("   Sent from the client " + commandUserBR);
                 evalCommand(commandUserBR);
                 if("execute".equalsIgnoreCase(commandUserBR.split(" ")[0])) {
-                    executeCommands();
+                    executeCommands(this, auctionHouse);
                     result = Helper.getInstance().getCommandResult();
                 }
                 if(result!=null) outWriter.println(result);
@@ -88,6 +92,7 @@ public class ServerClientThread extends Thread {
         if("login".equalsIgnoreCase(commandParams.get(0))) {
             try {
                 mySQLConnection.realizeConnection(commandParams.get(1), commandParams.get(2));
+                auctionHouse.load(mySQLConnection);
             } catch (SQLException | ClassNotFoundException errorSQL) {
                 errorSQL.printStackTrace();
             }
@@ -96,5 +101,9 @@ public class ServerClientThread extends Thread {
             out.println(commandUser);
             addCommandToList(commandParams);
         }
+    }
+
+    public AuctionHouse getAuctionHouse() {
+        return auctionHouse;
     }
 }

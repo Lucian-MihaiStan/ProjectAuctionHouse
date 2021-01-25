@@ -19,10 +19,12 @@ public class CreateUser implements ICommand {
     private String address;
     private List<String> restParameters;
 
-    private static final AuctionHouse auctionHouse = ServerClientThread.auctionHouse;
+    private AuctionHouse auctionHouse;
+
+//    private static final AuctionHouse auctionHouse = ServerClientThread.auctionHouse;
 
     @Override
-    public void execute() {
+    public void execute(ServerClientThread sct) {
         if(!checkDuplicate(this)) {
             ServerClientThread.Helper errorMessage = ServerClientThread.Helper.getInstance();
             errorMessage.setCommandResult(errorMessage
@@ -55,12 +57,16 @@ public class CreateUser implements ICommand {
                                 .build()
         );
         User lastUser = auctionHouse.getLastClient();
-        new AddUserSQL().addClientSQL(lastUser);
+        new AddUserSQL(sct.getMySQLConnection()).addClientSQL(lastUser);
     }
 
     private boolean checkDuplicate(CreateUser createUser) {
         return auctionHouse.getUserList()
                 .stream().noneMatch(user -> createUser.getUsername().equals(user.getUsername()));
+    }
+
+    public void setAuctionHouse(AuctionHouse auctionHouse) {
+        this.auctionHouse = auctionHouse;
     }
 
     public void setUsername(String username) {

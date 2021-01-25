@@ -13,12 +13,17 @@ import load_data_db.user_db_extract.adapter_ip.IPersonDBExtract;
 import load_data_db.user_db_extract.adapter_ip.IAdapterDBIP;
 import loginsql.MySQLConnection;
 import products.Product;
+import socketserver.ServerClientThread;
 
 import java.sql.SQLException;
 import java.util.*;
 
 public class LoadDBDataAdmin implements IAdapterAdmin {
-    public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
+    private final MySQLConnection mySQLConnection;
+
+    public LoadDBDataAdmin(MySQLConnection mySQLConnection) {
+        this.mySQLConnection = mySQLConnection;
+    }
 
     @Override
     public IAdapterAdmin connectToDatabaseAsAdmin() {
@@ -56,9 +61,9 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
         IAdapterDBJewellery adapterDBJewellery = new DBJewellery();
         IAdapterDBFurniture adapterDBFurniture = new DBFurniture();
 
-        productListDB.addAll(adapterDBFurniture.getFurnitureFromDB());
-        productListDB.addAll(adapterDBJewellery.getJewelleryFromDB());
-        productListDB.addAll(adapterDBPainting.getPaintingFromDB());
+        productListDB.addAll(adapterDBFurniture.getFurnitureFromDB(mySQLConnection));
+        productListDB.addAll(adapterDBJewellery.getJewelleryFromDB(mySQLConnection));
+        productListDB.addAll(adapterDBPainting.getPaintingFromDB(mySQLConnection));
         return productListDB;
     }
 
@@ -67,9 +72,13 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
         IAdapterDBLP adapterDataLP = new LPersonDBExtract();
         IAdapterDBIP adapterDataIP = new IPersonDBExtract();
 
-        userListDB.addAll(adapterDataIP.getIPFromDB());
-        userListDB.addAll(adapterDataLP.getLPFromDB());
+        userListDB.addAll(adapterDataIP.getIPFromDB(mySQLConnection));
+        userListDB.addAll(adapterDataLP.getLPFromDB(mySQLConnection));
 
         return userListDB;
+    }
+
+    public MySQLConnection getMySQLConnection() {
+        return this.mySQLConnection;
     }
 }

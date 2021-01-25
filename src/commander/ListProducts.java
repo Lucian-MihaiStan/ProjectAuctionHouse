@@ -5,11 +5,11 @@ import socketserver.ServerClientThread;
 
 public class ListProducts implements ICommand {
     @Override
-    public void execute() {
+    public void execute(ServerClientThread sct) {
         ServerClientThread.Helper helper = ServerClientThread.Helper.getInstance();
         StringBuilder productSB = new StringBuilder();
         int id = 0;
-        for (Product product : ServerClientThread.auctionHouse.getProductsList()) {
+        for (Product product : sct.getAuctionHouse().getProductsList()) {
             id++;
             productSB.append(id);
             productSB.append(") ");

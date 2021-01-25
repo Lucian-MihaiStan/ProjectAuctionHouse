@@ -12,9 +12,13 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 public class AddUserSQL {
-    private static final MySQLConnection mySQLConnection = ServerClientThread.mySQLConnection;
+    private final MySQLConnection mySQLConnection;
 
     public static String password;
+
+    public AddUserSQL(MySQLConnection mySQLConnection) {
+        this.mySQLConnection = mySQLConnection;
+    }
 
     public void addClientSQL(User user) {
         try {

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 import products.jewellery.Jewellery;
 import products.jewellery.JewelleryBuilder;
+import socketserver.ServerClientThread;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBJewellery implements IAdapterDBJewellery {
-    private static final MySQLConnection mySQLConnection = LoadDBDataAdmin.mySQLConnection;
-
+    private MySQLConnection mySQLConnection;
     @Override
-    public List<Jewellery> getJewelleryFromDB() {
+    public List<Jewellery> getJewelleryFromDB(MySQLConnection mySQLConnection) {
+        this.mySQLConnection = mySQLConnection;
         List<Jewellery> jewelleryList = new ArrayList<>();
         String query = "SELECT * FROM auctionhouseproduct.jewellery";
         List<Triple<Integer, String, Boolean>> listDataJewellery = new ArrayList<>();

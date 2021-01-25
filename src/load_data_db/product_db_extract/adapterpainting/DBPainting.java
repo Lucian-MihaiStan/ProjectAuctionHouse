@@ -14,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBPainting implements IAdapterDBPainting {
-    private static final MySQLConnection mySQLConnection = LoadDBDataAdmin.mySQLConnection;
+    private MySQLConnection mySQLConnection;
 
     @Override
-    public List<Painting> getPaintingFromDB() {
+    public List<Painting> getPaintingFromDB(MySQLConnection mySQLConnection) {
+        this.mySQLConnection = mySQLConnection;
         List<Painting> paintingList = new ArrayList<>();
         String query = "SELECT * FROM auctionhouseproduct.painting";
         List<Triple<Integer, String, Painting.Colors>> listDataPainting = new ArrayList<>();

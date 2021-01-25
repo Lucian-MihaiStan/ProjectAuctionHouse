@@ -1,9 +1,7 @@
 package commander.addproduct;
 
 import auction_house.AuctionHouse;
-import com.mysql.cj.x.protobuf.MysqlxSql;
 import commander.ICommand;
-import loginsql.MySQLConnection;
 import loginsql.product_connection.productsql.AddProductSQL;
 import products.furniture.FurnitureBuilder;
 import products.jewellery.JewelleryBuilder;
@@ -24,10 +22,10 @@ public class AddProduct implements ICommand {
 
 
     @Override
-    public void execute() {
-        synchronized (ServerClientThread.mySQLConnection) {
-            AuctionHouse auctionHouse = ServerClientThread.auctionHouse;
-            String username = ServerClientThread.mySQLConnection.getUsername();
+    public void execute(ServerClientThread sct) {
+        synchronized (sct.mySQLConnection) {
+            AuctionHouse auctionHouse = sct.getAuctionHouse();
+            String username = sct.mySQLConnection.getUsername();
             System.out.println(username);
             if (!"admin".equals(username)) {
                 ServerClientThread.Helper outCommand = ServerClientThread.Helper.getInstance();
@@ -64,7 +62,7 @@ public class AddProduct implements ICommand {
                                 .build()
                 );
             Product lastProduct = auctionHouse.getLastProduct();
-            new AddProductSQL().addProductSQL(lastProduct);
+            new AddProductSQL(sct.getMySQLConnection()).addProductSQL(lastProduct);
         }
     }
 

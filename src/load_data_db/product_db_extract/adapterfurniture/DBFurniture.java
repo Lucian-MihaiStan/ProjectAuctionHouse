@@ -14,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBFurniture implements IAdapterDBFurniture {
-    private static final MySQLConnection mySQLConnection = LoadDBDataAdmin.mySQLConnection;
+    private MySQLConnection mySQLConnection;
 
     @Override
-    public List<Furniture> getFurnitureFromDB() {
+    public List<Furniture> getFurnitureFromDB(MySQLConnection mySQLConnection) {
+        this.mySQLConnection = mySQLConnection;
         List<Furniture> furnitureList = new ArrayList<>();
         String query = "SELECT * FROM auctionhouseproduct.furniture";
         List<Triple<Integer, String, String>> listDataFurniture = new ArrayList<>();

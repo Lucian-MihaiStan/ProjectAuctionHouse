@@ -14,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LPersonDBExtract implements IAdapterDBLP {
-    private static final MySQLConnection mySQLConnection = LoadDBDataAdmin.mySQLConnection;
+    private MySQLConnection mySQLConnection;
 
     @Override
-    public List<LegalPerson> getLPFromDB() {
+    public List<LegalPerson> getLPFromDB(MySQLConnection mySQLConnection) {
+        this.mySQLConnection = mySQLConnection;
         List<LegalPerson> lpList = new ArrayList<>();
         String query = "SELECT * FROM auctionhouse.legalperson";
         List<Triple<Integer, Double, String>> listDataLP = new ArrayList<>();

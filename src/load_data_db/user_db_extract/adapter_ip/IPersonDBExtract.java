@@ -2,7 +2,6 @@ package load_data_db.user_db_extract.adapter_ip;
 
 import client.individualperson.IndividualPerson;
 import client.individualperson.IndividualPersonBuilder;
-import load_data_db.LoadDBDataAdmin;
 import loginsql.MySQLConnection;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -15,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IPersonDBExtract implements IAdapterDBIP {
-    private static final MySQLConnection mySQLConnection = LoadDBDataAdmin.mySQLConnection;
+    private MySQLConnection mySQLConnection;
 
     @Override
-    public List<IndividualPerson> getIPFromDB() {
+    public List<IndividualPerson> getIPFromDB(MySQLConnection mySQLConnection) {
+        this.mySQLConnection = mySQLConnection;
         List<IndividualPerson> ipList = new ArrayList<>();
         String query = "SELECT * FROM auctionhouse.individualperson";
         List<Pair<Integer, Date>> listDataIP = new ArrayList<>();

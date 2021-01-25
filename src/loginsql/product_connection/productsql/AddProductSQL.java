@@ -11,8 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AddProductSQL {
-    private static final MySQLConnection mySQLConnection = ServerClientThread.mySQLConnection;
+    private final MySQLConnection mySQLConnection;
     private static final String QUERY_CONSTANT = " VALUES ((SELECT id FROM auctionhouseproduct.product WHERE id = (SELECT MAX(id) FROM auctionhouseproduct.product)), ?, ?)";
+    public AddProductSQL(MySQLConnection mySQLConnection) {
+        this.mySQLConnection = mySQLConnection;
+    }
 
     public void addProductSQL(Product product) {
         int typeProduct;

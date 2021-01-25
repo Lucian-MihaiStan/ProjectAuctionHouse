@@ -8,14 +8,10 @@ import loginsql.MySQLConnection;
 import products.Product;
 import socketserver.ServerClientThread;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
-import static java.lang.System.*;
 
 public class AuctionHouse {
     private static AuctionHouse instance;
@@ -77,17 +73,17 @@ public class AuctionHouse {
         return productsList.get(productsList.size() - 1);
     }
 
-    public AuctionHouse load() {
-        IAdapterAdmin adapter = new LoadDBDataAdmin();
+    public AuctionHouse load(MySQLConnection mySQLConnection) {
+        IAdapterAdmin adapter = new LoadDBDataAdmin(mySQLConnection);
         userList = new ArrayList<>();
         productsList = new ArrayList<>();
         auctionsActive = new ArrayList<>();
         Map<String, List<?>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
         try {
-            if(MySQLConnection.getInstance().getUsername() != null) {
-                MySQLConnection.getInstance().realizeConnection(
-                        MySQLConnection.getInstance().getUsername(),
-                        MySQLConnection.getInstance().getPassword()
+            if(mySQLConnection.getUsername() != null) {
+                mySQLConnection.realizeConnection(
+                        mySQLConnection.getUsername(),
+                        mySQLConnection.getPassword()
                 );
             }
         } catch (SQLException | ClassNotFoundException errorSQL) {
