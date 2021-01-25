@@ -1,5 +1,7 @@
 package commander.createuser;
 
+import loginsql.clientconnection.usersql.AddUserSQL;
+
 import java.util.List;
 
 public class CreateUserBuilderCommand {
@@ -8,6 +10,11 @@ public class CreateUserBuilderCommand {
 
     public CreateUserBuilderCommand withUsername(String username) {
         createUser.setUsername(username);
+        return this;
+    }
+
+    public CreateUserBuilderCommand withPassword(String password) {
+        AddUserSQL.password = password;
         return this;
     }
 

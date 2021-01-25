@@ -46,16 +46,13 @@ public class ServerClientThread extends Thread {
         }
     }
 
-    public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
-
-    public ServerClientThread() {}
-
     public ServerClientThread(Socket inSocket, int counter, String hostAddress){
         this.serverClient = inSocket;
         this.clientNo = counter;
         this.hostAddress = hostAddress;
     }
 
+    public static final MySQLConnection mySQLConnection = MySQLConnection.getInstance();
 
     public static void addCommandToList(List<String> parameters) {
         addCommand(parameters);
@@ -96,6 +93,7 @@ public class ServerClientThread extends Thread {
             }
         }
         else if(!"EXECUTE".equalsIgnoreCase(commandParams.get(0))) {
+            out.println(commandUser);
             addCommandToList(commandParams);
         }
     }

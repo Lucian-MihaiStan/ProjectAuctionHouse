@@ -3,14 +3,15 @@ package commander;
 import loginsql.MySQLConnection;
 import socketserver.ServerClientThread;
 
+import static java.lang.System.*;
 
 public class ListUsers implements ICommand {
     @Override
     public void execute() {
-
         MySQLConnection mySQLConnection = ServerClientThread.mySQLConnection;
 
         ServerClientThread.Helper helper = ServerClientThread.Helper.getInstance();
+
         if(!("admin").equals(mySQLConnection.getUsername())) {
             helper.setCommandResult(helper.getCommandResult().append("Access Denied to see all users"));
         }

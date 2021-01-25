@@ -14,8 +14,14 @@ import java.text.SimpleDateFormat;
 public class AddUserSQL {
     private static final MySQLConnection mySQLConnection = ServerClientThread.mySQLConnection;
 
-    public void addClientSQL(User user) {
+    public static String password;
 
+    public void addClientSQL(User user) {
+        try {
+            mySQLConnection.realizeConnection("root", "lucian2000");
+        } catch (SQLException | ClassNotFoundException errorSQL) {
+            errorSQL.printStackTrace();
+        }
         String query = "INSERT INTO client (username, first_name, last_name, address, noParticipation, noAuctionsWon)" +
                 " values (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
@@ -30,6 +36,28 @@ public class AddUserSQL {
 
             if (user instanceof client.individualperson.IndividualPerson) addUserIndividualPerson((client.individualperson.IndividualPerson) user);
             else addUserLegalPerson((LegalPerson) user);
+        } catch (SQLException errorSQL) {
+            errorSQL.printStackTrace();
+        }
+        createUserAndGrandPrivileges(user);
+        grantUserPrivileges(user);
+        mySQLConnection.closeConnection();
+    }
+
+    private void grantUserPrivileges(User user) {
+        String queryGrantPrivileges = "GRANT SELECT ON *.* TO " + user.getUsername() + "@localhost";
+        try(PreparedStatement ps = mySQLConnection.getConnection().prepareStatement(queryGrantPrivileges)) {
+            ps.execute();
+        } catch (SQLException errorSQL) {
+            errorSQL.printStackTrace();
+        }
+    }
+
+    private void createUserAndGrandPrivileges(User user) {
+        String queryCreateUser = "CREATE USER '" + user.getUsername() + "'@'localhost'" +
+            "IDENTIFIED BY '" + password + "'";
+        try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(queryCreateUser)) {
+            preparedStatement.execute();
         } catch (SQLException errorSQL) {
             errorSQL.printStackTrace();
         }

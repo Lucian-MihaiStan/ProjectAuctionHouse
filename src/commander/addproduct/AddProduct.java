@@ -1,7 +1,9 @@
 package commander.addproduct;
 
 import auction_house.AuctionHouse;
+import com.mysql.cj.x.protobuf.MysqlxSql;
 import commander.ICommand;
+import loginsql.MySQLConnection;
 import loginsql.product_connection.productsql.AddProductSQL;
 import products.furniture.FurnitureBuilder;
 import products.jewellery.JewelleryBuilder;
@@ -23,44 +25,47 @@ public class AddProduct implements ICommand {
 
     @Override
     public void execute() {
-        AuctionHouse auctionHouse = ServerClientThread.auctionHouse;
-        String username = ServerClientThread.mySQLConnection.getUsername();
-        if(!"admin".equals(username)) {
-            ServerClientThread.Helper outCommand = ServerClientThread.Helper.getInstance();
-            outCommand.setCommandResult(outCommand.getCommandResult().append("You are not admin to modify the list fo products"));
-            return;
+        synchronized (ServerClientThread.mySQLConnection) {
+            AuctionHouse auctionHouse = ServerClientThread.auctionHouse;
+            String username = ServerClientThread.mySQLConnection.getUsername();
+            System.out.println(username);
+            if (!"admin".equals(username)) {
+                ServerClientThread.Helper outCommand = ServerClientThread.Helper.getInstance();
+                outCommand.setCommandResult(outCommand.getCommandResult().append("You are not admin to modify the list fo products"));
+                return;
+            }
+            if (productType == 1) auctionHouse.addNewProduct(
+                    new PaintingBuilder()
+                            .withName(name)
+                            .withSellingPrice(sellingPrice)
+                            .withMinimumPrice(minimumPrice)
+                            .withYear(year)
+                            .withNameArtist(HelperAP.setParamPainting(restParameters).getLeft())
+                            .withColors(HelperAP.setParamPainting(restParameters).getRight())
+                            .build()
+            );
+            else if (productType == 2) auctionHouse.addNewProduct(
+                    new FurnitureBuilder()
+                            .withName(name)
+                            .withSellingPrice(sellingPrice)
+                            .withMinimPrice(minimumPrice)
+                            .withYear(year)
+                            .withType(HelperAP.setParamFurniture(restParameters).getLeft())
+                            .withMaterial(HelperAP.setParamFurniture(restParameters).getRight())
+                            .build()
+            );
+            else auctionHouse.addNewProduct(
+                        new JewelleryBuilder()
+                                .withName(name)
+                                .withSellingPrice(sellingPrice)
+                                .withMinimumPrice(minimumPrice)
+                                .withMaterial(HelperAP.setParamJewellery(restParameters).getLeft())
+                                .withGemstone(HelperAP.setParamJewellery(restParameters).getRight())
+                                .build()
+                );
+            Product lastProduct = auctionHouse.getLastProduct();
+            new AddProductSQL().addProductSQL(lastProduct);
         }
-        if(productType == 1) auctionHouse.addNewProduct(
-                new PaintingBuilder()
-                        .withName(name)
-                        .withSellingPrice(sellingPrice)
-                        .withMinimumPrice(minimumPrice)
-                        .withYear(year)
-                        .withNameArtist(HelperAP.setParamPainting(restParameters).getLeft())
-                        .withColors(HelperAP.setParamPainting(restParameters).getRight())
-                        .build()
-                );
-        else if(productType == 2) auctionHouse.addNewProduct(
-                new FurnitureBuilder()
-                        .withName(name)
-                        .withSellingPrice(sellingPrice)
-                        .withMinimPrice(minimumPrice)
-                        .withYear(year)
-                        .withType(HelperAP.setParamFurniture(restParameters).getLeft())
-                        .withMaterial(HelperAP.setParamFurniture(restParameters).getRight())
-                        .build()
-                );
-        else auctionHouse.addNewProduct(
-                new JewelleryBuilder()
-                        .withName(name)
-                        .withSellingPrice(sellingPrice)
-                        .withMinimumPrice(minimumPrice)
-                        .withMaterial(HelperAP.setParamJewellery(restParameters).getLeft())
-                        .withGemstone(HelperAP.setParamJewellery(restParameters).getRight())
-                        .build()
-                );
-        Product lastProduct = auctionHouse.getLastProduct();
-        new AddProductSQL().addProductSQL(lastProduct);
     }
 
     public void setProductType(int productType) {

@@ -23,7 +23,7 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
     @Override
     public IAdapterAdmin connectToDatabaseAsAdmin() {
         try {
-            mySQLConnection.realizeConnection("admin", "admin");
+            mySQLConnection.realizeConnectionAsAdmin();
         } catch (SQLException | ClassNotFoundException errorSQL) {
             errorSQL.printStackTrace();
         }
@@ -46,7 +46,7 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
 //        mapUsers.put(
 //              "auctions", Collections.singletonList(auctionsDB)
 //        );
-
+        mySQLConnection.closeConnection();
         return mapData;
     }
 

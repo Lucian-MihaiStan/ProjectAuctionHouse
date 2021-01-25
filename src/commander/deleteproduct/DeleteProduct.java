@@ -22,7 +22,7 @@ public class DeleteProduct implements ICommand {
         if ("admin".equals(username)) {
             sb.append("Delete command released with success");
             List<Product> productList = ServerClientThread.auctionHouse.getProductsList();
-            productList.remove(productId);
+            productList.removeIf(product -> product.getId() == productId);
             ServerClientThread.auctionHouse.setProductsList(productList);
             DeleteFromDB.deleteFromDB(productId);
         }

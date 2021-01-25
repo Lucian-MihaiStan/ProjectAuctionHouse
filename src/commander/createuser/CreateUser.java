@@ -7,6 +7,7 @@ import client.legalperson.LegalPerson;
 import client.legalperson.LegalPersonBuilder;
 import commander.ICommand;
 import loginsql.clientconnection.usersql.AddUserSQL;
+import socketserver.ServerClientThread;
 
 
 import java.util.List;
@@ -18,9 +19,17 @@ public class CreateUser implements ICommand {
     private String address;
     private List<String> restParameters;
 
+    private static final AuctionHouse auctionHouse = ServerClientThread.auctionHouse;
+
     @Override
     public void execute() {
-        AuctionHouse auctionHouse = AuctionHouse.getInstance();
+        if(!checkDuplicate(this)) {
+            ServerClientThread.Helper errorMessage = ServerClientThread.Helper.getInstance();
+            errorMessage.setCommandResult(errorMessage
+                            .getCommandResult()
+                            .append("Error duplicate user"));
+            return;
+        }
         auctionHouse.addNewClient(
                 restParameters.size() == 1 ?
                         new IndividualPersonBuilder()
@@ -47,6 +56,11 @@ public class CreateUser implements ICommand {
         );
         User lastUser = auctionHouse.getLastClient();
         new AddUserSQL().addClientSQL(lastUser);
+    }
+
+    private boolean checkDuplicate(CreateUser createUser) {
+        return auctionHouse.getUserList()
+                .stream().noneMatch(user -> createUser.getUsername().equals(user.getUsername()));
     }
 
     public void setUsername(String username) {

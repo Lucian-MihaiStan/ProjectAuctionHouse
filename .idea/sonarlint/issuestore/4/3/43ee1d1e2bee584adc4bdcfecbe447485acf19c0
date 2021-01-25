@@ -1,4 +1,8 @@
 
+e
+java:S1854-"CRemove this useless assignment to local variable "queryCreateUser".( Ìå×ùÿÿÿÿ8Î»ÆÇó.
+V
+java:S1481-"4Remove this unused "queryCreateUser" local variable.( Ìå×ùÿÿÿÿ8Î»ÆÇó.
 K
 java:S1128
 "/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw8ÅÑ™²ó.

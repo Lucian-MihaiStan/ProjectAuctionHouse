@@ -6,5 +6,6 @@ public enum Features {
     LIST_USERS,
     LIST_PRODUCTS,
     DELETE_PRODUCT,
+    SHOW,
     EXIT
 }

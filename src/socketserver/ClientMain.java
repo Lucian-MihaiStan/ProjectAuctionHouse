@@ -22,7 +22,8 @@ public class ClientMain {
                 printWriter.flush();
                 if("exit".equalsIgnoreCase(line)) break;
                 String repliedServer = inBR.readLine();
-                out.println("Server replied " + repliedServer);
+                if("execute".equalsIgnoreCase(line))
+                    out.println("Server replied " + repliedServer);
             }
         } catch (IOException e) {
             e.printStackTrace();

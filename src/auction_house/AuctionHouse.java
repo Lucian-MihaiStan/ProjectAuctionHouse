@@ -4,8 +4,12 @@ import client.User;
 import load_data_db.LoadDBDataAdmin;
 import load_data_db.IAdapterAdmin;
 import auction.Auction;
+import loginsql.MySQLConnection;
 import products.Product;
+import socketserver.ServerClientThread;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -79,6 +83,17 @@ public class AuctionHouse {
         productsList = new ArrayList<>();
         auctionsActive = new ArrayList<>();
         Map<String, List<?>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
+        try {
+            if(MySQLConnection.getInstance().getUsername() != null) {
+                MySQLConnection.getInstance().realizeConnection(
+                        MySQLConnection.getInstance().getUsername(),
+                        MySQLConnection.getInstance().getPassword()
+                );
+            }
+        } catch (SQLException | ClassNotFoundException errorSQL) {
+            errorSQL.printStackTrace();
+        }
+
         try{
             auctionHouseData.get("users").forEach(
                     user -> userList.add((User) user)
