@@ -11,7 +11,6 @@ import socketserver.Main;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -39,9 +38,10 @@ public class AuctionHouse {
 
     public void notifyBrokers(Auction auction) {
         auction.getUsernames().forEach(user -> {
-            int idBroker = Main.random.nextInt(this.brokersList.size()) - 1;
+            int idBroker = Main.random.nextInt(this.brokersList.size());
             Broker broker = brokersList.get(idBroker);
-            broker.addAuction(auction, user);
+            broker.getAuctionsList().add(auction);
+            broker.getClientsUsernames().add(user);
         });
     }
 

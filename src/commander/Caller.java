@@ -1,6 +1,7 @@
 package commander;
 
 import auction_house.AuctionHouse;
+import client.ListBrokers;
 import commander.addproduct.ProductBuilderCommander;
 import commander.bid.Bid;
 import commander.createuser.CreateUserBuilderCommand;
@@ -46,6 +47,7 @@ public class Caller {
             case BID -> new Bid(Integer.parseInt(elements.get(1)), Integer.parseInt(elements.get(2)));
             case ENROLL_AUCTION -> new EnrollToAuction(Integer.parseInt(elements.get(1)), Integer.parseInt(elements.get(2)));
             case SHOW_AUCTIONS -> new ShowAuctions();
+            case LIST_BROKERS -> new ListBrokers();
             case EXIT -> null;
         };
     }

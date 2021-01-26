@@ -10,5 +10,6 @@ public enum Features {
     BID,
     ENROLL_AUCTION,
     SHOW_AUCTIONS,
+    LIST_BROKERS,
     EXIT
 }

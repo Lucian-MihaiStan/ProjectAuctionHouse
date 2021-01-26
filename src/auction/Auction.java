@@ -94,19 +94,16 @@ public class Auction {
     }
 
     public void notifyUsers(String username, int productId) {
-        List<ServerClientThread> sctList = Main.sctList;
-        for (ServerClientThread thread : sctList) {
-            if(!thread.getMySQLConnection().getUsername().equals(username)) {
-                ServerClientThread.Helper notifyMessage = ServerClientThread.Helper.getInstance();
-                notifyMessage.setCommandResult(notifyMessage.getCommandResult()
-                        .append("|")
-                        .append("User ")
-                        .append(username)
-                        .append(" enroll to auction for product with id = ")
-                        .append(productId)
-                        .append("|")
-                );
-            }
-        }
+//        List<ServerClientThread> sctList = Main.sctList;
+//        for (ServerClientThread thread : sctList) {
+//            if(!thread.getMySQLConnection().getUsername().equals(username)) {
+//                String notify = "|" + "User " + username +
+//                        " enroll to auction for product with id = " +
+//                        productId +
+//                        "|";
+//
+//                thread.setNotifier(notify);
+//            }
+//        }
     }
 }

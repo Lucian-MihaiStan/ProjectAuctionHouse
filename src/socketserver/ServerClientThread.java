@@ -18,6 +18,11 @@ public class ServerClientThread extends Thread {
     private final int clientNo;
     private final String hostAddress;
     private String notifier;
+    private PrintWriter outWriterConsole;
+
+    public void setNotifier(String notifier) {
+        outWriterConsole.println(notifier);
+    }
 
     public static class Helper {
         private static Helper instance;
@@ -66,6 +71,7 @@ public class ServerClientThread extends Thread {
              inBR = new BufferedReader(
                     new InputStreamReader(serverClient.getInputStream()));
             String commandUserBR;
+            this.outWriterConsole = outWriter;
             while((commandUserBR = inBR.readLine()) != null) {
                 out.println("   Sent from the client " + clientNo + " " + hostAddress + " " + commandUserBR);
                 evalCommand(commandUserBR);
@@ -73,6 +79,11 @@ public class ServerClientThread extends Thread {
                     executeCommands(this, auctionHouse);
                     result = Helper.getInstance().getCommandResult();
                     Helper.getInstance().setCommandResult(new StringBuilder());
+                }
+                if(notifier != null) {
+                    if(result == null) result = new StringBuilder();
+                    result.append(notifier);
+                    notifier = null;
                 }
                 if(result!=null) outWriter.println(result);
                 else outWriter.println("Instruction registered");
