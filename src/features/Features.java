@@ -7,5 +7,8 @@ public enum Features {
     LIST_PRODUCTS,
     DELETE_PRODUCT,
     SHOW,
+    BID,
+    ENROLL_AUCTION,
+    SHOW_AUCTIONS,
     EXIT
 }

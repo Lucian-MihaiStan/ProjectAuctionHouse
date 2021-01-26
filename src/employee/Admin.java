@@ -4,7 +4,7 @@ import products.Product;
 
 import java.util.List;
 
-public class Admin implements Employee {
+public class Admin implements IEmployee {
     @Override
     public void deleteProduct(int id) {
 

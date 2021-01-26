@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/GridCellEditorTextField">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="/a.dummy">
           <value>
             <set />
@@ -49,6 +54,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../MultiThreadingSocketServer/src/socket/Server.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/auctions.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/brokers.json">
           <value>
             <set />
           </value>
@@ -193,6 +208,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/BID.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/Bet.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/Bid.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/Caller.java">
           <value>
             <set />
@@ -208,6 +238,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/EnrollToAuction.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/ICommand.java">
           <value>
             <set />
@@ -219,6 +254,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/ListUsers.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/ShowAuctions.java">
           <value>
             <set />
           </value>
@@ -249,6 +289,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/addproduct/ProductBuilderCommander.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/bid/Bid.java">
           <value>
             <set />
           </value>
@@ -744,6 +789,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/socketserver/ServerClientThread.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/strategy/Strategy.java">
           <value>
             <set />
           </value>

@@ -1,15 +1,17 @@
 package auction_house;
 
 import client.User;
+import employee.Broker;
 import load_data_db.LoadDBDataAdmin;
 import load_data_db.IAdapterAdmin;
 import auction.Auction;
 import loginsql.MySQLConnection;
 import products.Product;
-import socketserver.ServerClientThread;
+import socketserver.Main;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +21,7 @@ public class AuctionHouse {
     private List<Product> productsList;
     private List<User> userList;
     private List<Auction> auctionsActive;
+    private List<Broker> brokersList;
 
     public static synchronized AuctionHouse getInstance() {
         if(instance == null) {
@@ -31,6 +34,15 @@ public class AuctionHouse {
         productsList = new ArrayList<>();
         userList = new ArrayList<>();
         auctionsActive = new ArrayList<>();
+        brokersList = new ArrayList<>();
+    }
+
+    public void notifyBrokers(Auction auction) {
+        auction.getUsernames().forEach(user -> {
+            int idBroker = Main.random.nextInt(this.brokersList.size()) - 1;
+            Broker broker = brokersList.get(idBroker);
+            broker.addAuction(auction, user);
+        });
     }
 
     public List<Product> getProductsList() {
@@ -73,11 +85,18 @@ public class AuctionHouse {
         return productsList.get(productsList.size() - 1);
     }
 
-    public AuctionHouse load(MySQLConnection mySQLConnection) {
+    public List<Broker> getBrokersList() {
+        return brokersList;
+    }
+
+    public void setBrokersList(List<Broker> brokersList) {
+        this.brokersList = brokersList;
+    }
+
+    public void load(MySQLConnection mySQLConnection) {
         IAdapterAdmin adapter = new LoadDBDataAdmin(mySQLConnection);
         userList = new ArrayList<>();
         productsList = new ArrayList<>();
-        auctionsActive = new ArrayList<>();
         Map<String, List<?>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
         try {
             if(mySQLConnection.getUsername() != null) {
@@ -106,13 +125,53 @@ public class AuctionHouse {
             e.printStackTrace();
         }
 
-        /*try {
-            auctionHouseData.get("auctions").forEach(auction -> auctionsActive.add(auction));
-        } catch (ClassCastException e){
-            //
-        }*/
+        if(brokersList.isEmpty()) generateBrokers();
+        if(auctionsActive.isEmpty()) createAuctions();
+        if(auctionsActive.size() < productsList.size()) {
+            int id = 0;
+            for (Product product : productsList)
+                if(product.getId() > id) id = product.getId();
+            updateAuctions(id);
+        }
+    }
 
-        return this;
+    private void updateAuctions(int productId) {
+        auctionsActive.add(
+                new Auction(
+                        productId,
+                        0,
+                        Main.random.nextInt(5) + 1,
+                        productId,
+                        Main.random.nextInt(5) + 1,
+                        new ArrayList<>(),
+                        new ArrayList<>()
+                )
+        );
+    }
+
+    private void generateBrokers() {
+        int noBrokers = Main.random.nextInt(5) + 2;
+        for(int i = 0; i < noBrokers; i++) {
+            Broker broker = new Broker(i);
+            brokersList.add(broker);
+        }
+    }
+
+    public void createAuctions() {
+        productsList.forEach(
+                product -> {
+                    Auction auction = new Auction(
+                            product.getId(),
+                            0,
+                            Main.random.nextInt(5) + 1,
+                            product.getId(),
+                            Main.random.nextInt(5) + 1,
+                            new ArrayList<>(),
+                            new ArrayList<>()
+                            );
+                    auctionsActive.add(auction);
+                }
+        );
     }
 
     @Override
@@ -120,7 +179,8 @@ public class AuctionHouse {
         return "AuctionHouse{" +
                 "productsList=" + productsList +
                 ", userList=" + userList +
-                ", auctionsActive=" + auctionsActive +
+                ", auctionsActive= \n\n" + auctionsActive +
+                "\n\n, brokersList=" + brokersList +
                 '}';
     }
 }

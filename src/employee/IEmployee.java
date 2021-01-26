@@ -4,6 +4,6 @@ import products.Product;
 
 import java.util.List;
 
-public interface Employee {
+public interface IEmployee {
     void deleteProduct(int id);
 }

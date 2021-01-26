@@ -2,6 +2,7 @@ package commander;
 
 import auction_house.AuctionHouse;
 import commander.addproduct.ProductBuilderCommander;
+import commander.bid.Bid;
 import commander.createuser.CreateUserBuilderCommand;
 import commander.deleteproduct.DeleteProduct;
 import features.Features;
@@ -34,15 +35,17 @@ public class Caller {
                     new ProductBuilderCommander()
                             .withProductType(Integer.parseInt(elements.get(1)))
                             .withName(elements.get(2))
-                            .withSellingPrice(Double.parseDouble(elements.get(3)))
-                            .withMinimumPrice(Double.parseDouble(elements.get(4)))
-                            .withYear(Integer.parseInt(elements.get(5)))
-                            .withOtherParameters(elements.subList(6, elements.size()))
+                            .withMinimumPrice(Double.parseDouble(elements.get(3)))
+                            .withYear(Integer.parseInt(elements.get(4)))
+                            .withOtherParameters(elements.subList(5, elements.size()))
                             .build();
             case LIST_USERS -> new ListUsers();
             case LIST_PRODUCTS -> new ListProducts();
             case DELETE_PRODUCT -> new DeleteProduct(Integer.parseInt(elements.get(1)));
             case SHOW -> new ShowUser();
+            case BID -> new Bid(Integer.parseInt(elements.get(1)), Integer.parseInt(elements.get(2)));
+            case ENROLL_AUCTION -> new EnrollToAuction(Integer.parseInt(elements.get(1)), Integer.parseInt(elements.get(2)));
+            case SHOW_AUCTIONS -> new ShowAuctions();
             case EXIT -> null;
         };
     }

@@ -15,7 +15,6 @@ import java.util.List;
 public class AddProduct implements ICommand {
     private int productType;
     private String name;
-    private double sellingPrice;
     private double minimumPrice;
     private int year;
     private List<String> restParameters;
@@ -23,10 +22,9 @@ public class AddProduct implements ICommand {
 
     @Override
     public void execute(ServerClientThread sct) {
-        synchronized (sct.mySQLConnection) {
+        synchronized (sct.getMySQLConnection()) {
             AuctionHouse auctionHouse = sct.getAuctionHouse();
-            String username = sct.mySQLConnection.getUsername();
-            System.out.println(username);
+            String username = sct.getMySQLConnection().getUsername();
             if (!"admin".equals(username)) {
                 ServerClientThread.Helper outCommand = ServerClientThread.Helper.getInstance();
                 outCommand.setCommandResult(outCommand.getCommandResult().append("You are not admin to modify the list fo products"));
@@ -35,7 +33,7 @@ public class AddProduct implements ICommand {
             if (productType == 1) auctionHouse.addNewProduct(
                     new PaintingBuilder()
                             .withName(name)
-                            .withSellingPrice(sellingPrice)
+                            .withSellingPrice(-1)
                             .withMinimumPrice(minimumPrice)
                             .withYear(year)
                             .withNameArtist(HelperAP.setParamPainting(restParameters).getLeft())
@@ -45,7 +43,7 @@ public class AddProduct implements ICommand {
             else if (productType == 2) auctionHouse.addNewProduct(
                     new FurnitureBuilder()
                             .withName(name)
-                            .withSellingPrice(sellingPrice)
+                            .withSellingPrice(-1)
                             .withMinimPrice(minimumPrice)
                             .withYear(year)
                             .withType(HelperAP.setParamFurniture(restParameters).getLeft())
@@ -55,7 +53,7 @@ public class AddProduct implements ICommand {
             else auctionHouse.addNewProduct(
                         new JewelleryBuilder()
                                 .withName(name)
-                                .withSellingPrice(sellingPrice)
+                                .withSellingPrice(-1)
                                 .withMinimumPrice(minimumPrice)
                                 .withMaterial(HelperAP.setParamJewellery(restParameters).getLeft())
                                 .withGemstone(HelperAP.setParamJewellery(restParameters).getRight())
@@ -76,14 +74,6 @@ public class AddProduct implements ICommand {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getSellingPrice() {
-        return sellingPrice;
-    }
-
-    public void setSellingPrice(double sellingPrice) {
-        this.sellingPrice = sellingPrice;
     }
 
     public double getMinimumPrice() {

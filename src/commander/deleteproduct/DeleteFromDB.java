@@ -1,7 +1,6 @@
 package commander.deleteproduct;
 
 import loginsql.MySQLConnection;
-import socketserver.ServerClientThread;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,16 +38,20 @@ public class DeleteFromDB {
 
     private static String buildQueryString(int productId, int productType) {
         String deleteFromSubClass = "DELETE FROM auctionhouseproduct.";
-        switch (productType) {
-            case 1 -> deleteFromSubClass += "painting ";
-            case 2 -> deleteFromSubClass += "furniture ";
-            case 3 -> deleteFromSubClass += "jewellery ";
+        if (productType == 1) {
+            deleteFromSubClass += "painting ";
+        } else if (productType == 2) {
+            deleteFromSubClass += "furniture ";
+        } else if (productType == 3) {
+            deleteFromSubClass += "jewellery ";
         }
         deleteFromSubClass += "WHERE id_";
-        switch (productType) {
-            case 1 -> deleteFromSubClass += "painting =";
-            case 2 -> deleteFromSubClass += "furniture =";
-            case 3 -> deleteFromSubClass += "jewellery =";
+        if (productType == 1) {
+            deleteFromSubClass += "painting =";
+        } else if (productType == 2) {
+            deleteFromSubClass += "furniture =";
+        } else if (productType == 3) {
+            deleteFromSubClass += "jewellery =";
         }
         deleteFromSubClass += productId;
         return deleteFromSubClass;

@@ -21,8 +21,6 @@ public class CreateUser implements ICommand {
 
     private AuctionHouse auctionHouse;
 
-//    private static final AuctionHouse auctionHouse = ServerClientThread.auctionHouse;
-
     @Override
     public void execute(ServerClientThread sct) {
         if(!checkDuplicate(this)) {

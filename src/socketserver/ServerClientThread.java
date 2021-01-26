@@ -14,12 +14,10 @@ import static commander.Caller.executeCommands;
 import static java.lang.System.*;
 
 public class ServerClientThread extends Thread {
-    private Socket serverClient;
-    private int clientNo;
-    private String hostAddress;
-
-    /* nusj ce e asta dar il las aici*/
-    public static String commandUser;
+    private final Socket serverClient;
+    private final int clientNo;
+    private final String hostAddress;
+    private String notifier;
 
     public static class Helper {
         private static Helper instance;
@@ -40,10 +38,6 @@ public class ServerClientThread extends Thread {
         public void setCommandResult(StringBuilder commandResult) {
             this.commandResult = commandResult;
         }
-
-        public void printCommand() {
-            out.println(commandResult);
-        }
     }
 
     public ServerClientThread(Socket inSocket, int counter, String hostAddress){
@@ -52,16 +46,16 @@ public class ServerClientThread extends Thread {
         this.hostAddress = hostAddress;
     }
 
-    public final MySQLConnection mySQLConnection = new MySQLConnection();
+    private final MySQLConnection mySQLConnection = new MySQLConnection();
 
     public MySQLConnection getMySQLConnection() {
         return mySQLConnection;
     }
 
-    public final AuctionHouse auctionHouse = AuctionHouse.getInstance();
+    private static final AuctionHouse auctionHouse = Main.auctionHouse;
 
     public void addCommandToList(List<String> parameters) {
-        addCommand(parameters, this.auctionHouse);
+        addCommand(parameters, auctionHouse);
     }
 
     @Override
@@ -73,11 +67,12 @@ public class ServerClientThread extends Thread {
                     new InputStreamReader(serverClient.getInputStream()));
             String commandUserBR;
             while((commandUserBR = inBR.readLine()) != null) {
-                out.println("   Sent from the client " + commandUserBR);
+                out.println("   Sent from the client " + clientNo + " " + hostAddress + " " + commandUserBR);
                 evalCommand(commandUserBR);
                 if("execute".equalsIgnoreCase(commandUserBR.split(" ")[0])) {
                     executeCommands(this, auctionHouse);
                     result = Helper.getInstance().getCommandResult();
+                    Helper.getInstance().setCommandResult(new StringBuilder());
                 }
                 if(result!=null) outWriter.println(result);
                 else outWriter.println("Instruction registered");
@@ -98,7 +93,6 @@ public class ServerClientThread extends Thread {
             }
         }
         else if(!"EXECUTE".equalsIgnoreCase(commandParams.get(0))) {
-            out.println(commandUser);
             addCommandToList(commandParams);
         }
     }

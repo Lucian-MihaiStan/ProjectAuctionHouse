@@ -52,7 +52,6 @@ public abstract class Product {
     public String toString() {
         return "Product{" +
                 ", name='" + name + '\'' +
-                ", sellingPrice=" + sellingPrice +
                 ", minimumPrice=" + minimumPrice +
                 ", year=" + year +
                 '}';

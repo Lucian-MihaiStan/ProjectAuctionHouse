@@ -15,11 +15,6 @@ public class ProductBuilderCommander {
         return this;
     }
 
-    public ProductBuilderCommander withSellingPrice(double sellingPrice) {
-        productInfo.setSellingPrice(sellingPrice);
-        return this;
-    }
-
     public ProductBuilderCommander withMinimumPrice(double minimumPrice) {
         productInfo.setMinimumPrice(minimumPrice);
         return this;

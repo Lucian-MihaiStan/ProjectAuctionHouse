@@ -22,10 +22,8 @@ public class AddProductSQL {
         if(product instanceof Painting) typeProduct = 1;
         else if(product instanceof Furniture) typeProduct = 2;
         else typeProduct = 3;
-
         String query = "INSERT INTO auctionhouseproduct.product (productType, name, sellingPrice, minimumPrice, year)" +
                 " values(?, ?, ?, ?, ?)";
-
         try(PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)) {
             preparedStatement.setInt(1, typeProduct);
             preparedStatement.setString(2, product.getName());

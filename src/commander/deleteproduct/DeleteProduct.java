@@ -14,8 +14,8 @@ public class DeleteProduct implements ICommand {
     }
 
     @Override
-    public void execute(ServerClientThread sct) {
-        MySQLConnection mySqlConnection = sct.mySQLConnection;
+    public synchronized void execute(ServerClientThread sct) {
+        MySQLConnection mySqlConnection = sct.getMySQLConnection();
         String username = mySqlConnection.getUsername();
         StringBuilder sb = new StringBuilder();
         if ("admin".equals(username)) {
