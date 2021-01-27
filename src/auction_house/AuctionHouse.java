@@ -1,5 +1,6 @@
 package auction_house;
 
+import auction.AuctionBuilder;
 import client.User;
 import employee.Broker;
 import load_data_db.LoadDBDataAdmin;
@@ -131,21 +132,22 @@ public class AuctionHouse {
             int id = 0;
             for (Product product : productsList)
                 if(product.getId() > id) id = product.getId();
-            updateAuctions(id);
+            addNewAuctionToList(id);
         }
     }
 
-    private void updateAuctions(int productId) {
+    private void addNewAuctionToList(int productId) {
         auctionsActive.add(
-                new Auction(
-                        productId,
-                        0,
-                        Main.random.nextInt(5) + 1,
-                        productId,
-                        Main.random.nextInt(5) + 1,
-                        new ArrayList<>(),
-                        new ArrayList<>()
-                )
+                new AuctionBuilder()
+                        .withId(productId)
+                        .withNoCurrentParticipants(0)
+                        .withNoParticipants(Main.random.nextInt(5) + 2)
+                        .withProductId(productId)
+                        .withNoMaxSteps(Main.random.nextInt(5) + 2)
+                        .withUserNames(new ArrayList<>())
+                        .withBids(new ArrayList<>())
+                        .withMaximumBids(new ArrayList<>())
+                        .build()
         );
     }
 
@@ -158,20 +160,7 @@ public class AuctionHouse {
     }
 
     public void createAuctions() {
-        productsList.forEach(
-                product -> {
-                    Auction auction = new Auction(
-                            product.getId(),
-                            0,
-                            Main.random.nextInt(5) + 1,
-                            product.getId(),
-                            Main.random.nextInt(5) + 1,
-                            new ArrayList<>(),
-                            new ArrayList<>()
-                            );
-                    auctionsActive.add(auction);
-                }
-        );
+        productsList.forEach(product -> addNewAuctionToList(product.getId()));
     }
 
     @Override

@@ -13,15 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Caller {
-    private static List<ICommand> commands = new ArrayList<>();
-
     private Caller() {}
 
-    public static synchronized void addCommand(List<String> parameters, AuctionHouse ah) {
-        commands.add(getCommand(parameters, ah));
+    public static synchronized void addCommand(List<String> parameters, ServerClientThread sct) {
+        sct.getCommands().add(getCommand(parameters));
     }
 
-    private static synchronized ICommand getCommand(List<String> elements, AuctionHouse ah) {
+    private static synchronized ICommand getCommand(List<String> elements) {
         return switch (Features.valueOf(elements.get(0))) {
             case CREATE_USER ->
                     new CreateUserBuilderCommand()
@@ -52,15 +50,15 @@ public class Caller {
         };
     }
     
-    public static synchronized void executeCommands(ServerClientThread sct, AuctionHouse ah) {
-        commands.forEach(iCommand -> {
+    public static synchronized void executeCommands(ServerClientThread sct) {
+        ServerClientThread.Helper resultCommands = ServerClientThread.Helper.getInstance();
+        resultCommands.setCommandResult(new StringBuilder());
+        sct.getCommands().forEach(iCommand -> {
             if(iCommand != null) {
-                ServerClientThread.Helper resultCommands = ServerClientThread.Helper.getInstance();
-                resultCommands.setCommandResult(new StringBuilder());
-                ah.load(sct.getMySQLConnection());
+                sct.getAuctionHouse().load(sct.getMySQLConnection());
                 iCommand.execute(sct);
             }
         });
-        commands = new ArrayList<>();
+        sct.setCommands(new ArrayList<>());
     }
 }

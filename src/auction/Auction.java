@@ -7,26 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Auction {
-    private final int productId;
+    private int productId;
     private int noCurrentParticipants;
     private int noParticipants;
-    private final int id;
-    private final int noMaxSteps;
+    private int id;
+    private int noMaxSteps;
     private List<String> usernames;
     private List<Integer> bids;
     private List<Integer> maximumBids;
-
-    public Auction(int productId, int noCurrentParticipants, int noParticipants, int id, int noMaxSteps,
-                   List<String> usernames, List<Integer> bids) {
-        this.id = id;
-        this.productId = productId;
-        this.noCurrentParticipants = noCurrentParticipants;
-        this.noParticipants = noParticipants;
-        this.noMaxSteps = noMaxSteps;
-        this.usernames = usernames;
-        this.bids = bids;
-        this.maximumBids = new ArrayList<>();
-    }
 
     public List<Integer> getMaximumBids() {
         return maximumBids;
@@ -42,6 +30,18 @@ public class Auction {
 
     public void setNoCurrentParticipants(int noCurrentParticipants) {
         this.noCurrentParticipants = noCurrentParticipants;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNoMaxSteps(int noMaxSteps) {
+        this.noMaxSteps = noMaxSteps;
     }
 
     public void setNoParticipants(int noParticipants) {
@@ -94,16 +94,16 @@ public class Auction {
     }
 
     public void notifyUsers(String username, int productId) {
-//        List<ServerClientThread> sctList = Main.sctList;
-//        for (ServerClientThread thread : sctList) {
-//            if(!thread.getMySQLConnection().getUsername().equals(username)) {
-//                String notify = "|" + "User " + username +
-//                        " enroll to auction for product with id = " +
-//                        productId +
-//                        "|";
-//
-//                thread.setNotifier(notify);
-//            }
-//        }
+        List<ServerClientThread> sctList = Main.sctList;
+        for (ServerClientThread thread : sctList) {
+            if(!thread.getMySQLConnection().getUsername().equals(username)) {
+                String notify = "|" + "User " + username +
+                        " enroll to auction for product with id = " +
+                        productId +
+                        "|";
+
+                thread.setNotifier(notify);
+            }
+        }
     }
 }

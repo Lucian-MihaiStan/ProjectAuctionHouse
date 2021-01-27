@@ -1,12 +1,2 @@
 
-P
-java:S1068".Remove this unused "noMaxSteps" private field.(èéŞ©şÿÿÿÿ8¨ÜĞñ.
-O
-java:S1068
-"2Remove this unused "noParticipants" private field.(¹åÆ¬8¨ÜĞñ.
-W
-java:S1068"5Remove this unused "userParticipating" private field.(˜–ú›ùÿÿÿÿ8Ã‹ñ×ó.
-J
-java:S1068"-Remove this unused "productId" private field.(şáÀã8¨ÜĞñ.
-H
-java:S1068	"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8ØãÊñ.
+X	java:S125a"<This block of commented-out lines of code should be removed.(Æÿ€8°°€„ô.

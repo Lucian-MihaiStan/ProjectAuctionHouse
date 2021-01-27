@@ -41,7 +41,6 @@ public class Main {
                         + " started!");
                 ServerClientThread socketClientThread = new ServerClientThread(client, counter, clientIP);
                 sctList.add(socketClientThread);
-                notifyCheck(sctList);
                 socketClientThread.start();
             }
         } catch (IOException e) {

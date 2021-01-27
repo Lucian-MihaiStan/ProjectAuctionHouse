@@ -6,7 +6,9 @@ public class ShowUser implements ICommand {
 
     @Override
     public void execute(ServerClientThread sct) {
-        ServerClientThread.Helper result = ServerClientThread.Helper.getInstance();
-        result.setCommandResult(result.getCommandResult().append(sct.getMySQLConnection().getUsername()));
+        synchronized (sct.getMySQLConnection()) {
+            ServerClientThread.Helper result = ServerClientThread.Helper.getInstance();
+            result.setCommandResult(result.getCommandResult().append(sct.getMySQLConnection().getUsername()));
+        }
     }
 }

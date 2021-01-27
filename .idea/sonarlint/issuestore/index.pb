@@ -97,8 +97,6 @@ j
 :.idea/dataSources/606ff5d0-8d16-427b-aead-1434f464c75c.xml,8\4\84bad40ce5d31a44bfa776d4d112606a917c0d1c
 H
 src/employee/Broker.java,8\8\88b3fb05f90e5fe89587b6e82cfee91879cd4c5b
-J
-src/employee/Employee.java,7\7\770ca7c3dfa744733d6b0c015d061110190f9b48
 G
 src/employee/Admin.java,5\c\5c3ab28d3fc09f5692af21543ddcb6a5fe504a41
 ]
@@ -107,5 +105,17 @@ G
 .src/commander/deleteproduct/DeleteProduct.java,c\8\c859ce5f7b212902a3efd0f8ade43c4625db34be
 K
 src/commander/ShowUser.java,8\4\8442a812ac4efb9023c05e29e249890e66bf530b
-F
-src/commander/Bet.java,9\8\9808561378448fb180e448e3c518cb9217dfeabc
+c
+3.idea/libraries/com_google_code_gson_gson_2_8_6.xml,a\1\a1b2ddd7dad3c998d88117a7df74dac253e154f6
+Z
+*.idea/libraries/org_json_json_20201115.xml,1\5\15b17126049882ad37f5cbcc3aa4f646f84a96b6
+J
+src/commander/bid/Bid.java,e\0\e095b696db9f241eb0c9435746d9a9ad537c8b30
+O
+src/commander/ShowAuctions.java,7\6\766aaa74ad24380934893ddb25f377a7a7c4463a
+K
+src/employee/IEmployee.java,9\a\9a8a6e48260cd5e56770418064a220f5dac8847a
+K
+src/client/ListBrokers.java,3\3\33e95120241da8a22df1c893113f432c2882007b
+R
+"src/commander/EnrollToAuction.java,6\3\63ce80b41a76e8f815fc456c392a447b5ef30d23

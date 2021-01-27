@@ -1,11 +1,13 @@
 package socketserver;
 
 import auction_house.AuctionHouse;
+import commander.ICommand;
 import loginsql.MySQLConnection;
 
 import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +23,16 @@ public class ServerClientThread extends Thread {
     private PrintWriter outWriterConsole;
 
     public void setNotifier(String notifier) {
-        outWriterConsole.println(notifier);
+
+        class PrintRunnable implements Runnable{
+            @Override
+            public void run() {
+                outWriterConsole.println(notifier);
+            }
+        }
+
+        PrintRunnable p = new PrintRunnable();
+        new Thread(p).start();
     }
 
     public static class Helper {
@@ -59,8 +70,18 @@ public class ServerClientThread extends Thread {
 
     private static final AuctionHouse auctionHouse = Main.auctionHouse;
 
+    private List<ICommand> commands = new ArrayList<>();
+
+    public void setCommands(List<ICommand> commands) {
+        this.commands = commands;
+    }
+
+    public List<ICommand> getCommands() {
+        return commands;
+    }
+
     public void addCommandToList(List<String> parameters) {
-        addCommand(parameters, auctionHouse);
+        addCommand(parameters, this);
     }
 
     @Override
@@ -76,7 +97,7 @@ public class ServerClientThread extends Thread {
                 out.println("   Sent from the client " + clientNo + " " + hostAddress + " " + commandUserBR);
                 evalCommand(commandUserBR);
                 if("execute".equalsIgnoreCase(commandUserBR.split(" ")[0])) {
-                    executeCommands(this, auctionHouse);
+                    executeCommands(this);
                     result = Helper.getInstance().getCommandResult();
                     Helper.getInstance().setCommandResult(new StringBuilder());
                 }
