@@ -1,17 +1,17 @@
 
+D
+java:S1068
+"'Remove this unused "sct" private field.(¾É¥ 8¼Âº™ô.
+^
+java:S1854"<Remove this useless assignment to local variable "username".(ÚŽ—ùÿÿÿÿ8¼Âº™ô.
 o
 java:S1450
 "RRemove the "sct" field and declare it as a local variable in the relevant methods.(¾É¥ 8¼Âº™ô.
 N
-java:S1481"1Remove this unused "auctionHouse" local variable.(ÿ°‹Ë8¼Âº™ô.
+java:S1481"1Remove this unused "auctionHouse" local variable.(ÿ°‹Ë8¼Âº™ô.
 O
-java:S1481"-Remove this unused "username" local variable.(ÚŽ—ùÿÿÿÿ8¼Âº™ô.
+java:S1481"-Remove this unused "username" local variable.(ÚŽ—ùÿÿÿÿ8¼Âº™ô.
 ]
-java:S1854"@Remove this useless assignment to local variable "auctionHouse".(ÿ°‹Ë8¼Âº™ô.
-D
-java:S1068
-"'Remove this unused "sct" private field.(¾É¥ 8¼Âº™ô.
+java:S1854"@Remove this useless assignment to local variable "auctionHouse".(ÿ°‹Ë8¼Âº™ô.
 J
 java:S1068"-Remove this unused "idProduct" private field.(­†ìý8¼Âº™ô.
-^
-java:S1854"<Remove this useless assignment to local variable "username".(ÚŽ—ùÿÿÿÿ8¼Âº™ô.

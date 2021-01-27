@@ -8,5 +8,5 @@ import java.util.Map;
 
 public interface INotifierMail {
     void sendEmail(String email, String textMail);
-    void notifyBrokers(Map<Integer, List<String>> mapBrokers, Auction auction, Product product);
+    void sendMailToBrokers(Map<Integer, List<String>> mapBrokers, Auction auction, Product product);
 }

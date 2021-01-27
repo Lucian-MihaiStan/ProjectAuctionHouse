@@ -45,7 +45,7 @@ public class NotifierMailAdapter implements INotifierMail {
     }
 
     @Override
-    public void notifyBrokers(Map<Integer, List<String>> mapBrokers, Auction auction, Product product) {
+    public void sendMailToBrokers(Map<Integer, List<String>> mapBrokers, Auction auction, Product product) {
         Set<Integer> keys = mapBrokers.keySet();
         keys.forEach(key -> {
             StringBuilder usersAssigned = new StringBuilder();

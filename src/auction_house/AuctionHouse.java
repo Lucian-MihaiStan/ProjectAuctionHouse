@@ -14,7 +14,6 @@ import socketserver.Main;
 
 import java.sql.SQLException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class AuctionHouse {
     private static AuctionHouse instance;
@@ -53,10 +52,10 @@ public class AuctionHouse {
             broker.getClientsUsernames().add(user);
         });
 
-        INotifierMail notifierBrokers = new NotifierMailAdapter();
-        notifierBrokers.notifyBrokers(mapBrokers, auction,
-                productsList.stream().filter(product -> product.getId() == auction.getProductId())
-                        .collect(Collectors.toList()).get(0));
+//        INotifierMail notifierBrokers = new NotifierMailAdapter();
+//        notifierBrokers.sendMailToBrokers(mapBrokers, auction,
+//                productsList.stream().filter(product -> product.getId() == auction.getProductId())
+//                        .collect(Collectors.toList()).get(0));
 
     }
 

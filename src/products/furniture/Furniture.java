@@ -34,22 +34,4 @@ public class Furniture extends Product {
                 ", material='" + material + '\'' +
                 '}';
     }
-
-    public class FurnitureBuilderInner extends Product.ProductBuilder{
-        protected Furniture furniture = new Furniture();
-
-        public FurnitureBuilderInner withType(String type) {
-            furniture.type = type;
-            return this;
-        }
-
-        public FurnitureBuilderInner withMaterial(String material) {
-            furniture.material = material;
-            return this;
-        }
-
-        public Furniture build() {
-            return furniture;
-        }
-    }
 }

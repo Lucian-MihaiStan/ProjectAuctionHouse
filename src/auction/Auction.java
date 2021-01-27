@@ -110,7 +110,7 @@ public class Auction {
                     ).collect(Collectors.toList()).get(0);
                     String email = user.getEmail();
                     INotifierMail iNotifierMail = new NotifierMailAdapter();
-                    iNotifierMail.sendEmail(email, notify);
+//                    iNotifierMail.sendEmail(email, notify);
                 }
         );
     }
