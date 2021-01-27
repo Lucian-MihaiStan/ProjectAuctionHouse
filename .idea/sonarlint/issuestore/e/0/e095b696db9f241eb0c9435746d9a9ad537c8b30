@@ -1,0 +1,28 @@
+
+W
+java:S1144,"5Remove this unused private "addUserToAuction" method.(õ«Œ›üÿÿÿÿ8õß¬ôó.
+H
+java:S1172,"&Remove these unused method parameters.(õ«Œ›üÿÿÿÿ8ÛÂâïó.
+:
+java:S21192"Save and re-use this "Random".(¼İÅf8´•Ú÷ó.
+£
+java:S1186,"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(õ«Œ›üÿÿÿÿ8ÛÂâïó.
+]	java:S125E"<This block of commented-out lines of code should be removed.(È›Ù•şÿÿÿÿ8ù°ìöó.
+G
+java:S1068"*Remove this unused "amount" private field.(«’õµ8ù°ìöó.
+c
+java:S1854="FRemove this useless assignment to local variable "currentAuctionList".(øÌÈ8ù°ìöó.
+C
+java:S1172("&Remove these unused method parameters.(ÁºÆâ8õß¬ôó.
+J
+java:S1128"(Remove this unused import 'client.User'.(ÂûÁÓşÿÿÿÿ8É·¹öó.
+
+java:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÁºÆâ8õß¬ôó.
+b
+java:S18545"@Remove this useless assignment to local variable "brokerClient".(”îÍ„ıÿÿÿÿ8©Ä´÷ó.
+S
+java:S14815"1Remove this unused "brokerClient" local variable.(”îÍ„ıÿÿÿÿ8©Ä´÷ó.
+Y
+java:S1481<"7Remove this unused "currentAuctionList" local variable.(Î¹Ç˜úÿÿÿÿ8ù°ìöó.
+Q
+java:S11720"/Remove this unused method parameter "username".(¶ñİÀşÿÿÿÿ8©Ä´÷ó.

@@ -1,5 +1,7 @@
 package products;
 
+import products.furniture.Furniture;
+
 public abstract class Product {
     private int id;
     private String name;
@@ -55,5 +57,34 @@ public abstract class Product {
                 ", minimumPrice=" + minimumPrice +
                 ", year=" + year +
                 '}';
+    }
+
+    public abstract class ProductBuilder {
+        protected Product product;
+
+        protected ProductBuilder() {}
+
+        public ProductBuilder withId(int id) {
+            product.id = id;
+            return this;
+        }
+
+        public ProductBuilder withName(String name) {
+            product.name = name;
+            return this;
+        }
+
+        public ProductBuilder withMinimumPrice(int minimumPrice) {
+            product.minimumPrice = minimumPrice;
+            return this;
+        }
+
+        public Furniture.FurnitureBuilderInner asFurnitureBuilder() {
+            return (Furniture.FurnitureBuilderInner) this;
+        }
+
+        public Product build() {
+            return product;
+        }
     }
 }

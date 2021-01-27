@@ -26,15 +26,16 @@ public class AddUserSQL {
         } catch (SQLException | ClassNotFoundException errorSQL) {
             errorSQL.printStackTrace();
         }
-        String query = "INSERT INTO client (username, first_name, last_name, address, noParticipation, noAuctionsWon)" +
-                " values (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO client (username, email, first_name, last_name, address, noParticipation, noAuctionsWon)" +
+                " values (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = mySQLConnection.getConnection().prepareStatement(query)){
             preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getFirstName());
-            preparedStatement.setString(3, user.getLastName());
-            preparedStatement.setString(4, user.getAddress());
-            preparedStatement.setInt(5, user.getNoParticipation());
-            preparedStatement.setInt(6, user.getWonAuctions());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getFirstName());
+            preparedStatement.setString(4, user.getLastName());
+            preparedStatement.setString(5, user.getAddress());
+            preparedStatement.setInt(6, user.getNoParticipation());
+            preparedStatement.setInt(7, user.getWonAuctions());
 
             preparedStatement.execute();
 

@@ -13,6 +13,11 @@ public class CreateUserBuilderCommand {
         return this;
     }
 
+    public CreateUserBuilderCommand withEmail(String email) {
+        createUser.setEmail(email);
+        return this;
+    }
+
     public CreateUserBuilderCommand withPassword(String password) {
         AddUserSQL.password = password;
         return this;

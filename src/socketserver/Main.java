@@ -47,11 +47,5 @@ public class Main {
             e.printStackTrace();
         }
     }
-
-    private static void notifyCheck(List<ServerClientThread> sctList) {
-        List<Auction> auctionList = auctionHouse.getAuctionsActive();
-        auctionList.forEach(auction -> {
-
-        });
-    }
 }
+

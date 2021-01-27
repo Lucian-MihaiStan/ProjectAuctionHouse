@@ -35,12 +35,13 @@ public class IndividualPerson extends User {
     public String toString() {
         return "IndividualPerson{" +
                 this.getUsername() + " " +
+                this.getEmail() + " " +
                 this.getFirstName() + " " +
                 this.getLastName() + " " +
                 this.getAddress() + " " +
                 this.getNoParticipation() + " " +
                 this.getWonAuctions() + " " +
-                "birthDate=" + birthDate +
+                birthDate +
                 '}';
     }
 }

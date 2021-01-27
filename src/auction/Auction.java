@@ -1,10 +1,13 @@
 package auction;
 
-import socketserver.Main;
-import socketserver.ServerClientThread;
+import auction.notifieradapter.INotifier;
+import auction.notifieradapter.NotifierAdapter;
+import auction_house.AuctionHouse;
+import client.User;
+import products.Product;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Auction {
     private int productId;
@@ -93,17 +96,22 @@ public class Auction {
         return noMaxSteps;
     }
 
-    public void notifyUsers(String username, int productId) {
-        List<ServerClientThread> sctList = Main.sctList;
-        for (ServerClientThread thread : sctList) {
-            if(!thread.getMySQLConnection().getUsername().equals(username)) {
-                String notify = "|" + "User " + username +
-                        " enroll to auction for product with id = " +
-                        productId +
-                        "|";
-
-                thread.setNotifier(notify);
-            }
-        }
+    public void notifyUsers(List<String> usernames, int productId) {
+        Product productInfo = AuctionHouse.getInstance()
+                .getProductsList()
+                .stream()
+                .filter(product -> product.getId() == productId)
+                .collect(Collectors.toList()).get(0);
+        String notify = "Auction for product " + productInfo.toString() + " has started please join at the table";
+        usernames.forEach(
+                username -> {
+                    User user = AuctionHouse.getInstance().getUserList().stream().filter(
+                            userIt -> username.equals(userIt.getUsername())
+                    ).collect(Collectors.toList()).get(0);
+                    String email = user.getEmail();
+                    INotifier iNotifier = new NotifierAdapter();
+                    iNotifier.sendEmail(email, notify);
+                }
+        );
     }
 }

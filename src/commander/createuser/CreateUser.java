@@ -14,6 +14,7 @@ import java.util.List;
 
 public class CreateUser implements ICommand {
     private String username;
+    private String email;
     private String firstName;
     private String lastName;
     private String address;
@@ -23,6 +24,7 @@ public class CreateUser implements ICommand {
 
     @Override
     public void execute(ServerClientThread sct) {
+        auctionHouse = sct.getAuctionHouse();
         if(!checkDuplicate(this)) {
             ServerClientThread.Helper errorMessage = ServerClientThread.Helper.getInstance();
             errorMessage.setCommandResult(errorMessage
@@ -34,6 +36,7 @@ public class CreateUser implements ICommand {
                 restParameters.size() == 1 ?
                         new IndividualPersonBuilder()
                                 .withUsername(username)
+                                .withEmail(email)
                                 .withFirstName(firstName)
                                 .withLastName(lastName)
                                 .withAddress(address)
@@ -44,6 +47,7 @@ public class CreateUser implements ICommand {
                         :
                         new LegalPersonBuilder()
                                 .withUsername(username)
+                                .withEmail(email)
                                 .withFirstName(firstName)
                                 .withLastName(lastName)
                                 .withAddress(address)
@@ -105,5 +109,13 @@ public class CreateUser implements ICommand {
 
     public void setRestParameters(List<String> restParameters) {
         this.restParameters = restParameters;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -7,6 +7,15 @@ public abstract class User {
     private String address;
     private int noParticipation;
     private int wonAuctions;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -59,12 +68,13 @@ public abstract class User {
     @Override
     public String toString() {
         return "User{" +
-                "Username='" + username + '\'' +
+                "username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
                 ", noParticipation=" + noParticipation +
                 ", wonAuctions=" + wonAuctions +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

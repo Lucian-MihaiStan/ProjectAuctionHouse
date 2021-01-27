@@ -24,11 +24,12 @@ public class Caller {
             case CREATE_USER ->
                     new CreateUserBuilderCommand()
                             .withUsername(elements.get(1))
-                            .withPassword(elements.get(2))
-                            .withFirstName(elements.get(3))
-                            .withLastName(elements.get(4))
-                            .withAddress(elements.get(5))
-                            .withOtherParameters(elements.subList(6, elements.size()))
+                            .withEmail(elements.get(2))
+                            .withPassword(elements.get(3))
+                            .withFirstName(elements.get(4))
+                            .withLastName(elements.get(5))
+                            .withAddress(elements.get(6))
+                            .withOtherParameters(elements.subList(7, elements.size()))
                             .build();
             case ADD_PRODUCT ->
                     new ProductBuilderCommander()

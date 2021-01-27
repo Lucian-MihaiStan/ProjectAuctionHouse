@@ -22,19 +22,6 @@ public class ServerClientThread extends Thread {
     private String notifier;
     private PrintWriter outWriterConsole;
 
-    public void setNotifier(String notifier) {
-
-        class PrintRunnable implements Runnable{
-            @Override
-            public void run() {
-                outWriterConsole.println(notifier);
-            }
-        }
-
-        PrintRunnable p = new PrintRunnable();
-        new Thread(p).start();
-    }
-
     public static class Helper {
         private static Helper instance;
         private StringBuilder commandResult = new StringBuilder();
@@ -84,6 +71,10 @@ public class ServerClientThread extends Thread {
         addCommand(parameters, this);
     }
 
+    public PrintWriter getOutWriterConsole() {
+        return outWriterConsole;
+    }
+
     @Override
     public void run(){
         BufferedReader inBR;
@@ -100,11 +91,6 @@ public class ServerClientThread extends Thread {
                     executeCommands(this);
                     result = Helper.getInstance().getCommandResult();
                     Helper.getInstance().setCommandResult(new StringBuilder());
-                }
-                if(notifier != null) {
-                    if(result == null) result = new StringBuilder();
-                    result.append(notifier);
-                    notifier = null;
                 }
                 if(result!=null) outWriter.println(result);
                 else outWriter.println("Instruction registered");

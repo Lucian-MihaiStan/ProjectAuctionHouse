@@ -48,6 +48,7 @@ public class LPersonDBExtract implements IAdapterDBLP {
                         legalPeople.add(
                                 new LegalPersonBuilder()
                                         .withUsername(rs.getString("username"))
+                                        .withEmail(rs.getString("email"))
                                         .withFirstName(rs.getString("first_name"))
                                         .withLastName(rs.getString("last_name"))
                                         .withAddress(rs.getString("address"))

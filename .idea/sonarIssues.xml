@@ -133,6 +133,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/auction/notifierAdapter/NotifierAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/auction/notifieradapter/INotifier.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/auction/notifieradapter/NotifierAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/auctionHouse/AuctionHouse.java">
           <value>
             <set />
@@ -799,6 +814,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/socketserver/Main.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/socketserver/PrintRunnable.java">
           <value>
             <set />
           </value>

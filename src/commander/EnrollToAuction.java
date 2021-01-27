@@ -38,9 +38,10 @@ public class EnrollToAuction implements ICommand{
             auction.getBids().add(-1);
             auction.getMaximumBids().add(maximumPrice);
             helper.setCommandResult(helper.getCommandResult().append("You have been added to auction"));
-//            auction.notifyUsers(sct.getMySQLConnection().getUsername(), auction.getProductId());
-            if (auction.getNoParticipants() == auction.getNoCurrentParticipants())
+            if (auction.getNoParticipants() == auction.getNoCurrentParticipants()) {
+                auction.notifyUsers(auction.getUsernames(), auction.getProductId());
                 sct.getAuctionHouse().notifyBrokers(auction);
+            }
         }
     }
 

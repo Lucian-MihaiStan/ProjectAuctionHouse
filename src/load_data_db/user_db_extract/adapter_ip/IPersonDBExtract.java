@@ -48,6 +48,7 @@ public class IPersonDBExtract implements IAdapterDBIP {
                         individualPeople.add(
                                 new IndividualPersonBuilder()
                                         .withUsername(rs.getString("username"))
+                                        .withEmail(rs.getString("email"))
                                         .withFirstName(rs.getString("first_name"))
                                         .withLastName(rs.getString("last_name"))
                                         .withAddress(rs.getString("address"))

@@ -3,6 +3,11 @@ package client.legalperson;
 public class LegalPersonBuilder {
     private final LegalPerson legalPerson = new LegalPerson();
 
+    public LegalPersonBuilder withEmail(String email) {
+        legalPerson.setEmail(email);
+        return this;
+    }
+
     public LegalPersonBuilder withUsername(String username) {
         legalPerson.setUsername(username);
         return this;

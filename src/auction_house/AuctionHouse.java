@@ -110,21 +110,12 @@ public class AuctionHouse {
             errorSQL.printStackTrace();
         }
 
-        try{
-            auctionHouseData.get("users").forEach(
-                    user -> userList.add((User) user)
-            );
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-        }
-
-        try{
-            auctionHouseData.get("products").forEach(
-                    product -> productsList.add((Product) product)
-            );
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-        }
+        auctionHouseData.get("users").forEach(
+            user -> userList.add((User) user)
+        );
+        auctionHouseData.get("products").forEach(
+                product -> productsList.add((Product) product)
+        );
 
         if(brokersList.isEmpty()) generateBrokers();
         if(auctionsActive.isEmpty()) createAuctions();
