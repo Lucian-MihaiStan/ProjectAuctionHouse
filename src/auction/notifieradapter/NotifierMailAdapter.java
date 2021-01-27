@@ -1,12 +1,17 @@
 package auction.notifieradapter;
 
+import auction.Auction;
+import products.Product;
+
 import javax.mail.*;
 import javax.mail.internet.*;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
-public class NotifierAdapter implements INotifier {
+public class NotifierMailAdapter implements INotifierMail {
 
-    String host = "4999";
     private static final String USER = "auctionhouseroyal@gmail.com";
     private static final String PASSWORD = "Lucian1234mihai";
 
@@ -34,9 +39,29 @@ public class NotifierAdapter implements INotifier {
             message.setSubject("AuctionHouse Royal");
             message.setText(textMail);
             Transport.send(message);
-
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void notifyBrokers(Map<Integer, List<String>> mapBrokers, Auction auction, Product product) {
+        Set<Integer> keys = mapBrokers.keySet();
+        keys.forEach(key -> {
+            StringBuilder usersAssigned = new StringBuilder();
+            List<String> users = mapBrokers.get(key);
+            for (String user : users) {
+                usersAssigned.append(user);
+                usersAssigned.append('\n');
+            }
+
+            String message = "Hello!" + "\n\n" + "You are assigned as broker to '\n'" +
+                    "========Auction========'\n'" +
+                    product.toString() +
+                    "\n\n" +
+                    "Your users assigned are: '\n" +
+                    usersAssigned;
+            sendEmail("brokerroyal" + (key + 1) + "@gmail.com", message);
+        });
     }
 }

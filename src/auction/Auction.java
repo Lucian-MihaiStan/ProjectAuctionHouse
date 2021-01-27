@@ -1,7 +1,7 @@
 package auction;
 
-import auction.notifieradapter.INotifier;
-import auction.notifieradapter.NotifierAdapter;
+import auction.notifieradapter.INotifierMail;
+import auction.notifieradapter.NotifierMailAdapter;
 import auction_house.AuctionHouse;
 import client.User;
 import products.Product;
@@ -13,7 +13,7 @@ public class Auction {
     private int productId;
     private int noCurrentParticipants;
     private int noParticipants;
-    private int id;
+    private int idAuction;
     private int noMaxSteps;
     private List<String> usernames;
     private List<Integer> bids;
@@ -39,8 +39,8 @@ public class Auction {
         this.productId = productId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdAuction(int idAuction) {
+        this.idAuction = idAuction;
     }
 
     public void setNoMaxSteps(int noMaxSteps) {
@@ -73,15 +73,15 @@ public class Auction {
                 "productId=" + productId +
                 ", noCurrentParticipants=" + noCurrentParticipants +
                 ", noParticipants=" + noParticipants +
-                ", id=" + id +
+                ", idAuction=" + idAuction +
                 ", noMaxSteps=" + noMaxSteps +
                 ", usernames=" + usernames +
                 ", bids=" + bids +
                 '}';
     }
 
-    public int getId() {
-        return id;
+    public int getIdAuction() {
+        return idAuction;
     }
 
     public int getNoParticipants() {
@@ -109,8 +109,8 @@ public class Auction {
                             userIt -> username.equals(userIt.getUsername())
                     ).collect(Collectors.toList()).get(0);
                     String email = user.getEmail();
-                    INotifier iNotifier = new NotifierAdapter();
-                    iNotifier.sendEmail(email, notify);
+                    INotifierMail iNotifierMail = new NotifierMailAdapter();
+                    iNotifierMail.sendEmail(email, notify);
                 }
         );
     }

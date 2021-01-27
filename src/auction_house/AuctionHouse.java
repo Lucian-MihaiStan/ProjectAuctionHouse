@@ -1,6 +1,8 @@
 package auction_house;
 
 import auction.AuctionBuilder;
+import auction.notifieradapter.INotifierMail;
+import auction.notifieradapter.NotifierMailAdapter;
 import client.User;
 import employee.Broker;
 import load_data_db.LoadDBDataAdmin;
@@ -11,9 +13,8 @@ import products.Product;
 import socketserver.Main;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class AuctionHouse {
     private static AuctionHouse instance;
@@ -23,8 +24,10 @@ public class AuctionHouse {
     private List<Auction> auctionsActive;
     private List<Broker> brokersList;
 
+    static final int NO_MAX_BROKERS = 6;
+
     public static synchronized AuctionHouse getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new AuctionHouse();
         }
         return instance;
@@ -38,12 +41,23 @@ public class AuctionHouse {
     }
 
     public void notifyBrokers(Auction auction) {
+        Map<Integer, List<String>> mapBrokers = new HashMap<>();
         auction.getUsernames().forEach(user -> {
             int idBroker = Main.random.nextInt(this.brokersList.size());
+            if (!mapBrokers.containsKey(idBroker)) {
+                mapBrokers.put(idBroker, new ArrayList<>());
+            }
+            mapBrokers.get(idBroker).add(user);
             Broker broker = brokersList.get(idBroker);
             broker.getAuctionsList().add(auction);
             broker.getClientsUsernames().add(user);
         });
+
+        INotifierMail notifierBrokers = new NotifierMailAdapter();
+        notifierBrokers.notifyBrokers(mapBrokers, auction,
+                productsList.stream().filter(product -> product.getId() == auction.getProductId())
+                        .collect(Collectors.toList()).get(0));
+
     }
 
     public List<Product> getProductsList() {
@@ -100,7 +114,7 @@ public class AuctionHouse {
         productsList = new ArrayList<>();
         Map<String, List<?>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
         try {
-            if(mySQLConnection.getUsername() != null) {
+            if (mySQLConnection.getUsername() != null) {
                 mySQLConnection.realizeConnection(
                         mySQLConnection.getUsername(),
                         mySQLConnection.getPassword()
@@ -111,18 +125,18 @@ public class AuctionHouse {
         }
 
         auctionHouseData.get("users").forEach(
-            user -> userList.add((User) user)
+                user -> userList.add((User) user)
         );
         auctionHouseData.get("products").forEach(
                 product -> productsList.add((Product) product)
         );
 
-        if(brokersList.isEmpty()) generateBrokers();
-        if(auctionsActive.isEmpty()) createAuctions();
-        if(auctionsActive.size() < productsList.size()) {
+        if (brokersList.isEmpty()) generateBrokers();
+        if (auctionsActive.isEmpty()) createAuctions();
+        if (auctionsActive.size() < productsList.size()) {
             int id = 0;
             for (Product product : productsList)
-                if(product.getId() > id) id = product.getId();
+                if (product.getId() > id) id = product.getId();
             addNewAuctionToList(id);
         }
     }
@@ -143,8 +157,8 @@ public class AuctionHouse {
     }
 
     private void generateBrokers() {
-        int noBrokers = Main.random.nextInt(5) + 2;
-        for(int i = 0; i < noBrokers; i++) {
+        int noBrokers = Main.random.nextInt(5) + 1;
+        for (int i = 0; i < noBrokers; i++) {
             Broker broker = new Broker(i);
             brokersList.add(broker);
         }

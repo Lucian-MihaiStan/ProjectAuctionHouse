@@ -1,6 +1,5 @@
-package client;
+package commander;
 
-import commander.ICommand;
 import socketserver.ServerClientThread;
 
 public class ListBrokers implements ICommand {

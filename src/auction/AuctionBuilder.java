@@ -6,7 +6,7 @@ public class AuctionBuilder {
     private Auction auction = new Auction();
 
     public AuctionBuilder withId(int auctionId) {
-        auction.setId(auctionId);
+        auction.setIdAuction(auctionId);
         return this;
     }
 

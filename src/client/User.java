@@ -1,5 +1,7 @@
 package client;
 
+import strategy.Strategy;
+
 public abstract class User {
     private String username;
     private String firstName;
@@ -8,6 +10,7 @@ public abstract class User {
     private int noParticipation;
     private int wonAuctions;
     private String email;
+    private Strategy strategy;
 
     public String getEmail() {
         return email;

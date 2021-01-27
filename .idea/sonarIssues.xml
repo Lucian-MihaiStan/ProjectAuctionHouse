@@ -143,7 +143,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/auction/notifieradapter/INotifierMail.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/auction/notifieradapter/NotifierAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/auction/notifieradapter/NotifierMailAdapter.java">
           <value>
             <set />
           </value>
@@ -273,6 +283,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/ListBrokers.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/ListProducts.java">
           <value>
             <set />
@@ -314,6 +329,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/addproduct/ProductBuilderCommander.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/auctions.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/auctions/DisplayAuction.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/auctions/ShowAuctions.java">
           <value>
             <set />
           </value>
@@ -824,6 +854,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/socketserver/ServerClientThread.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/strategy/CallDouble.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/strategy/CallHalfMore.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/strategy/CallMore.java">
           <value>
             <set />
           </value>

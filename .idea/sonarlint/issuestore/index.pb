@@ -93,8 +93,6 @@ u
 Esrc/load_data_db/product_db_extract/adapterjewellery/DBJewellery.java,4\3\43b52e85f57f4dc32c1bd3043f8b6149f89d7e2c
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-j
-:.idea/dataSources/606ff5d0-8d16-427b-aead-1434f464c75c.xml,8\4\84bad40ce5d31a44bfa776d4d112606a917c0d1c
 H
 src/employee/Broker.java,8\8\88b3fb05f90e5fe89587b6e82cfee91879cd4c5b
 G
@@ -111,11 +109,27 @@ Z
 *.idea/libraries/org_json_json_20201115.xml,1\5\15b17126049882ad37f5cbcc3aa4f646f84a96b6
 J
 src/commander/bid/Bid.java,e\0\e095b696db9f241eb0c9435746d9a9ad537c8b30
-O
-src/commander/ShowAuctions.java,7\6\766aaa74ad24380934893ddb25f377a7a7c4463a
 K
 src/employee/IEmployee.java,9\a\9a8a6e48260cd5e56770418064a220f5dac8847a
-K
-src/client/ListBrokers.java,3\3\33e95120241da8a22df1c893113f432c2882007b
-R
-"src/commander/EnrollToAuction.java,6\3\63ce80b41a76e8f815fc456c392a447b5ef30d23
+O
+src/auction/AuctionBuilder.java,8\4\84e6bfbfa2431dceca4649905229357681547d28
+N
+src/commander/ListBrokers.java,0\2\020d14294f10277d23514f3a761068540fc4c409
+N
+src/strategy/CallHalfMore.java,5\7\574764fe1285c1bb177b0b4e825dd684001cf136
+J
+src/strategy/Strategy.java,2\f\2f95d1ca7d4beb38073fc9d905d49a2d3cd6993a
+L
+src/strategy/CallDouble.java,4\4\44ac122ef89c9b74ea0aca8bddab8a0aef89128d
+Z
+*src/commander/auctions/DisplayAuction.java,0\3\03b08ade4b66f3f384ca758da9eb47e2deb90f79
+J
+src/strategy/CallMore.java,1\5\15d75ae0db135f48d0dbcecdc85f761b230ed08a
+^
+.src/auction/notifieradapter/INotifierMail.java,c\2\c2e6744e5f41f446d13f2985fbf97fa98c0ac585
+[
++src/commander/auctions/EnrollToAuction.java,e\c\ecbd9ca3b48cefe65ee4c34f3122452c17d72b25
+d
+4src/auction/notifieradapter/NotifierMailAdapter.java,0\4\04b53cbaadcd66f87fbad1d027720702e42aa1e2
+X
+(src/commander/auctions/ShowAuctions.java,2\d\2d1db80541e5246ba3d0b9966f86c655fa6887a0
