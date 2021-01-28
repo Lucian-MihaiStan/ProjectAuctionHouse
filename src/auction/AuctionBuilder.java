@@ -1,9 +1,8 @@
 package auction;
 
-import java.util.List;
 
 public class AuctionBuilder {
-    private Auction auction = new Auction();
+    private final Auction auction = new Auction();
 
     public AuctionBuilder withId(int auctionId) {
         auction.setIdAuction(auctionId);
@@ -27,21 +26,6 @@ public class AuctionBuilder {
 
     public AuctionBuilder withNoMaxSteps(int noMaxSteps) {
         auction.setNoMaxSteps(noMaxSteps);
-        return this;
-    }
-
-    public AuctionBuilder withUserNames(List<String> userNames) {
-        auction.setUsernames(userNames);
-        return this;
-    }
-
-    public AuctionBuilder withBids(List<Integer> bidsList) {
-        auction.setBids(bidsList);
-        return this;
-    }
-
-    public AuctionBuilder withMaximumBids(List<Integer> maximumBids) {
-        auction.setMaximumBids(maximumBids);
         return this;
     }
 

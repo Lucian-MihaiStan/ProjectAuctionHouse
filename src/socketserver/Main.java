@@ -35,6 +35,7 @@ public class Main {
             out.println("Server Started....");
             while (true) {
                 counter++;
+
                 Socket client = serverSocket.accept();
                 String clientIP = client.getInetAddress().getHostAddress();
                 out.println(">> Client No: " + counter + " with IP: " + client
@@ -42,6 +43,7 @@ public class Main {
                 ServerClientThread socketClientThread = new ServerClientThread(client, counter, clientIP);
                 sctList.add(socketClientThread);
                 socketClientThread.start();
+
             }
         } catch (IOException e) {
             e.printStackTrace();

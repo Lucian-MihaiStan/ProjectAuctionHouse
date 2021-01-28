@@ -5,7 +5,6 @@ import commander.ICommand;
 import products.Product;
 import socketserver.ServerClientThread;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class DisplayAuction implements ICommand {
@@ -17,15 +16,12 @@ public class DisplayAuction implements ICommand {
     }
 
     @Override
-    public void execute(ServerClientThread sct) {
-        synchronized (sct.getMySQLConnection()) {
-            this.sct = sct;
-            Auction auctionSearched = sct.getAuctionHouse().getAuctionsActive()
-                    .stream().filter(auction -> auction.getIdAuction() == auctionId).collect(Collectors.toList()).get(0);
-            String auctionInfo = buildInfo(auctionSearched);
-            ServerClientThread.Helper commandResult = ServerClientThread.Helper.getInstance();
-            commandResult.setCommandResult(commandResult.getCommandResult().append(auctionInfo));
-        }
+    public synchronized void execute(ServerClientThread sct) {
+        this.sct = sct;
+        Auction auctionSearched = sct.getAuctionHouse().getAuctionsActive().get(auctionId);
+        String auctionInfo = buildInfo(auctionSearched);
+        ServerClientThread.Helper commandResult = ServerClientThread.Helper.getInstance();
+        commandResult.setCommandResult(commandResult.getCommandResult().append(auctionInfo));
     }
 
     private String buildInfo(Auction auctionSearched) {
@@ -35,32 +31,31 @@ public class DisplayAuction implements ICommand {
                 .collect(Collectors.toList()).get(0);
 
         info.append(productInfo.toString()).append("|");
-        List<String> usersSubmitted = auctionSearched.getUsernames();
-        List<Integer> bidsBet = auctionSearched.getBids();
-        List<Integer> maximumBids = auctionSearched.getMaximumBids();
+//        List<String> usersSubmitted = auctionSearched.getUsernames();
+//        List<Integer> bidsBet = auctionSearched.getBids();
+//        List<Integer> maximumBids = auctionSearched.getMaximumBids();
 
-        if(auctionSearched.getNoParticipants() == auctionSearched.getNoCurrentParticipants()){
+        if (auctionSearched.getNoParticipants() == auctionSearched.getNoCurrentParticipants()) {
             info.append("|==Auction is in progress==|");
             info.append("Participants and Bids:|");
-            for (int i = 0; i < usersSubmitted.size(); i++) {
-                info
-                        .append("User ").append(usersSubmitted.get(i))
-                        .append(" with bid ").append(bidsBet.get(i))
-                        .append(" with maximum bid ").append(maximumBids.get(i))
-                        .append("|");
-            }
-        }
-        else {
+//            for (int i = 0; i < usersSubmitted.size(); i++) {
+//                info
+//                        .append("User ").append(usersSubmitted.get(i))
+//                        .append(" with bid ").append(bidsBet.get(i))
+//                        .append(" with maximum bid ").append(maximumBids.get(i))
+//                        .append("|");
+//            }
+        } else {
             info.append("|==Auction waits for users to join==|");
-            if(auctionSearched.getNoCurrentParticipants() == 0) info.append("There are no participants joined |");
+            if (auctionSearched.getNoCurrentParticipants() == 0) info.append("There are no participants joined |");
             else {
                 info.append("Participants waiting:|");
-                for (int i = 0; i < usersSubmitted.size(); i++) {
-                    info
-                            .append("User ").append(usersSubmitted.get(i))
-                            .append(" with maximum bid ").append(maximumBids.get(i))
-                            .append("|");
-                }
+//                for (int i = 0; i < usersSubmitted.size(); i++) {
+//                    info
+//                            .append("User ").append(usersSubmitted.get(i))
+//                            .append(" with maximum bid ").append(maximumBids.get(i))
+//                            .append("|");
+//                }
             }
 
         }

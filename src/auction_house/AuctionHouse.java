@@ -9,19 +9,22 @@ import load_data_db.LoadDBDataAdmin;
 import load_data_db.IAdapterAdmin;
 import auction.Auction;
 import loginsql.MySQLConnection;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import products.Product;
 import socketserver.Main;
 
 import java.sql.SQLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AuctionHouse {
     private static AuctionHouse instance;
 
     private List<Product> productsList;
     private List<User> userList;
-    private List<Auction> auctionsActive;
-    private List<Broker> brokersList;
+    private Map<Integer, Auction> auctionsActive;
+    private final Map<Integer, Broker> brokers;
 
     static final int NO_MAX_BROKERS = 6;
 
@@ -35,28 +38,45 @@ public class AuctionHouse {
     private AuctionHouse() {
         productsList = new ArrayList<>();
         userList = new ArrayList<>();
-        auctionsActive = new ArrayList<>();
-        brokersList = new ArrayList<>();
+        auctionsActive = new HashMap<>();
+        brokers = new HashMap<>();
     }
 
-    public void notifyBrokers(Auction auction) {
-        Map<Integer, List<String>> mapBrokers = new HashMap<>();
-        auction.getUsernames().forEach(user -> {
-            int idBroker = Main.random.nextInt(this.brokersList.size());
-            if (!mapBrokers.containsKey(idBroker)) {
-                mapBrokers.put(idBroker, new ArrayList<>());
+    public void notifyBrokers(int auctionId) {
+
+        Auction auction = auctionsActive.get(auctionId);
+
+        Map<Integer, List<Pair<String, Double>>> mapBrokers = new HashMap<>();
+
+        brokers.forEach((integer, broker) -> {
+            if(broker.getAuctionAndUserAssigned().containsKey(auctionId)) {
+                if(!mapBrokers.containsKey(broker.getId())) {
+                    mapBrokers.put(broker.getId(), new ArrayList<>());
+                }
+                broker.getAuctionAndUserAssigned().get(auctionId).forEach((username, bid) -> {
+                    Pair<String, Double> userInfo = new ImmutablePair<>(username, bid);
+                    mapBrokers.get(broker.getId()).add(userInfo);
+                });
             }
-            mapBrokers.get(idBroker).add(user);
-            Broker broker = brokersList.get(idBroker);
-            broker.getAuctionsList().add(auction);
-            broker.getClientsUsernames().add(user);
         });
 
-//        INotifierMail notifierBrokers = new NotifierMailAdapter();
-//        notifierBrokers.sendMailToBrokers(mapBrokers, auction,
-//                productsList.stream().filter(product -> product.getId() == auction.getProductId())
-//                        .collect(Collectors.toList()).get(0));
+        INotifierMail notifierBrokers = new NotifierMailAdapter();
+        notifierBrokers.sendMailToBrokers(mapBrokers, auction,
+                productsList.stream().filter(product -> product.getId() == auctionId)
+                        .collect(Collectors.toList()).get(0));
 
+    }
+
+    public Map<Integer, Auction> getAuctionsActive() {
+        return auctionsActive;
+    }
+
+    public void setAuctionsActive(Map<Integer, Auction> auctionsActive) {
+        this.auctionsActive = auctionsActive;
+    }
+
+    public Map<Integer, Broker> getBrokers() {
+        return brokers;
     }
 
     public List<Product> getProductsList() {
@@ -75,14 +95,6 @@ public class AuctionHouse {
         this.userList = userList;
     }
 
-    public List<Auction> getAuctionsActive() {
-        return auctionsActive;
-    }
-
-    public void setAuctionsActive(List<Auction> auctionsActive) {
-        this.auctionsActive = auctionsActive;
-    }
-
     public void addNewClient(User user) {
         userList.add(user);
     }
@@ -97,14 +109,6 @@ public class AuctionHouse {
 
     public Product getLastProduct() {
         return productsList.get(productsList.size() - 1);
-    }
-
-    public List<Broker> getBrokersList() {
-        return brokersList;
-    }
-
-    public void setBrokersList(List<Broker> brokersList) {
-        this.brokersList = brokersList;
     }
 
     public void load(MySQLConnection mySQLConnection) {
@@ -130,7 +134,7 @@ public class AuctionHouse {
                 product -> productsList.add((Product) product)
         );
 
-        if (brokersList.isEmpty()) generateBrokers();
+        if (brokers.isEmpty()) generateBrokers();
         if (auctionsActive.isEmpty()) createAuctions();
         if (auctionsActive.size() < productsList.size()) {
             int id = 0;
@@ -141,25 +145,20 @@ public class AuctionHouse {
     }
 
     private void addNewAuctionToList(int productId) {
-        auctionsActive.add(
-                new AuctionBuilder()
-                        .withId(productId)
-                        .withNoCurrentParticipants(0)
-                        .withNoParticipants(Main.random.nextInt(5) + 2)
-                        .withProductId(productId)
-                        .withNoMaxSteps(Main.random.nextInt(5) + 2)
-                        .withUserNames(new ArrayList<>())
-                        .withBids(new ArrayList<>())
-                        .withMaximumBids(new ArrayList<>())
-                        .build()
-        );
+        auctionsActive.put(productId, new AuctionBuilder()
+                .withId(productId)
+                .withNoCurrentParticipants(0)
+                .withNoParticipants(Main.random.nextInt(5) + 2)
+                .withProductId(productId)
+                .withNoMaxSteps(Main.random.nextInt(5) + 2)
+                .build());
     }
 
     private void generateBrokers() {
         int noBrokers = Main.random.nextInt(5) + 1;
         for (int i = 0; i < noBrokers; i++) {
             Broker broker = new Broker(i);
-            brokersList.add(broker);
+            brokers.put(i, broker);
         }
     }
 
@@ -172,8 +171,10 @@ public class AuctionHouse {
         return "AuctionHouse{" +
                 "productsList=" + productsList +
                 ", userList=" + userList +
-                ", auctionsActive= \n\n" + auctionsActive +
-                "\n\n, brokersList=" + brokersList +
+                ", auctionsActive=" + auctionsActive +
+                ", brokers=" + brokers +
                 '}';
     }
+
+
 }

@@ -1,0 +1,10 @@
+
+L
+java:S1481S"*Remove this unused "email" local variable.(ò¢ô¥þÿÿÿÿ8¬™ºÇô.
+H
+java:S1481M"+Remove this unused "notify" local variable.(Øù­ò8¬™ºÇô.
+O
+java:S1481T"2Remove this unused "iNotifierMail" local variable.(ÍÑÉä8¬™ºÇô.
+W
+java:S1854M":Remove this useless assignment to local variable "notify".(Øù­ò8¬™ºÇô.
+X	java:S125U"<This block of commented-out lines of code should be removed.(ÊåŒº8¬™ºÇô.

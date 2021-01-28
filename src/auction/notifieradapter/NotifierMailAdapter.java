@@ -1,6 +1,7 @@
 package auction.notifieradapter;
 
 import auction.Auction;
+import org.apache.commons.lang3.tuple.Pair;
 import products.Product;
 
 import javax.mail.*;
@@ -45,16 +46,16 @@ public class NotifierMailAdapter implements INotifierMail {
     }
 
     @Override
-    public void sendMailToBrokers(Map<Integer, List<String>> mapBrokers, Auction auction, Product product) {
+    public void sendMailToBrokers(Map<Integer, List<Pair<String, Double>>> mapBrokers, Auction auction, Product product) {
         Set<Integer> keys = mapBrokers.keySet();
         keys.forEach(key -> {
             StringBuilder usersAssigned = new StringBuilder();
-            List<String> users = mapBrokers.get(key);
-            for (String user : users) {
-                usersAssigned.append(user);
-                usersAssigned.append('\n');
-            }
-
+            List<Pair<String, Double>> usersInfo = mapBrokers.get(key);
+            usersInfo.forEach(userInfo -> {
+                usersAssigned.append(userInfo.getLeft());
+                usersAssigned.append(" With Bid ");
+                usersAssigned.append(userInfo.getRight() + '\n');
+            });
             String message = "Hello!" + "\n\n" + "You are assigned as broker to '\n'" +
                     "========Auction========'\n'" +
                     product.toString() +

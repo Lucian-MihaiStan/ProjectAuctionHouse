@@ -4,7 +4,6 @@ import commander.addproduct.ProductBuilderCommander;
 import commander.auctions.DisplayAuction;
 import commander.auctions.EnrollToAuction;
 import commander.auctions.ShowAuctions;
-import commander.bid.Bid;
 import commander.createuser.CreateUserBuilderCommand;
 import commander.deleteproduct.DeleteProduct;
 import features.Features;
@@ -44,8 +43,7 @@ public class Caller {
             case LIST_PRODUCTS -> new ListProducts();
             case DELETE_PRODUCT -> new DeleteProduct(Integer.parseInt(elements.get(1)));
             case SHOW -> new ShowUser();
-            case BID -> new Bid(Integer.parseInt(elements.get(1)));
-            case ENROLL_AUCTION -> new EnrollToAuction(Integer.parseInt(elements.get(1)), Integer.parseInt(elements.get(2)));
+            case ENROLL_AUCTION -> new EnrollToAuction(Integer.parseInt(elements.get(1)), Double.parseDouble(elements.get(2)));
             case SHOW_AUCTIONS -> new ShowAuctions();
             case LIST_BROKERS -> new ListBrokers();
             case AUCTION -> new DisplayAuction(Integer.parseInt(elements.get(1)));

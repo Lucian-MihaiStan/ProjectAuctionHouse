@@ -33,6 +33,36 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../Lab/Lab12/src/productatorconsumator/Consumator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Lab/Lab12/src/productatorconsumator/Consumer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Lab/Lab12/src/productatorconsumator/Main.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Lab/Lab12/src/productatorconsumator/Manufacturer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Lab/Lab12/src/productatorconsumator/Table.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Lab/Lab12/src/productatorconsumator/Tablou.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../MultiThreadingSocketServer/src/multithreading/MultithreadedSocketServer.java">
           <value>
             <set />
@@ -339,6 +369,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/auctions/DisplayAuction.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/auctions/EnrollToAuction.java">
           <value>
             <set />
           </value>
@@ -854,6 +889,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/socketserver/ServerClientThread.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/strategy/BidContext.java">
           <value>
             <set />
           </value>

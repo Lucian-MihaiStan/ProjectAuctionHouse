@@ -4,18 +4,23 @@ import auction.Auction;
 import commander.ICommand;
 import socketserver.ServerClientThread;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ShowAuctions implements ICommand {
     @Override
-    public void execute(ServerClientThread sct) {
-        synchronized (sct.getMySQLConnection()) {
-            List<Auction> auctions = sct.getAuctionHouse().getAuctionsActive();
-            ServerClientThread.Helper commandResult = ServerClientThread.Helper.getInstance();
-            StringBuilder stringBuilder = new StringBuilder();
+    public synchronized void execute(ServerClientThread sct) {
+        Map<Integer, Auction> auctions = sct.getAuctionHouse().getAuctionsActive();
+        ServerClientThread.Helper commandResult = ServerClientThread.Helper.getInstance();
+        StringBuilder stringBuilder = new StringBuilder();
+
+
+        Set<Integer> keySet = auctions.keySet();
+        keySet.forEach(key -> {
             stringBuilder.append('|');
-            auctions.forEach(auction -> stringBuilder
+            Auction auction = auctions.get(key);
+            stringBuilder
                     .append("===================Auction ").append(auction.getIdAuction()).append("===================|")
                     .append(sct.getAuctionHouse().getProductsList().stream().filter(product ->
                             product.getId() == auction.getProductId()).collect(Collectors.toList()).get(0))
@@ -24,9 +29,9 @@ public class ShowAuctions implements ICommand {
                     .append(auction.getNoCurrentParticipants())
                     .append(" noMaxParticipants=")
                     .append(auction.getNoParticipants())
-                    .append('|')
-            );
-            commandResult.setCommandResult(commandResult.getCommandResult().append(stringBuilder));
-        }
+                    .append('|');
+        });
+
+        commandResult.setCommandResult(commandResult.getCommandResult().append(stringBuilder));
     }
 }

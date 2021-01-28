@@ -23,45 +23,43 @@ public class CreateUser implements ICommand {
     private AuctionHouse auctionHouse;
 
     @Override
-    public void execute(ServerClientThread sct) {
-        synchronized (sct.getMySQLConnection()) {
-            auctionHouse = sct.getAuctionHouse();
-            if (!checkDuplicate(this)) {
-                ServerClientThread.Helper errorMessage = ServerClientThread.Helper.getInstance();
-                errorMessage.setCommandResult(errorMessage
-                        .getCommandResult()
-                        .append("Error duplicate user"));
-                return;
-            }
-            auctionHouse.addNewClient(
-                    restParameters.size() == 1 ?
-                            new IndividualPersonBuilder()
-                                    .withUsername(username)
-                                    .withEmail(email)
-                                    .withFirstName(firstName)
-                                    .withLastName(lastName)
-                                    .withAddress(address)
-                                    .withNoParticipation(0)
-                                    .withWonAction(0)
-                                    .withBirthDate(HelperCU.convertParamIP(restParameters))
-                                    .build()
-                            :
-                            new LegalPersonBuilder()
-                                    .withUsername(username)
-                                    .withEmail(email)
-                                    .withFirstName(firstName)
-                                    .withLastName(lastName)
-                                    .withAddress(address)
-                                    .withNoParticipation(0)
-                                    .withWonAction(0)
-                                    .withSocialCapital(HelperCU.convertParamLP(restParameters).getLeft())
-                                    .withTypeCompany(LegalPerson.TypeCompany
-                                            .valueOf(HelperCU.convertParamLP(restParameters).getRight()))
-                                    .build()
-            );
-            User lastUser = auctionHouse.getLastClient();
-            new AddUserSQL(sct.getMySQLConnection()).addClientSQL(lastUser);
+    public synchronized void execute(ServerClientThread sct) {
+        auctionHouse = sct.getAuctionHouse();
+        if (!checkDuplicate(this)) {
+            ServerClientThread.Helper errorMessage = ServerClientThread.Helper.getInstance();
+            errorMessage.setCommandResult(errorMessage
+                    .getCommandResult()
+                    .append("Error duplicate user"));
+            return;
         }
+        auctionHouse.addNewClient(
+                restParameters.size() == 1 ?
+                        new IndividualPersonBuilder()
+                                .withUsername(username)
+                                .withEmail(email)
+                                .withFirstName(firstName)
+                                .withLastName(lastName)
+                                .withAddress(address)
+                                .withNoParticipation(0)
+                                .withWonAction(0)
+                                .withBirthDate(HelperCU.convertParamIP(restParameters))
+                                .build()
+                        :
+                        new LegalPersonBuilder()
+                                .withUsername(username)
+                                .withEmail(email)
+                                .withFirstName(firstName)
+                                .withLastName(lastName)
+                                .withAddress(address)
+                                .withNoParticipation(0)
+                                .withWonAction(0)
+                                .withSocialCapital(HelperCU.convertParamLP(restParameters).getLeft())
+                                .withTypeCompany(LegalPerson.TypeCompany
+                                        .valueOf(HelperCU.convertParamLP(restParameters).getRight()))
+                                .build()
+        );
+        User lastUser = auctionHouse.getLastClient();
+        new AddUserSQL(sct.getMySQLConnection()).addClientSQL(lastUser);
     }
 
     private boolean checkDuplicate(CreateUser createUser) {

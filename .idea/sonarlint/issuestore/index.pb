@@ -95,8 +95,6 @@ S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 H
 src/employee/Broker.java,8\8\88b3fb05f90e5fe89587b6e82cfee91879cd4c5b
-G
-src/employee/Admin.java,5\c\5c3ab28d3fc09f5692af21543ddcb6a5fe504a41
 ]
 -src/commander/deleteproduct/DeleteFromDB.java,f\2\f2a32d17dbd93efd348dee09c99521c8956aa669
 ^
@@ -107,8 +105,6 @@ c
 3.idea/libraries/com_google_code_gson_gson_2_8_6.xml,a\1\a1b2ddd7dad3c998d88117a7df74dac253e154f6
 Z
 *.idea/libraries/org_json_json_20201115.xml,1\5\15b17126049882ad37f5cbcc3aa4f646f84a96b6
-J
-src/commander/bid/Bid.java,e\0\e095b696db9f241eb0c9435746d9a9ad537c8b30
 K
 src/employee/IEmployee.java,9\a\9a8a6e48260cd5e56770418064a220f5dac8847a
 O
