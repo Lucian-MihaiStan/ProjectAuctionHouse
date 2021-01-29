@@ -9,3 +9,10 @@ public class UpdateDataDB {
 
     }
 }
+
+
+//command
+//singleton
+//builder
+//adapter
+//strategy

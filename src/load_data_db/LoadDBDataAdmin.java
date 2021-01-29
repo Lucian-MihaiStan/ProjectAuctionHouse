@@ -26,7 +26,7 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
     }
 
     @Override
-    public IAdapterAdmin connectToDatabaseAsAdmin() {
+    public synchronized IAdapterAdmin connectToDatabaseAsAdmin() {
         try {
             mySQLConnection.realizeConnectionAsAdmin();
         } catch (SQLException | ClassNotFoundException errorSQL) {
@@ -36,7 +36,7 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
     }
 
     @Override
-    public Map<String, List<?>> extractFromDatabase() {
+    public synchronized Map<String, List<?>> extractFromDatabase() {
         Map<String, List<?>> mapData = new HashMap<>();
 
         List<User> userListDB = extractUsersDB();
@@ -48,9 +48,6 @@ public class LoadDBDataAdmin implements IAdapterAdmin {
         mapData.put(
                 "products", productListDB
         );
-//        mapUsers.put(
-//              "auctions", Collections.singletonList(auctionsDB)
-//        );
         mySQLConnection.closeConnection();
         return mapData;
     }
