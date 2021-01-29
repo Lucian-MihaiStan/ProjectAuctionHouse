@@ -24,7 +24,7 @@ public class DeleteProduct implements ICommand {
             List<Product> productList = sct.getAuctionHouse().getProductsList();
             productList.removeIf(product -> product.getId() == productId);
             sct.getAuctionHouse().setProductsList(productList);
-            DeleteFromDB.deleteFromDB(productId, mySqlConnection);
+            DeleteProductDB.deleteFromDB(productId, mySqlConnection);
         } else {
             sb.append("Access Denied you are not Admin! You cannot delete any product!");
         }

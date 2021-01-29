@@ -1,3 +1,10 @@
 
-V	java:S106’"9Replace this use of System.out or System.err by a logger.(›ûÕã8Ù‘êÙô.
-U	java:S106p"9Replace this use of System.out or System.err by a logger.(§Ô¨8½şè×ô.
+¤
+java:S1186»"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÅÊü¶şÿÿÿÿ8ä¾¹Ûô.
+U	java:S106§"9Replace this use of System.out or System.err by a logger.(±èÄ18Ğ˜Ûô.
+[	java:S106ˆ"9Replace this use of System.out or System.err by a logger.(ŒÃ®Åıÿÿÿÿ8€ÅÌÚô.
+[	java:S106¦"9Replace this use of System.out or System.err by a logger.(²Öïÿÿÿÿÿ8œ§™Ûô.
+U	java:S106u"9Replace this use of System.out or System.err by a logger.(çäæí8šÈšÛô.
+U	java:S106t"9Replace this use of System.out or System.err by a logger.(§Ô¨8½şè×ô.
+S
+java:S1172»"0Remove this unused method parameter "idAuction".(ÅÊü¶şÿÿÿÿ8ä¾¹Ûô.

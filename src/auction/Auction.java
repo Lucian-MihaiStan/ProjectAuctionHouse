@@ -2,9 +2,10 @@ package auction;
 
 import auction.notifieradapter.INotifierMail;
 import auction.notifieradapter.NotifierMailAdapter;
-import auction.updatedata.UpdateDataDB;
+import auction.updatedata.UpdateDataDBAfterAuction;
 import auction_house.AuctionHouse;
 import client.User;
+import commander.updateclient.UpdateClientDB;
 import employee.Broker;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -145,16 +146,21 @@ public class Auction {
         if(winner == null) {
             double maxim = Collections.max(finalCurrentBids);
             winner = clientsParticipating.get(finalCurrentBids.indexOf(maxim));
+            winner.setWonAuctions(winner.getWonAuctions() + 1);
         }
 
 //        send email to all users
 //        TRE SA ISI IA BAIATUL COMISION                                        done
-//        tre sa incarc in baza de date schimbarile
-//        tre sa stergi legatura dintre brokeri
+//        tre sa incarc in baza de date schimbarile                             done
+//        tre sa stergi legatura dintre brokeri                                 done
 //        notify winner
 
-        UpdateDataDB.updateDataDBBeforeAuction(productId, clientsParticipating);
+        UpdateDataDBAfterAuction updateDataDBAfterAuction = new UpdateDataDBAfterAuction();
+
+        updateDataDBAfterAuction.updateDataDBBeforeAuction(productId, clientsParticipating);
         deleteAuctionFromHouse(idAuction);
+
+        ripOffBrokerAuction(brokers);
 
         Pair<Broker, Double> brokerAndCommission = findBroker(winner, brokersAndClients);
         assert brokerAndCommission != null;
@@ -165,6 +171,10 @@ public class Auction {
 
         System.out.println("Winner is ");
         System.out.println(winner);
+    }
+
+    private void ripOffBrokerAuction(Map<Integer, Broker> brokers) {
+        brokers.forEach((integer, broker) -> broker.getAuctionAndUserAssigned().remove(idAuction));
     }
 
     private Pair<Broker, Double> findBroker(User winner, Map<Broker, List<Pair<User, Double>>> brokersAndClients) {

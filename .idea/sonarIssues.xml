@@ -193,6 +193,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/auction/updatedata/UpdateDataDBAfterAuction.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/auctionHouse/AuctionHouse.java">
           <value>
             <set />
@@ -428,12 +433,42 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/deleteclient/DeleteClient.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/deleteproduct/DeleteFromDB.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/deleteproduct/DeleteProduct.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/deleteproduct/DeleteProductDB.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/deleteproduct/DeleteProductFromDB.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/updateclient/DeleteClient.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/updateclient/UpdateClient.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/updateclient/UpdateClientDB.java">
           <value>
             <set />
           </value>

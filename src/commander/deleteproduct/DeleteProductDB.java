@@ -6,10 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DeleteFromDB {
-    private DeleteFromDB() {}
+public class DeleteProductDB {
+    private DeleteProductDB() {}
 
-    protected static void deleteFromDB(int productId, MySQLConnection mySqlConnection) {
+    public static void deleteFromDB(int productId, MySQLConnection mySqlConnection) {
         int productType = getProductType(productId, mySqlConnection);
         String deleteFromSubClass = buildQueryString(productId, productType);
 
