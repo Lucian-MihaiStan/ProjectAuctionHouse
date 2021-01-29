@@ -129,3 +129,5 @@ d
 4src/auction/notifieradapter/NotifierMailAdapter.java,0\4\04b53cbaadcd66f87fbad1d027720702e42aa1e2
 X
 (src/commander/auctions/ShowAuctions.java,2\d\2d1db80541e5246ba3d0b9966f86c655fa6887a0
+L
+src/strategy/BidContext.java,7\6\76f8efcbc4f8109edb91d266bcc3c6dc1e737957

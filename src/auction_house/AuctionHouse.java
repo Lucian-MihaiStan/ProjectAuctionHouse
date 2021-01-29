@@ -26,7 +26,7 @@ public class AuctionHouse {
     private Map<Integer, Auction> auctionsActive;
     private final Map<Integer, Broker> brokers;
 
-    static final int NO_MAX_BROKERS = 6;
+    static final int NO_MAX_BROKERS = 5;
 
     public static synchronized AuctionHouse getInstance() {
         if (instance == null) {
@@ -36,9 +36,9 @@ public class AuctionHouse {
     }
 
     private AuctionHouse() {
-        productsList = new ArrayList<>();
-        userList = new ArrayList<>();
-        auctionsActive = new HashMap<>();
+        productsList = Collections.synchronizedList(new ArrayList<>());
+        userList = Collections.synchronizedList(new ArrayList<>());
+        auctionsActive = Collections.synchronizedMap(new HashMap<>());
         brokers = new HashMap<>();
     }
 
@@ -113,8 +113,8 @@ public class AuctionHouse {
 
     public void load(MySQLConnection mySQLConnection) {
         IAdapterAdmin adapter = new LoadDBDataAdmin(mySQLConnection);
-        userList = new ArrayList<>();
-        productsList = new ArrayList<>();
+        userList = Collections.synchronizedList(new ArrayList<>());
+        productsList = Collections.synchronizedList(new ArrayList<>());
         Map<String, List<?>> auctionHouseData = adapter.connectToDatabaseAsAdmin().extractFromDatabase();
         try {
             if (mySQLConnection.getUsername() != null) {
@@ -155,7 +155,7 @@ public class AuctionHouse {
     }
 
     private void generateBrokers() {
-        int noBrokers = Main.random.nextInt(5) + 1;
+        int noBrokers = Main.random.nextInt(NO_MAX_BROKERS) + 1;
         for (int i = 0; i < noBrokers; i++) {
             Broker broker = new Broker(i);
             brokers.put(i, broker);
@@ -177,4 +177,7 @@ public class AuctionHouse {
     }
 
 
+    public double calculateMaximumBid(List<Double> currentBids) {
+        return Collections.max(currentBids);
+    }
 }

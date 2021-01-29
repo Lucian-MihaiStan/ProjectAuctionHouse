@@ -29,6 +29,8 @@ public class ShowAuctions implements ICommand {
                     .append(auction.getNoCurrentParticipants())
                     .append(" noMaxParticipants=")
                     .append(auction.getNoParticipants())
+                    .append(" noMaxSteps=")
+                    .append(auction.getNoMaxSteps())
                     .append('|');
         });
 

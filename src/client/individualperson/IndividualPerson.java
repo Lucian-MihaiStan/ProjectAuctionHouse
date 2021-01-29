@@ -39,8 +39,8 @@ public class IndividualPerson extends User {
                 this.getFirstName() + " " +
                 this.getLastName() + " " +
                 this.getAddress() + " " +
-                this.getNoParticipation() + " " +
-                this.getWonAuctions() + " " +
+                "| auction participated " + this.getNoParticipation() + " " +
+                "| auction won " + this.getWonAuctions() + " " +
                 birthDate +
                 '}';
     }

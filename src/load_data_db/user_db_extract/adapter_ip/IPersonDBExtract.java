@@ -53,7 +53,7 @@ public class IPersonDBExtract implements IAdapterDBIP {
                                         .withLastName(rs.getString("last_name"))
                                         .withAddress(rs.getString("address"))
                                         .withNoParticipation(rs.getInt("noParticipation"))
-                                        .withWonAction(iteratorID.getLeft())
+                                        .withWonAction(rs.getInt("noAuctionsWon"))
                                         .withBirthDate(iteratorID.getRight())
                                         .build()
                         );

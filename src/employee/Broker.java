@@ -1,6 +1,8 @@
 package employee;
 
 import client.User;
+import client.individualperson.IndividualPerson;
+import client.legalperson.LegalPerson;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.Map;
 
 public class Broker implements IEmployee {
     private final int id;
-    private int accumulatedSum;
+    private double accumulatedSum;
 
     private Map<Integer, Map<String, Double>> auctionAndUserAssigned = new HashMap<>();
 
@@ -43,11 +45,22 @@ public class Broker implements IEmployee {
         return id;
     }
 
-    public int getAccumulatedSum() {
+    public double getAccumulatedSum() {
         return accumulatedSum;
     }
 
-    public void setAccumulatedSum(int accumulatedSum) {
+    public void setAccumulatedSum(double accumulatedSum) {
         this.accumulatedSum = accumulatedSum;
+    }
+
+    public double sumValueCalculator(Double bid, User user) {
+        if(user instanceof IndividualPerson) {
+            if(user.getNoParticipation() < 5) return ((double) 20) / 100 * bid;
+            else return ((double) 15) / 100 * bid;
+        }
+        else {
+            if(user.getNoParticipation() < 25) return ((double) 25) / 100 * bid;
+            else return ((double) 10) / 100 * bid;
+        }
     }
 }
