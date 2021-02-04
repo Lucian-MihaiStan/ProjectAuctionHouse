@@ -15,7 +15,6 @@ public abstract class Product {
         this.id = id;
     }
 
-
     public String getName() {
         return name;
     }

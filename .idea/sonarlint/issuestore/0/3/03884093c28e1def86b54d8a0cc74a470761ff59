@@ -1,10 +1,22 @@
 
-¤
-java:S1186»"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÅÊü¶şÿÿÿÿ8ä¾¹Ûô.
-U	java:S106§"9Replace this use of System.out or System.err by a logger.(±èÄ18Ğ˜Ûô.
-[	java:S106ˆ"9Replace this use of System.out or System.err by a logger.(ŒÃ®Åıÿÿÿÿ8€ÅÌÚô.
-[	java:S106¦"9Replace this use of System.out or System.err by a logger.(²Öïÿÿÿÿÿ8œ§™Ûô.
-U	java:S106u"9Replace this use of System.out or System.err by a logger.(çäæí8šÈšÛô.
-U	java:S106t"9Replace this use of System.out or System.err by a logger.(§Ô¨8½şè×ô.
+U	java:S106­"9Replace this use of System.out or System.err by a logger.(±èÄ18¹èğô.
 S
-java:S1172»"0Remove this unused method parameter "idAuction".(ÅÊü¶şÿÿÿÿ8ä¾¹Ûô.
+java:S1172Å"0Remove this unused method parameter "idAuction".(ÅÊü¶şÿÿÿÿ8«¨øğô.
+P
+java:S1135š"2Complete the task associated to this TODO comment.(Úôä÷8¥ˆÌ•ö.
+U	java:S106v"9Replace this use of System.out or System.err by a logger.(çäæí8¹èğô.
+P
+java:S1135™"2Complete the task associated to this TODO comment.(§Üè½8¥ˆÌ•ö.
+U	java:S106u"9Replace this use of System.out or System.err by a logger.(§Ô¨8¹èğô.
+_
+java:S1128"BRemove this unused import 'commander.updateclient.UpdateClientDB'.(ùå„8¹èğô.
+[	java:S106¬"9Replace this use of System.out or System.err by a logger.(²Öïÿÿÿÿÿ8¹èğô.
+U
+java:S1135˜"2Complete the task associated to this TODO comment.(ø†ßÊúÿÿÿÿ8€ÊË•ö.
+U
+java:S1135›"2Complete the task associated to this TODO comment.(Îñø÷ùÿÿÿÿ8¥ˆÌ•ö.
+[	java:S106‰"9Replace this use of System.out or System.err by a logger.(ŒÃ®Åıÿÿÿÿ8¹èğô.
+U
+java:S1135œ"2Complete the task associated to this TODO comment.(³Ğùàùÿÿÿÿ8•Ì•ö.
+¤
+java:S1186Å"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÅÊü¶şÿÿÿÿ8«¨øğô.

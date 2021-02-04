@@ -21,7 +21,7 @@ public class Main {
     public static final AuctionHouse auctionHouse = AuctionHouse.getInstance();
 
     public static final List<ServerClientThread> sctList = new ArrayList<>();
-
+    
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
         MySQLConnection mySQLConnection = new MySQLConnection();

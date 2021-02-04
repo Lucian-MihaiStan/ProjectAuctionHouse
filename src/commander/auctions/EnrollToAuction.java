@@ -60,7 +60,6 @@ public class EnrollToAuction implements ICommand {
 
         helper.setCommandResult(helper.getCommandResult().append("You have been added to auction"));
         if (auction.getNoParticipants() == auction.getNoCurrentParticipants()) {
-//            auction.notifyUsers(sct.getAuctionHouse().getBrokers());
 //            sct.getAuctionHouse().notifyBrokers(idAuction);
             auction.start(sct.getAuctionHouse().getBrokers(), sct.getAuctionHouse().getUserList());
         }

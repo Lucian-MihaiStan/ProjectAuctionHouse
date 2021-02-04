@@ -95,8 +95,6 @@ S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 H
 src/employee/Broker.java,8\8\88b3fb05f90e5fe89587b6e82cfee91879cd4c5b
-]
--src/commander/deleteproduct/DeleteFromDB.java,f\2\f2a32d17dbd93efd348dee09c99521c8956aa669
 ^
 .src/commander/deleteproduct/DeleteProduct.java,c\8\c859ce5f7b212902a3efd0f8ade43c4625db34be
 K
@@ -131,5 +129,9 @@ X
 (src/commander/auctions/ShowAuctions.java,2\d\2d1db80541e5246ba3d0b9966f86c655fa6887a0
 L
 src/strategy/BidContext.java,7\6\76f8efcbc4f8109edb91d266bcc3c6dc1e737957
-X
-(src/auction/updatedata/UpdateDataDB.java,5\6\568100852b6b00b2c4f890b3557e9a9ab54bb527
+d
+4src/auction/updatedata/UpdateDataDBAfterAuction.java,b\3\b3016a5e6a5c128a681cb4764eee4194d325481b
+`
+0src/commander/deleteproduct/DeleteProductDB.java,d\0\d08376a62662b38fc41adf721ad7a3b31b8c888f
+^
+.src/commander/updateclient/UpdateClientDB.java,3\d\3dded23034b66d36c3ac7dcee6e584abd49e8eb6

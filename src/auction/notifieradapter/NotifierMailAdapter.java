@@ -17,7 +17,7 @@ public class NotifierMailAdapter implements INotifierMail {
     private static final String PASSWORD = "Lucian1234mihai";
 
     @Override
-    public void sendEmail(String email, String textMail) {
+    public synchronized void sendEmail(String email, String textMail) {
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -46,7 +46,7 @@ public class NotifierMailAdapter implements INotifierMail {
     }
 
     @Override
-    public void sendMailToBrokers(Map<Integer, List<Pair<String, Double>>> mapBrokers, Auction auction, Product product) {
+    public synchronized void sendMailToBrokers(Map<Integer, List<Pair<String, Double>>> mapBrokers, Auction auction, Product product) {
         Set<Integer> keys = mapBrokers.keySet();
         keys.forEach(key -> {
             StringBuilder usersAssigned = new StringBuilder();
@@ -65,4 +65,15 @@ public class NotifierMailAdapter implements INotifierMail {
             sendEmail("brokerroyal" + (key + 1) + "@gmail.com", message);
         });
     }
+
+    @Override
+    public synchronized void sendWinnerEmail(String winnerEmail, Product productInfo) {
+        sendEmail(winnerEmail, productInfo.toString());
+    }
+
+    @Override
+    public synchronized void toParticipants(String email, int idAuction) {
+        sendEmail(email, "Auction " + idAuction + " ended!");
+    }
+
 }
