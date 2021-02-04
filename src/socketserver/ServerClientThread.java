@@ -19,8 +19,6 @@ public class ServerClientThread extends Thread {
     private final Socket serverClient;
     private final int clientNo;
     private final String hostAddress;
-    private String notifier;
-    private PrintWriter outWriterConsole;
 
     public static class Helper {
         private static Helper instance;
@@ -71,10 +69,6 @@ public class ServerClientThread extends Thread {
         addCommand(parameters, this);
     }
 
-    public PrintWriter getOutWriterConsole() {
-        return outWriterConsole;
-    }
-
     @Override
     public void run(){
         BufferedReader inBR;
@@ -83,7 +77,6 @@ public class ServerClientThread extends Thread {
              inBR = new BufferedReader(
                     new InputStreamReader(serverClient.getInputStream()));
             String commandUserBR;
-            this.outWriterConsole = outWriter;
             while((commandUserBR = inBR.readLine()) != null) {
                 out.println("   Sent from the client " + clientNo + " " + hostAddress + " " + commandUserBR);
                 evalCommand(commandUserBR);

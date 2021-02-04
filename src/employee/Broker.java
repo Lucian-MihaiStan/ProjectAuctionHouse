@@ -2,10 +2,8 @@ package employee;
 
 import client.User;
 import client.individualperson.IndividualPerson;
-import client.legalperson.LegalPerson;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Broker implements IEmployee {

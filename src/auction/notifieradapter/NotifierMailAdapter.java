@@ -39,7 +39,7 @@ public class NotifierMailAdapter implements INotifierMail {
             message.addRecipient(Message.RecipientType.TO,new InternetAddress(email));
             message.setSubject("AuctionHouse Royal");
             message.setText(textMail);
-            Transport.send(message);
+//            Transport.send(message);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

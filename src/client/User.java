@@ -1,6 +1,9 @@
 package client;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class User {
     private String username;
     private String firstName;
@@ -9,6 +12,7 @@ public abstract class User {
     private int noParticipation;
     private int wonAuctions;
     private String email;
+    private final Map<Integer, Double> auctionAndMaxBid = new HashMap<>();
 
     public String getEmail() {
         return email;
@@ -77,5 +81,9 @@ public abstract class User {
                 ", wonAuctions=" + wonAuctions +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public Map<Integer, Double> getAuctionAndMaxBid() {
+        return auctionAndMaxBid;
     }
 }

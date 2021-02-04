@@ -104,7 +104,7 @@ public class Auction {
 
     public synchronized void start(Map<Integer, Broker> brokers, List<User> userList) {
 
-//        notifyParticipantsAuctionStart(brokers);
+        notifyParticipantsAuctionStart(brokers);
 
         Product productInfo = AuctionHouse.getInstance().getProductsList()
                 .stream().filter(product -> product.getId() == productId).collect(Collectors.toList()).get(0);
@@ -115,28 +115,32 @@ public class Auction {
         List<User> clientsParticipating = brokersAndClientsAssigned.getLeft();
         Map<Broker, List<Pair<User, Double>>> brokersAndClients = brokersAndClientsAssigned.getRight();
 
-        maxBid = minimumBid;
-        minBid = minimumBid;
+        maxBid = minimumBid; minBid = minimumBid;
 
+        // Find the winner
         User winner = mechanismAuction(brokersAndClients, clientsParticipating);
 
-
+        // Update data in database
         UpdateDataDBAfterAuction updateDataDBAfterAuction = new UpdateDataDBAfterAuction();
-
         updateDataDBAfterAuction.updateDataDBBeforeAuction(productId, clientsParticipating);
+
+        // Delete auction from auctionsList
         deleteAuctionFromHouse(idAuction);
 
+        // Delete brokers communications with users
         ripOffBrokerAuction(brokers);
 
         paymentBroker(brokersAndClients);
 
+        notifyWinner(winner, productInfo);
+        notifyParticipantsAuctionEnd(clientsParticipating);
+    }
+
+    private void notifyWinner(User winner, Product productInfo) {
         INotifierMail iNotifierMail = new NotifierMailAdapter();
         iNotifierMail.sendWinnerEmail(winner.getEmail(), productInfo);
-
-        notifyParticipantsAuctionEnd(clientsParticipating);
-
-
     }
+
 
     private User mechanismAuction(Map<Broker, List<Pair<User, Double>>> brokersAndClients, List<User> clientsParticipating) {
         User winner = null;
@@ -154,7 +158,10 @@ public class Auction {
                 }
             });
             finalCurrentBids = currentBids;
-            if(checkBids(currentBids)) maxBid = AuctionHouse.getInstance().calculateMaximumBid(currentBids);
+            if(checkBids(currentBids)) {
+                maxBid = AuctionHouse.getInstance().calculateMaximumBid(currentBids);
+                clientsParticipating.forEach(user -> user.getAuctionAndMaxBid().replace(idAuction, maxBid));
+            }
             else {
                 winner = declareWinnerLastRemaining(brokersAndClients);
                 break;
@@ -166,24 +173,18 @@ public class Auction {
             winner = clientsParticipating.get(finalCurrentBids.indexOf(maxim));
             winner.setWonAuctions(winner.getWonAuctions() + 1);
         }
-
         return winner;
     }
 
     private void notifyParticipantsAuctionEnd(List<User> clientsParticipating) {
         INotifierMail iNotifierMail = new NotifierMailAdapter();
-        clientsParticipating.forEach(user -> {
-            iNotifierMail.toParticipants(user.getEmail(), idAuction);
-        });
+        clientsParticipating.forEach(user -> iNotifierMail.toParticipants(user.getEmail(), idAuction));
     }
 
     private void paymentBroker(Map<Broker, List<Pair<User, Double>>> brokersAndClients) {
-        brokersAndClients.forEach((broker, clientsAndBids) -> {
-            clientsAndBids.forEach(client -> {
-                broker.setAccumulatedSum(broker.getAccumulatedSum() +
-                        broker.sumValueCalculator(client.getRight(), client.getLeft()));
-            });
-        });
+        brokersAndClients.forEach((broker, clientsAndBids) ->
+                clientsAndBids.forEach(client -> broker.setAccumulatedSum(broker.getAccumulatedSum() +
+                    broker.sumValueCalculator(client.getRight(), client.getLeft()))));
     }
 
     private void ripOffBrokerAuction(Map<Integer, Broker> brokers) {
@@ -191,7 +192,7 @@ public class Auction {
     }
 
     private void deleteAuctionFromHouse(int idAuction) {
-
+        AuctionHouse.getInstance().getAuctionsActive().remove(idAuction);
     }
 
     public int getNoMaxSteps() {

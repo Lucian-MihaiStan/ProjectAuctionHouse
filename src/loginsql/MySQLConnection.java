@@ -1,10 +1,9 @@
 package loginsql;
 
-import loginsql.clientconnection.TableNamesClient;
+import employee.Admin;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class MySQLConnection {
@@ -12,16 +11,8 @@ public class MySQLConnection {
     private String username;
     private String password;
 
-    public MySQLConnection() {
-        //
-    }
-
     public Connection getConnection() {
         return connection;
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
     }
 
     public void closeConnection() {
@@ -47,7 +38,8 @@ public class MySQLConnection {
         this.closeConnection();
         Class.forName("com.mysql.cj.jdbc.Driver");
         String jdbcURL = "jdbc:mysql://localhost:3306/AuctionHouse";
-        connection = DriverManager.getConnection(jdbcURL, "admin", "admin");
+        Admin admin = Admin.getInstance();
+        connection = DriverManager.getConnection(jdbcURL, admin.getAdminCredentials(), admin.getAdminCredentials());
     }
 
     public synchronized String getUsername() {
@@ -57,20 +49,4 @@ public class MySQLConnection {
     public String getPassword() {
         return password;
     }
-
-    public void cleanUpTables() {
-        for (TableNamesClient value : TableNamesClient.values()) {
-            String tableName = String.valueOf(value).toLowerCase().replace("_", "");
-            String query = "DELETE FROM " + tableName;
-            String queryId = "ALTER TABLE " + tableName + " auto_increment=1";
-            try(PreparedStatement preparedStatementDelete = connection.prepareStatement(query);
-            PreparedStatement preparedStatementSetId = connection.prepareStatement(queryId)){
-                preparedStatementDelete.execute();
-                preparedStatementSetId.execute();
-            } catch (SQLException errorSQL) {
-                errorSQL.printStackTrace();
-            }
-        }
-    }
-
 }

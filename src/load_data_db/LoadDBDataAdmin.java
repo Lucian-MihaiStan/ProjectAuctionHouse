@@ -13,7 +13,6 @@ import load_data_db.user_db_extract.adapter_ip.IPersonDBExtract;
 import load_data_db.user_db_extract.adapter_ip.IAdapterDBIP;
 import loginsql.MySQLConnection;
 import products.Product;
-import socketserver.ServerClientThread;
 
 import java.sql.SQLException;
 import java.util.*;

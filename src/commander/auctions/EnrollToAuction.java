@@ -1,6 +1,7 @@
 package commander.auctions;
 
 import auction.Auction;
+import client.User;
 import commander.ICommand;
 import employee.Broker;
 import socketserver.Main;
@@ -59,8 +60,15 @@ public class EnrollToAuction implements ICommand {
         assignToBroker();
 
         helper.setCommandResult(helper.getCommandResult().append("You have been added to auction"));
+
+        User userInfo = sct.getAuctionHouse().getUserList()
+                .stream()
+                .filter(user -> user.getUsername().equals(sct.getMySQLConnection().getUsername()))
+                .collect(Collectors.toList()).get(0);
+        userInfo.getAuctionAndMaxBid().put(idAuction, (double) -1);
+
         if (auction.getNoParticipants() == auction.getNoCurrentParticipants()) {
-//            sct.getAuctionHouse().notifyBrokers(idAuction);
+            sct.getAuctionHouse().notifyBrokers(idAuction);
             auction.start(sct.getAuctionHouse().getBrokers(), sct.getAuctionHouse().getUserList());
         }
     }

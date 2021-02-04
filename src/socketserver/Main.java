@@ -1,6 +1,5 @@
 package socketserver;
 
-import auction.Auction;
 import auction_house.AuctionHouse;
 import loginsql.MySQLConnection;
 
