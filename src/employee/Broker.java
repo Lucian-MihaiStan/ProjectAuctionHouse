@@ -3,6 +3,7 @@ package employee;
 import auction_house.AuctionHouse;
 import client.User;
 import client.individualperson.IndividualPerson;
+import employee.factory.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,13 +56,15 @@ public class Broker implements IEmployee {
     }
 
     public double sumValueCalculator(Double bid, User user) {
+        CommissionCalculator cc;
         if(user instanceof IndividualPerson) {
-            if(user.getNoParticipation() < 5) return ((double) 20) / 100 * bid;
-            else return ((double) 15) / 100 * bid;
+            if(user.getNoParticipation() < 5) cc = new NewIPCom();
+            else cc = new OldIPCom();
         }
         else {
-            if(user.getNoParticipation() < 25) return ((double) 25) / 100 * bid;
-            else return ((double) 10) / 100 * bid;
+            if(user.getNoParticipation() < 25) cc = new NewLPCom();
+            else cc = new OldLPCom();
         }
+        return cc.calculate(bid);
     }
 }

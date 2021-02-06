@@ -139,3 +139,9 @@ G
 src/employee/Admin.java,5\c\5c3ab28d3fc09f5692af21543ddcb6a5fe504a41
 \
 ,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
+M
+src/auction/NotifyHelper.java,8\7\876f1c9d4254f9ad6c50cfcc70ac9bcf967aca88
+P
+ src/products/ProductBuilder.java,a\9\a9b6791df725213d732e42a41490adb9a3d119a1
+K
+src/client/UserBuilder.java,3\5\352187fa39bb3d1ab13eb7d27f117c48958a5486

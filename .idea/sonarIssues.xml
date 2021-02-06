@@ -503,6 +503,36 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/employee/factory/Commission.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/factory/CommissionCalculator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/factory/NewIPCom.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/factory/NewLPCom.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/factory/OldIPCom.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/factory/OldLPCom.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/features/Features.java">
           <value>
             <set />
