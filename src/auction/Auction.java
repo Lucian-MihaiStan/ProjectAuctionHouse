@@ -157,7 +157,7 @@ public class Auction {
                 }
             });
             finalCurrentBids = currentBids;
-            if(checkBids(currentBids)) {
+            if(AuctionHouse.getInstance().checkBids(currentBids)) {
                 maxCurrentBid = AuctionHouse.getInstance().calculateMaximumBid(currentBids);
                 clientsParticipating.forEach(user -> user.getAuctionAndMaxBid().replace(idAuction, maxCurrentBid));
             }
@@ -189,13 +189,6 @@ public class Auction {
 
     public int getNoMaxSteps() {
         return noMaxSteps;
-    }
-
-    private boolean checkBids(List<Double> finalCurrentBids) {
-        for (Double finalCurrentBid : finalCurrentBids) {
-            if(finalCurrentBid!=-1) return true;
-        }
-        return false;
     }
 
     private Pair<List<User>, Map<Broker, List<Pair<User, Double>>>> getBrokerAndClients(Map<Integer, Broker> brokers, List<User> userList) {

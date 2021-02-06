@@ -176,7 +176,6 @@ public class AuctionHouse {
                 '}';
     }
 
-
     public double calculateMaximumBid(List<Double> currentBids) {
         return Collections.max(currentBids);
     }
@@ -193,5 +192,12 @@ public class AuctionHouse {
 
     public void ripOffBrokerAuction(Map<Integer, Broker> brokers, int idAuction) {
         brokers.forEach((integer, broker) -> broker.getAuctionAndUserAssigned().remove(idAuction));
+    }
+
+    public boolean checkBids(List<Double> bids) {
+        for (Double bid : bids) {
+            if(bid!=-1) return true;
+        }
+        return false;
     }
 }
