@@ -97,20 +97,38 @@ public class Auction {
             return;
         }
 
+        Broker broker = findWinnerBroker(brokersAndClients, winner);
+
         // Update data in database
+        if(broker!=null) broker.deleteProduct(productId);
+
         UpdateDataDBAfterAuction updateDataDBAfterAuction = new UpdateDataDBAfterAuction();
         updateDataDBAfterAuction.updateDataDBBeforeAuction(productId, clientsParticipating);
 
         // Delete auction from auctionsList
-        deleteAuctionFromHouse(idAuction);
+        AuctionHouse.getInstance().deleteAuctionFromHouse(idAuction);
 
         // Delete brokers communications with users
         ripOffBrokerAuction(brokers);
 
-        paymentBroker(brokersAndClients);
+        AuctionHouse.getInstance().payBrokers(brokersAndClients);
 
         this.notifyHelper.notifyWinner(winner, productInfo);
         this.notifyHelper.notifyPAuctionWasWon(clientsParticipating, idAuction);
+    }
+
+    private Broker findWinnerBroker(Map<Broker, List<Pair<User, Double>>> brokersClients, User winner) {
+        Broker brokerWinner;
+        for(Map.Entry<Broker, List<Pair<User, Double>>> entry : brokersClients.entrySet()) {
+            List<Pair<User, Double>> usersAssigned = entry.getValue();
+            for (Pair<User, Double> usersBids : usersAssigned) {
+                if(usersBids.getLeft().getUsername().equals(winner.getUsername())) {
+                    brokerWinner = entry.getKey();
+                    return brokerWinner;
+                }
+            }
+        }
+        return null;
     }
 
     private double findFirstMaxBid(Map<Broker, List<Pair<User, Double>>> brokersAndClients) {
@@ -169,18 +187,8 @@ public class Auction {
         return lastClient;
     }
 
-    private void paymentBroker(Map<Broker, List<Pair<User, Double>>> brokersAndClients) {
-        brokersAndClients.forEach((broker, clientsAndBids) ->
-                clientsAndBids.forEach(client -> broker.setAccumulatedSum(broker.getAccumulatedSum() +
-                    broker.sumValueCalculator(client.getRight(), client.getLeft()))));
-    }
-
     private void ripOffBrokerAuction(Map<Integer, Broker> brokers) {
         brokers.forEach((integer, broker) -> broker.getAuctionAndUserAssigned().remove(idAuction));
-    }
-
-    private void deleteAuctionFromHouse(int idAuction) {
-        AuctionHouse.getInstance().getAuctionsActive().remove(idAuction);
     }
 
     public int getNoMaxSteps() {

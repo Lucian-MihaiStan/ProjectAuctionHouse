@@ -180,4 +180,14 @@ public class AuctionHouse {
     public double calculateMaximumBid(List<Double> currentBids) {
         return Collections.max(currentBids);
     }
+
+    public void deleteAuctionFromHouse(int idAuction) {
+        auctionsActive.remove(idAuction);
+    }
+
+    public void payBrokers(Map<Broker, List<Pair<User, Double>>> brokersAndClients) {
+        brokersAndClients.forEach((broker, clientsAndBids) ->
+                clientsAndBids.forEach(client -> broker.setAccumulatedSum(broker.getAccumulatedSum() +
+                        broker.sumValueCalculator(client.getRight(), client.getLeft()))));
+    }
 }

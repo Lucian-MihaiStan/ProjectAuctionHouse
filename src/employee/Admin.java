@@ -1,5 +1,7 @@
 package employee;
 
+import auction_house.AuctionHouse;
+
 public class Admin implements IEmployee{
     private static Admin instance;
 
@@ -26,6 +28,8 @@ public class Admin implements IEmployee{
 
     @Override
     public void deleteProduct(int id) {
-
+        synchronized (AuctionHouse.getInstance().getProductsList()) {
+            AuctionHouse.getInstance().getProductsList().removeIf(product -> product.getId() == id);
+        }
     }
 }

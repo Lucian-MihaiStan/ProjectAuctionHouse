@@ -1,5 +1,6 @@
 package employee;
 
+import auction_house.AuctionHouse;
 import client.User;
 import client.individualperson.IndividualPerson;
 
@@ -27,7 +28,9 @@ public class Broker implements IEmployee {
 
     @Override
     public void deleteProduct(int id) {
-//        TODO delete product using this method
+        synchronized (AuctionHouse.getInstance().getProductsList()) {
+            AuctionHouse.getInstance().getProductsList().removeIf(product -> product.getId() == id);
+        }
     }
 
     @Override
