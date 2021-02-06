@@ -2,6 +2,7 @@ package commander.addproduct;
 
 import auction_house.AuctionHouse;
 import commander.ICommand;
+import employee.Admin;
 import loginsql.product_connection.productsql.AddProductSQL;
 import products.furniture.FurnitureBuilder;
 import products.jewellery.JewelleryBuilder;
@@ -28,37 +29,51 @@ public class AddProduct implements ICommand {
             outCommand.setCommandResult(outCommand.getCommandResult().append("You are not admin to modify the list fo products"));
             return;
         }
-        if (productType == 1) auctionHouse.addNewProduct(
-                new PaintingBuilder()
-                        .withName(name)
-                        .withSellingPrice(-1)
-                        .withMinimumPrice(minimumPrice)
-                        .withYear(year)
-                        .withNameArtist(HelperAP.setParamPainting(restParameters).getLeft())
-                        .withColors(HelperAP.setParamPainting(restParameters).getRight())
-                        .build()
-        );
-        else if (productType == 2) auctionHouse.addNewProduct(
-                new FurnitureBuilder()
-                        .withName(name)
-                        .withSellingPrice(-1)
-                        .withMinimPrice(minimumPrice)
-                        .withYear(year)
-                        .withType(HelperAP.setParamFurniture(restParameters).getLeft())
-                        .withMaterial(HelperAP.setParamFurniture(restParameters).getRight())
-                        .build()
-        );
-        else auctionHouse.addNewProduct(
-                    new JewelleryBuilder()
-                            .withName(name)
-                            .withSellingPrice(-1)
-                            .withMinimumPrice(minimumPrice)
-                            .withMaterial(HelperAP.setParamJewellery(restParameters).getLeft())
-                            .withGemstone(HelperAP.setParamJewellery(restParameters).getRight())
-                            .build()
-            );
+        Admin admin = Admin.getInstance();
+
+        Product product = initProduct();
+
+        admin.addProduct(product);
         Product lastProduct = auctionHouse.getLastProduct();
         new AddProductSQL(sct.getMySQLConnection()).addProductSQL(lastProduct);
+    }
+
+    private Product initProduct() {
+        if (productType == 1) return initPainting();
+        else if (productType == 2) return initFurniture();
+        else return initJewellery();
+    }
+
+    private Product initPainting() {
+        return new PaintingBuilder()
+                .withName(name)
+                .withSellingPrice(-1)
+                .withMinimPrice(minimumPrice)
+                .withYear(year)
+                .withNameArtist(HelperAP.setParamPainting(restParameters).getLeft())
+                .withColors(HelperAP.setParamPainting(restParameters).getRight())
+                .build();
+    }
+
+    private Product initFurniture() {
+        return new FurnitureBuilder()
+                .withName(name)
+                .withSellingPrice(-1)
+                .withMinimPrice(minimumPrice)
+                .withYear(year)
+                .withType(HelperAP.setParamFurniture(restParameters).getLeft())
+                .withMaterial(HelperAP.setParamFurniture(restParameters).getRight())
+                .build();
+    }
+
+    private Product initJewellery() {
+        return new JewelleryBuilder()
+                .withName(name)
+                .withSellingPrice(-1)
+                .withMinimPrice(minimumPrice)
+                .withMaterial(HelperAP.setParamJewellery(restParameters).getLeft())
+                .withGemstone(HelperAP.setParamJewellery(restParameters).getRight())
+                .build();
     }
 
     public void setProductType(int productType) {

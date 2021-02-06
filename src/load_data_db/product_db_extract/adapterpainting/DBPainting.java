@@ -50,7 +50,7 @@ public class DBPainting implements IAdapterDBPainting {
                                         .withId(rs.getInt("id"))
                                         .withName(rs.getString("name"))
                                         .withSellingPrice(rs.getDouble("sellingPrice"))
-                                        .withMinimumPrice(rs.getDouble("minimumPrice"))
+                                        .withMinimPrice(rs.getDouble("minimumPrice"))
                                         .withYear(rs.getInt("year"))
                                         .withNameArtist(iteraetorISC.getMiddle())
                                         .withColors(iteraetorISC.getRight())

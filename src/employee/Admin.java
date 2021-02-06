@@ -1,6 +1,8 @@
 package employee;
 
+import auction.Auction;
 import auction_house.AuctionHouse;
+import products.Product;
 
 public class Admin implements IEmployee{
     private static Admin instance;
@@ -22,8 +24,10 @@ public class Admin implements IEmployee{
         return ADMIN_CREDENTIALS;
     }
 
-    public void addProduct() {
-
+    public void addProduct(Product product) {
+        synchronized (AuctionHouse.getInstance().getProductsList()) {
+            AuctionHouse.getInstance().getProductsList().add(product);
+        }
     }
 
     @Override

@@ -190,4 +190,8 @@ public class AuctionHouse {
                 clientsAndBids.forEach(client -> broker.setAccumulatedSum(broker.getAccumulatedSum() +
                         broker.sumValueCalculator(client.getRight(), client.getLeft()))));
     }
+
+    public void ripOffBrokerAuction(Map<Integer, Broker> brokers, int idAuction) {
+        brokers.forEach((integer, broker) -> broker.getAuctionAndUserAssigned().remove(idAuction));
+    }
 }

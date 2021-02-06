@@ -1,30 +1,36 @@
 package products.painting;
 
-import products.jewellery.JewelleryBuilder;
 
-public class PaintingBuilder {
+import products.ProductBuilder;
+
+public class PaintingBuilder implements ProductBuilder<Painting, PaintingBuilder> {
     private final Painting painting = new Painting();
 
+    @Override
     public PaintingBuilder withId(int id) {
         painting.setId(id);
         return this;
     }
 
+    @Override
     public PaintingBuilder withName(String name) {
         painting.setName(name);
         return this;
     }
 
+    @Override
     public PaintingBuilder withSellingPrice(double sellingPrice) {
         painting.setSellingPrice(sellingPrice);
         return this;
     }
 
-    public PaintingBuilder withMinimumPrice(double minimumPrice) {
-        painting.setMinimumPrice(minimumPrice);
+    @Override
+    public PaintingBuilder withMinimPrice(double minimPrice) {
+        painting.setMinimumPrice(minimPrice);
         return this;
     }
 
+    @Override
     public PaintingBuilder withYear(int year) {
         painting.setYear(year);
         return this;
@@ -40,6 +46,7 @@ public class PaintingBuilder {
         return this;
     }
 
+    @Override
     public Painting build() {
         return painting;
     }

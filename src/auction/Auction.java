@@ -93,7 +93,7 @@ public class Auction {
         if(winner == null) {
             this.restoreAuction();
             this.notifyHelper.notifyPAuctionEnd(clientsParticipating, idAuction);
-            ripOffBrokerAuction(brokers);
+            AuctionHouse.getInstance().ripOffBrokerAuction(brokers, idAuction);
             return;
         }
 
@@ -109,7 +109,7 @@ public class Auction {
         AuctionHouse.getInstance().deleteAuctionFromHouse(idAuction);
 
         // Delete brokers communications with users
-        ripOffBrokerAuction(brokers);
+        AuctionHouse.getInstance().ripOffBrokerAuction(brokers, idAuction);
 
         AuctionHouse.getInstance().payBrokers(brokersAndClients);
 
@@ -185,10 +185,6 @@ public class Auction {
             lastClient.setWonAuctions(lastClient.getWonAuctions() + 1);
 
         return lastClient;
-    }
-
-    private void ripOffBrokerAuction(Map<Integer, Broker> brokers) {
-        brokers.forEach((integer, broker) -> broker.getAuctionAndUserAssigned().remove(idAuction));
     }
 
     public int getNoMaxSteps() {
