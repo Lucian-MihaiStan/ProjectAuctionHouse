@@ -1,6 +1,9 @@
 package client;
 
 
+import socketserver.Main;
+import strategy.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,5 +88,17 @@ public abstract class User {
 
     public Map<Integer, Double> getAuctionAndMaxBid() {
         return auctionAndMaxBid;
+    }
+
+    public double askBid(double maxCurrentBid, Double maxBid) {
+        int randomStrategy = Main.random.nextInt(3) + 1;
+        BidContext context;
+        Strategy strategy;
+        if (randomStrategy == 1) strategy = new CallDouble(maxCurrentBid, maxBid);
+        else if (randomStrategy == 2) strategy = new CallHalfMore(maxCurrentBid, maxBid);
+        else strategy = new CallMore(maxCurrentBid, maxBid);
+
+        context = new BidContext(strategy);
+        return context.executeStrategy();
     }
 }

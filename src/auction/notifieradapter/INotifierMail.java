@@ -12,5 +12,7 @@ public interface INotifierMail {
     void sendMailToBrokers(Map<Integer, List<Pair<String, Double>>> mapBrokers, Auction auction, Product product);
     void sendWinnerEmail(String winnerEmail, Product productInfo);
 
-    void toParticipants(String email, int idAuction);
+    void toPWasWon(String email, int idAuction);
+
+    void toPNotWon(String email, int idAuction);
 }

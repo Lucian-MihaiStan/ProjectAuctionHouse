@@ -72,8 +72,13 @@ public class NotifierMailAdapter implements INotifierMail {
     }
 
     @Override
-    public synchronized void toParticipants(String email, int idAuction) {
+    public synchronized void toPWasWon(String email, int idAuction) {
         sendEmail(email, "Auction " + idAuction + " ended!");
+    }
+
+    @Override
+    public void toPNotWon(String email, int idAuction) {
+        sendEmail(email, "Auction " + idAuction + " was not won! Bids were to low");
     }
 
 }

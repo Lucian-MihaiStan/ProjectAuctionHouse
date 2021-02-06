@@ -11,7 +11,6 @@ import socketserver.ServerClientThread;
 
 import java.util.List;
 
-
 public class AddProduct implements ICommand {
     private int productType;
     private String name;
