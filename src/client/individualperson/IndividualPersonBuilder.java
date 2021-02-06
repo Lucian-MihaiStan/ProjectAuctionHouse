@@ -1,42 +1,51 @@
 package client.individualperson;
 
+import client.UserBuilder;
+
 import java.util.Date;
 
-public class IndividualPersonBuilder {
+public class IndividualPersonBuilder implements UserBuilder<IndividualPerson, IndividualPersonBuilder> {
     private final IndividualPerson individualPerson = new IndividualPerson();
 
-    public IndividualPersonBuilder withEmail(String email) {
-        individualPerson.setEmail(email);
-        return this;
-    }
-
+    @Override
     public IndividualPersonBuilder withUsername(String username) {
         individualPerson.setUsername(username);
         return this;
     }
 
+    @Override
     public IndividualPersonBuilder withFirstName(String firstName) {
         individualPerson.setFirstName(firstName);
         return this;
     }
 
+    @Override
     public IndividualPersonBuilder withLastName(String lastName) {
         individualPerson.setLastName(lastName);
         return this;
     }
 
+    @Override
+    public IndividualPersonBuilder withEmail(String email) {
+        individualPerson.setEmail(email);
+        return this;
+    }
+
+    @Override
     public IndividualPersonBuilder withAddress(String address) {
         individualPerson.setAddress(address);
         return this;
     }
 
+    @Override
     public IndividualPersonBuilder withNoParticipation(int noParticipation) {
         individualPerson.setNoParticipation(noParticipation);
         return this;
     }
 
-    public IndividualPersonBuilder withWonAction(int wonAction) {
-        individualPerson.setWonAuctions(wonAction);
+    @Override
+    public IndividualPersonBuilder withWonAuction(int wonAuction) {
+        individualPerson.setWonAuctions(wonAuction);
         return this;
     }
 
@@ -45,6 +54,7 @@ public class IndividualPersonBuilder {
         return this;
     }
 
+    @Override
     public IndividualPerson build() {
         return individualPerson;
     }

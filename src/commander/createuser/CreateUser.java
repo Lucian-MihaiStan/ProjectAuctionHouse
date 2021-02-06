@@ -41,7 +41,7 @@ public class CreateUser implements ICommand {
                                 .withLastName(lastName)
                                 .withAddress(address)
                                 .withNoParticipation(0)
-                                .withWonAction(0)
+                                .withWonAuction(0)
                                 .withBirthDate(HelperCU.convertParamIP(restParameters))
                                 .build()
                         :
@@ -52,7 +52,7 @@ public class CreateUser implements ICommand {
                                 .withLastName(lastName)
                                 .withAddress(address)
                                 .withNoParticipation(0)
-                                .withWonAction(0)
+                                .withWonAuction(0)
                                 .withSocialCapital(HelperCU.convertParamLP(restParameters).getLeft())
                                 .withTypeCompany(LegalPerson.TypeCompany
                                         .valueOf(HelperCU.convertParamLP(restParameters).getRight()))

@@ -27,9 +27,7 @@ public class Auction {
         return noCurrentParticipants;
     }
 
-    public void setNoCurrentParticipants(int noCurrentParticipants) {
-        this.noCurrentParticipants = noCurrentParticipants;
-    }
+    public void setNoCurrentParticipants(int noCurrentParticipants) { this.noCurrentParticipants = noCurrentParticipants; }
 
     public void setProductId(int productId) {
         this.productId = productId;
@@ -46,7 +44,6 @@ public class Auction {
     public void setNoParticipants(int noParticipants) {
         this.noParticipants = noParticipants;
     }
-
 
     @Override
     public String toString() {

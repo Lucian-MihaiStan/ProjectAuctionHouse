@@ -2,7 +2,6 @@ package load_data_db.user_db_extract.adapter_lp;
 
 import client.legalperson.LegalPerson;
 import client.legalperson.LegalPersonBuilder;
-import load_data_db.LoadDBDataAdmin;
 import loginsql.MySQLConnection;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
@@ -53,7 +52,7 @@ public class LPersonDBExtract implements IAdapterDBLP {
                                         .withLastName(rs.getString("last_name"))
                                         .withAddress(rs.getString("address"))
                                         .withNoParticipation(rs.getInt("noParticipation"))
-                                        .withWonAction(rs.getInt("noAuctionsWon"))
+                                        .withWonAuction(rs.getInt("noAuctionsWon"))
                                         .withSocialCapital(iteratorIDS.getMiddle())
                                         .withTypeCompany(LegalPerson.TypeCompany.valueOf(iteratorIDS.getRight()))
                                         .build()

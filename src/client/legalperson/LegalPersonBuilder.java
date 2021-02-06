@@ -1,6 +1,8 @@
 package client.legalperson;
 
-public class LegalPersonBuilder {
+import client.UserBuilder;
+
+public class LegalPersonBuilder implements UserBuilder<LegalPerson, LegalPersonBuilder> {
     private final LegalPerson legalPerson = new LegalPerson();
 
     public LegalPersonBuilder withEmail(String email) {
@@ -33,8 +35,8 @@ public class LegalPersonBuilder {
         return this;
     }
 
-    public LegalPersonBuilder withWonAction(int wonAction) {
-        legalPerson.setWonAuctions(wonAction);
+    public LegalPersonBuilder withWonAuction(int wonAuction) {
+        legalPerson.setWonAuctions(wonAuction);
         return this;
     }
 
