@@ -147,10 +147,8 @@ public class Auction {
 
         List<Double> finalCurrentBids = new ArrayList<>();
 
-        List<Double> bids;
         for (int i = 0; i < noMaxSteps; i++) {
-            bids = new ArrayList<>();
-            List<Double> currentBids = bids;
+            List<Double> currentBids = new ArrayList<>();
             brokersAndClients.forEach((broker, usersAndMaxBid) -> {
                 for (Pair<User, Double> userDoublePair : usersAndMaxBid) {
                     double bestBid = chooseStrategy(userDoublePair.getRight());

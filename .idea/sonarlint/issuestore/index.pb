@@ -137,3 +137,5 @@ d
 .src/commander/updateclient/UpdateClientDB.java,3\d\3dded23034b66d36c3ac7dcee6e584abd49e8eb6
 G
 src/employee/Admin.java,5\c\5c3ab28d3fc09f5692af21543ddcb6a5fe504a41
+\
+,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c

@@ -44,18 +44,6 @@ public class EnrollToAuction implements ICommand {
             return;
         }
 
-        int idProduct = auction.getProductId();
-        double minimumPrice = sct.getAuctionHouse().getProductsList()
-                .stream().filter(product -> product.getId() == idProduct).collect(Collectors.toList()).get(0)
-                .getMinimumPrice();
-
-        if (minimumPrice > maximumPrice) {
-            helper.setCommandResult(helper.getCommandResult()
-                    .append("You have not been added to this auction because your maximum price " +
-                            "is smaller then the minimum price of product"));
-            return;
-        }
-
         auction.setNoCurrentParticipants(auction.getNoCurrentParticipants() + 1);
         assignToBroker();
 
