@@ -5,8 +5,11 @@ import auction_house.AuctionHouse;
 import client.User;
 import employee.Broker;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import products.Product;
+import socketserver.Main;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -76,10 +79,10 @@ public class Auction {
         Product productInfo = AuctionHouse.getInstance().getProductsList()
                 .stream().filter(product -> product.getId() == productId).collect(Collectors.toList()).get(0);
 
-        Pair<List<User>, Map<Broker, List<Pair<User, Double>>>> brokersAndClientsAssigned = getBrokerAndClients(brokers, userList);
+        Pair<List<User>, Map<Broker, List<Triple<User, Double, Double>>>> brokersAndClientsAssigned = getBrokersAndClients(brokers, userList);
 
         List<User> clientsParticipating = brokersAndClientsAssigned.getLeft();
-        Map<Broker, List<Pair<User, Double>>> brokersAndClients = brokersAndClientsAssigned.getRight();
+        Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients = brokersAndClientsAssigned.getRight();
 
         maxCurrentBid = findFirstMaxBid(brokersAndClients);
         minBid = productInfo.getMinimumPrice();
@@ -114,11 +117,11 @@ public class Auction {
         this.notifyHelper.notifyPAuctionWasWon(clientsParticipating, idAuction);
     }
 
-    private Broker findWinnerBroker(Map<Broker, List<Pair<User, Double>>> brokersClients, User winner) {
+    private Broker findWinnerBroker(Map<Broker, List<Triple<User, Double, Double>>> brokersClients, User winner) {
         Broker brokerWinner;
-        for(Map.Entry<Broker, List<Pair<User, Double>>> entry : brokersClients.entrySet()) {
-            List<Pair<User, Double>> usersAssigned = entry.getValue();
-            for (Pair<User, Double> usersBids : usersAssigned) {
+        for(Map.Entry<Broker, List<Triple<User, Double, Double>>> entry : brokersClients.entrySet()) {
+            List<Triple<User, Double, Double>> usersAssigned = entry.getValue();
+            for (Triple<User, Double, Double> usersBids : usersAssigned) {
                 if(usersBids.getLeft().getUsername().equals(winner.getUsername())) {
                     brokerWinner = entry.getKey();
                     return brokerWinner;
@@ -128,10 +131,10 @@ public class Auction {
         return null;
     }
 
-    private double findFirstMaxBid(Map<Broker, List<Pair<User, Double>>> brokersAndClients) {
+    private double findFirstMaxBid(Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients) {
         List<Double> firstBids = new ArrayList<>();
         brokersAndClients.forEach((broker, usb) ->
-                usb.forEach(ub -> firstBids.add(ub.getRight())));
+                usb.forEach(ub -> firstBids.add(ub.getMiddle())));
         return AuctionHouse.getInstance().calculateMaximumBid(firstBids);
     }
 
@@ -139,7 +142,7 @@ public class Auction {
         this.noCurrentParticipants = 0;
     }
 
-    private User mechanismAuction(Map<Broker, List<Pair<User, Double>>> brokersAndClients, List<User> clientsParticipating) {
+    private User mechanismAuction(Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients, List<User> clientsParticipating) {
         User winner = null;
 
         List<Double> finalCurrentBids = new ArrayList<>();
@@ -147,7 +150,7 @@ public class Auction {
         for (int i = 0; i < noMaxSteps; i++) {
             List<Double> currentBids = new ArrayList<>();
             brokersAndClients.forEach((broker, usersAndMaxBid) -> {
-                for (Pair<User, Double> userAndBid : usersAndMaxBid) {
+                for (Triple<User, Double, Double> userAndBid : usersAndMaxBid) {
                     User user = userAndBid.getLeft();
                     double bid = user.askBid(maxCurrentBid, userAndBid.getRight());
                     currentBids.add(bid);
@@ -172,10 +175,10 @@ public class Auction {
         return winner;
     }
 
-    private User declareWinnerLastRemaining(Map<Broker, List<Pair<User, Double>>> brokersAndClients) {
+    private User declareWinnerLastRemaining(Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients) {
         List<Broker> keys = new ArrayList<>(brokersAndClients.keySet());
         Broker lastBroker = keys.get(keys.size() - 1);
-        List<Pair<User, Double>> last = brokersAndClients.get(lastBroker);
+        List<Triple<User, Double, Double>> last = brokersAndClients.get(lastBroker);
         User lastClient = last.get(last.size() - 1).getLeft();
 
         if(last.get(last.size() - 1).getRight() > minBid)
@@ -188,8 +191,8 @@ public class Auction {
         return noMaxSteps;
     }
 
-    private Pair<List<User>, Map<Broker, List<Pair<User, Double>>>> getBrokerAndClients(Map<Integer, Broker> brokers, List<User> userList) {
-        Map<Broker, List<Pair<User, Double>>> brokersAndClients = new HashMap<>();
+    private Pair<List<User>, Map<Broker, List<Triple<User, Double, Double>>>> getBrokersAndClients(Map<Integer, Broker> brokers, List<User> userList) {
+        Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients = new HashMap<>();
 
         List<User> participants = new ArrayList<>();
 
@@ -202,7 +205,7 @@ public class Auction {
                             .collect(Collectors.toList()).get(0);
                     user.setNoParticipation(user.getNoParticipation() + 1);
                     participants.add(user);
-                    brokersAndClients.get(broker).add(new ImmutablePair<>(user, bid));
+                    brokersAndClients.get(broker).add(new ImmutableTriple<>(user, Main.random.nextDouble() * 100, bid));
                 });
             }
         });

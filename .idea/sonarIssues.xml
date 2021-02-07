@@ -703,6 +703,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/GetProductDB.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterfurniture/DBFurniture.java">
           <value>
             <set />

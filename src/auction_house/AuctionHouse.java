@@ -11,6 +11,7 @@ import auction.Auction;
 import loginsql.MySQLConnection;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import products.Product;
 import socketserver.Main;
 
@@ -184,7 +185,7 @@ public class AuctionHouse {
         auctionsActive.remove(idAuction);
     }
 
-    public void payBrokers(Map<Broker, List<Pair<User, Double>>> brokersAndClients) {
+    public void payBrokers(Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients) {
         brokersAndClients.forEach((broker, clientsAndBids) ->
                 clientsAndBids.forEach(client -> broker.setAccumulatedSum(broker.getAccumulatedSum() +
                         broker.sumValueCalculator(client.getRight(), client.getLeft()))));

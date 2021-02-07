@@ -1,6 +1,5 @@
 package load_data_db.product_db_extract.adapterpainting;
 
-import load_data_db.LoadDBDataAdmin;
 import loginsql.MySQLConnection;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
