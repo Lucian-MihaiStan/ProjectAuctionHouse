@@ -152,7 +152,7 @@ public class Auction {
             brokersAndClients.forEach((broker, usersAndMaxBid) -> {
                 for (Triple<User, Double, Double> userAndBid : usersAndMaxBid) {
                     User user = userAndBid.getLeft();
-                    double bid = user.askBid(maxCurrentBid, userAndBid.getRight());
+                    double bid = broker.askClientBid(user, maxCurrentBid, userAndBid.getRight());
                     currentBids.add(bid);
                 }
             });

@@ -145,3 +145,9 @@ P
  src/products/ProductBuilder.java,a\9\a9b6791df725213d732e42a41490adb9a3d119a1
 K
 src/client/UserBuilder.java,3\5\352187fa39bb3d1ab13eb7d27f117c48958a5486
+R
+"src/employee/factory/NewLPCom.java,1\c\1cef8a4f832736b87f2906fbbf45766ca55aa8c1
+R
+"src/employee/factory/NewIPCom.java,c\6\c6fc3e2c82845c5d5bf7a99aea4d265bbaefd495
+^
+.src/employee/factory/CommissionCalculator.java,7\7\77a4c53c090f344add8df6bf0b8a8fe3feb8f84a

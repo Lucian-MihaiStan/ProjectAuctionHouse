@@ -67,4 +67,8 @@ public class Broker implements IEmployee {
         }
         return cc.calculate(bid);
     }
+
+    public double askClientBid(User user, double maxCurrentBid, Double right) {
+        return user.askBid(maxCurrentBid, right);
+    }
 }
