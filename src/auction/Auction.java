@@ -14,6 +14,9 @@ import socketserver.Main;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ *
+ */
 public class Auction {
     private int productId;
     private int noCurrentParticipants;
@@ -119,7 +122,7 @@ public class Auction {
         if(broker!=null) broker.deleteProduct(productId);
 
         UpdateDataDBAfterAuction updateDataDBAfterAuction = new UpdateDataDBAfterAuction();
-        updateDataDBAfterAuction.updateDataDBBeforeAuction(productId, clientsParticipating);
+        updateDataDBAfterAuction.updateDataDBAfterAuction(productId, clientsParticipating);
 
         // Delete auction from auctionsList
         AuctionHouse.getInstance().deleteAuctionFromHouse(idAuction);
