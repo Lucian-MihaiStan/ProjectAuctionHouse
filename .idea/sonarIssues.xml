@@ -193,12 +193,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/auction/notifieradapter/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/auction/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/auction/updatedata/UpdateDataDB.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/auction/updatedata/UpdateDataDBAfterAuction.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/auction/updatedata/package-info.java">
           <value>
             <set />
           </value>

@@ -36,6 +36,22 @@ public class Auction {
         this.productId = productId;
     }
 
+    public double getMaxCurrentBid() {
+        return maxCurrentBid;
+    }
+
+    public void setMaxCurrentBid(double maxCurrentBid) {
+        this.maxCurrentBid = maxCurrentBid;
+    }
+
+    public double getMinBid() {
+        return minBid;
+    }
+
+    public void setMinBid(double minBid) {
+        this.minBid = minBid;
+    }
+
     public void setIdAuction(int idAuction) {
         this.idAuction = idAuction;
     }
@@ -76,8 +92,7 @@ public class Auction {
         // notify users auction started
         this.notifyHelper.notifyPAuctionStart(brokers, idAuction);
 
-        Product productInfo = AuctionHouse.getInstance().getProductsList()
-                .stream().filter(product -> product.getId() == productId).collect(Collectors.toList()).get(0);
+        Product productInfo = getProductInfo();
 
         Pair<List<User>, Map<Broker, List<Triple<User, Double, Double>>>> brokersAndClientsAssigned = getBrokersAndClients(brokers, userList);
 
@@ -118,6 +133,11 @@ public class Auction {
         this.notifyHelper.notifyPAuctionWasWon(clientsParticipating, idAuction);
     }
 
+    public Product getProductInfo() {
+        return AuctionHouse.getInstance().getProductsList()
+                .stream().filter(product -> product.getId() == productId).collect(Collectors.toList()).get(0);
+    }
+
     private Broker findWinnerBroker(Map<Broker, List<Triple<User, Double, Double>>> brokersClients, User winner) {
         Broker brokerWinner;
         for(Map.Entry<Broker, List<Triple<User, Double, Double>>> entry : brokersClients.entrySet()) {
@@ -143,7 +163,7 @@ public class Auction {
         this.noCurrentParticipants = 0;
     }
 
-    private User mechanismAuction(Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients, List<User> clientsParticipating) {
+    public User mechanismAuction(Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients, List<User> clientsParticipating) {
         User winner = null;
 
         List<Double> finalCurrentBids = new ArrayList<>();
