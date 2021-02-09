@@ -101,12 +101,6 @@ public class Auction {
         Broker broker = findWinnerBroker(brokersAndClients, winner);
 
         // Update data in database
-        System.out.println(broker);
-
-
-        System.out.println("Aici");
-        System.out.println(winner);
-
         if(broker!=null) broker.deleteProduct(productId);
 
         UpdateDataDBAfterAuction updateDataDBAfterAuction = new UpdateDataDBAfterAuction();
@@ -164,7 +158,6 @@ public class Auction {
                 }
             });
             finalCurrentBids = currentBids;
-            System.out.println("Pas " + i + " biduri=" + finalCurrentBids);
             if(AuctionHouse.getInstance().checkBids(currentBids)) {
                 maxCurrentBid = AuctionHouse.getInstance().calculateMaximumBid(currentBids);
                 clientsParticipating.forEach(user -> user.getAuctionAndMaxBid().replace(idAuction, maxCurrentBid));
@@ -174,18 +167,13 @@ public class Auction {
                 break;
             }
         }
-        System.out.println(finalCurrentBids);
-        System.out.println(minBid);
-        System.out.println(winner);
         if(winner == null) {
             double maxim = Collections.max(finalCurrentBids);
-            System.out.println(maxim);
             if(maxim < minBid) return null;
             winner = clientsParticipating.get(finalCurrentBids.indexOf(maxim));
             winner.setWonAuctions(winner.getWonAuctions() + 1);
         }
 
-        System.out.println(winner);
         return winner;
     }
 
@@ -226,5 +214,22 @@ public class Auction {
             }
         });
         return new ImmutablePair<>(participants, brokersAndClients);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Auction auction = (Auction) o;
+        return productId == auction.productId &&
+                noCurrentParticipants == auction.noCurrentParticipants &&
+                noParticipants == auction.noParticipants &&
+                idAuction == auction.idAuction &&
+                noMaxSteps == auction.noMaxSteps;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, noCurrentParticipants, noParticipants, idAuction, noMaxSteps, maxCurrentBid, minBid, notifyHelper);
     }
 }

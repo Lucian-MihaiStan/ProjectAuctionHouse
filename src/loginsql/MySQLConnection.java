@@ -35,7 +35,7 @@ public class MySQLConnection {
     }
 
     public void realizeConnectionAsAdmin() throws SQLException, ClassNotFoundException{
-        this.closeConnection();
+//        this.closeConnection();
         Class.forName("com.mysql.cj.jdbc.Driver");
         String jdbcURL = "jdbc:mysql://localhost:3306/AuctionHouse";
         Admin admin = Admin.getInstance();

@@ -78,12 +78,16 @@ public class EnrollToAuction implements ICommand, Runnable {
     }
 
     private boolean checkIsNotEnrolled() {
-        AtomicBoolean result = new AtomicBoolean(true);
         Map<Integer, Broker> brokers = sct.getAuctionHouse().getBrokers();
+        return notDuplicateCheck(brokers, sct.getMySQLConnection().getUsername());
+    }
+
+    public boolean notDuplicateCheck(Map<Integer, Broker> brokers, String username) {
+        AtomicBoolean result = new AtomicBoolean(true);
         brokers.forEach((integer, broker) -> {
             if (broker.getAuctionAndUserAssigned().containsKey(idAuction)) {
                 Map<String, Double> usersAndBid = broker.getAuctionAndUserAssigned().get(idAuction);
-                if (usersAndBid.containsKey(sct.getMySQLConnection().getUsername())) {
+                if (usersAndBid.containsKey(username)) {
                     result.set(false);
                 }
             }
