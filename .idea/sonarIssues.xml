@@ -233,6 +233,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/auction_house/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/client/Client.java">
           <value>
             <set />
@@ -273,6 +278,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/client/individualperson/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/client/legalperson/IndividualPerson.java">
           <value>
             <set />
@@ -289,6 +299,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/client/legalperson/LegalPersonBuilder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/legalperson/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/strategy/package-info.java">
           <value>
             <set />
           </value>
@@ -398,6 +423,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/addproduct/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/auctions.java">
           <value>
             <set />
@@ -414,6 +444,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/auctions/ShowAuctions.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/auctions/package-info.java">
           <value>
             <set />
           </value>
@@ -458,6 +493,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/createuser/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/deleteclient/DeleteClient.java">
           <value>
             <set />
@@ -483,6 +523,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/commander/deleteproduct/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/commander/updateclient/DeleteClient.java">
           <value>
             <set />
@@ -494,6 +544,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/commander/updateclient/UpdateClientDB.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/commander/updateclient/package-info.java">
           <value>
             <set />
           </value>
@@ -548,7 +603,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/employee/factory/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/employee/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/features/Features.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/features/package-info.java">
           <value>
             <set />
           </value>
@@ -718,6 +788,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/GetProductDB.java">
           <value>
             <set />
@@ -733,6 +808,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterfurniture/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterjewellery/DBJewellery.java">
           <value>
             <set />
@@ -743,12 +823,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterjewellery/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterpainting/DBPainting.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterpainting/IAdapterDBPainting.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/adapterpainting/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/product_db_extract/package-info.java">
           <value>
             <set />
           </value>
@@ -778,6 +873,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_ip/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_lp/AdapterDBLP.java">
           <value>
             <set />
@@ -799,6 +899,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_lp/LPersonDBExtract.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/adapter_lp/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/load_data_db/user_db_extract/package-info.java">
           <value>
             <set />
           </value>
@@ -863,7 +973,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/clientconnection/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/loginsql/clientconnection/usersql/AddUserSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/clientconnection/usersql/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/package-info.java">
           <value>
             <set />
           </value>
@@ -883,7 +1008,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/product_connection/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/loginsql/product_connection/productsql/AddProductSQL.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/product_connection/productsql/package-info.java">
           <value>
             <set />
           </value>
@@ -953,6 +1088,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/products/furniture/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/products/jewellery/Jewellery.java">
           <value>
             <set />
@@ -963,12 +1103,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/products/jewellery/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/products/package-info.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/products/painting/Painting.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/products/painting/PaintingBuilder.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/products/painting/package-info.java">
           <value>
             <set />
           </value>
@@ -994,6 +1149,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/socketserver/ServerClientThread.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/socketserver/package-info.java">
           <value>
             <set />
           </value>
@@ -1024,6 +1184,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/unittesting/AuctionHouseTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/unittesting/package-info.java">
           <value>
             <set />
           </value>

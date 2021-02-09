@@ -1,4 +1,4 @@
-package strategy;
+package client.strategy;
 
 public class CallHalfMore implements Strategy{
     private final double maxBid;

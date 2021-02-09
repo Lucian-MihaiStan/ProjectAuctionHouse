@@ -2,7 +2,7 @@ package client;
 
 
 import socketserver.Main;
-import strategy.*;
+import client.strategy.*;
 
 import java.util.HashMap;
 import java.util.Map;

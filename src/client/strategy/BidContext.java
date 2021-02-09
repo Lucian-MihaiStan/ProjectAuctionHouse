@@ -1,4 +1,4 @@
-package strategy;
+package client.strategy;
 
 public class BidContext {
     private final Strategy strategy;

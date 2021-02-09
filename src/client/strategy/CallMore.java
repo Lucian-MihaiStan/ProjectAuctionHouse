@@ -1,17 +1,17 @@
-package strategy;
+package client.strategy;
 
-public class CallDouble implements Strategy {
+public class CallMore implements Strategy {
     private final double maxBid;
     private final double maxUserBid;
 
-    public CallDouble(double maxBid, double maxUserBid) {
+    public CallMore(double maxBid, double maxUserBid) {
         this.maxBid = maxBid;
         this.maxUserBid = maxUserBid;
     }
 
     @Override
     public double bidCalculator() {
-        if(2 * maxBid <= maxUserBid) return 2 * maxBid;
+        if(maxBid + 200 <= maxUserBid) return maxBid + 200;
         return -1;
     }
 }
