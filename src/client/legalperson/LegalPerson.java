@@ -1,29 +1,28 @@
 package client.legalperson;
 
-
 import client.User;
 
+import java.util.Objects;
+
+/**
+ * legal person implementation
+ */
 public class LegalPerson extends User {
     private TypeCompany typeCompany;
     private double socialCapital;
 
+    /**
+     * type of companies
+     */
     public enum TypeCompany {
+        /**
+         * SRL type company
+         */
         SRL,
+        /**
+         * SA type company
+         */
         SA
-    }
-
-    public LegalPerson() {
-
-    }
-
-    public LegalPerson(String firstName, String lastName, String address, double socialCapital, TypeCompany typeCompany) {
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
-        this.setAddress(address);
-        this.setNoParticipation(0);
-        this.setWonAuctions(0);
-        this.socialCapital = socialCapital;
-        this.typeCompany = typeCompany;
     }
 
     public void setTypeCompany(TypeCompany typeCompany) {
@@ -55,6 +54,21 @@ public class LegalPerson extends User {
                 "typeCompany=" + typeCompany +
                 ", socialCapital=" + socialCapital +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        LegalPerson that = (LegalPerson) o;
+        return Double.compare(that.socialCapital, socialCapital) == 0 &&
+                typeCompany == that.typeCompany;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), typeCompany, socialCapital);
     }
 }
 

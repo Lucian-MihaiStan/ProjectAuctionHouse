@@ -19,6 +19,9 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Class that implements the functionalities of auction house
+ */
 public class AuctionHouse {
     private static AuctionHouse instance;
 
@@ -29,6 +32,10 @@ public class AuctionHouse {
 
     static final int NO_MAX_BROKERS = 5;
 
+    /**
+     * singleton instance of the auction house
+     * @return auction houose instance
+     */
     public static synchronized AuctionHouse getInstance() {
         if (instance == null) {
             instance = new AuctionHouse();
@@ -36,6 +43,9 @@ public class AuctionHouse {
         return instance;
     }
 
+    /**
+     * Constructor
+     */
     private AuctionHouse() {
         productsList = Collections.synchronizedList(new ArrayList<>());
         userList = Collections.synchronizedList(new ArrayList<>());
@@ -43,12 +53,13 @@ public class AuctionHouse {
         brokers = new HashMap<>();
     }
 
+    /**
+     * Notify brokers about auction has started
+     * @param auctionId acution id
+     */
     public void notifyBrokers(int auctionId) {
-
         Auction auction = auctionsActive.get(auctionId);
-
         Map<Integer, List<Pair<String, Double>>> mapBrokers = new HashMap<>();
-
         brokers.forEach((integer, broker) -> {
             if(broker.getAuctionAndUserAssigned().containsKey(auctionId)) {
                 if(!mapBrokers.containsKey(broker.getId())) {
@@ -65,53 +76,36 @@ public class AuctionHouse {
         notifierBrokers.sendMailToBrokers(mapBrokers, auction,
                 productsList.stream().filter(product -> product.getId() == auctionId)
                         .collect(Collectors.toList()).get(0));
-
     }
 
-    public Map<Integer, Auction> getAuctionsActive() {
-        return auctionsActive;
-    }
-
-    public void setAuctionsActive(Map<Integer, Auction> auctionsActive) {
-        this.auctionsActive = auctionsActive;
-    }
-
-    public Map<Integer, Broker> getBrokers() {
-        return brokers;
-    }
-
-    public List<Product> getProductsList() {
-        return productsList;
-    }
-
-    public void setProductsList(List<Product> productsList) {
-        this.productsList = productsList;
-    }
-
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
-    }
-
+    /**
+     * Add new user to the list of users
+     * @param user user that must be added
+     */
     public void addNewClient(User user) {
         userList.add(user);
     }
 
+    /**
+     * get the last user from the list
+     * @return the last user form the list
+     */
     public User getLastClient() {
         return userList.get(userList.size() - 1);
     }
 
-    public void addNewProduct(Product product) {
-        productsList.add(product);
-    }
-
+    /**
+     * get last product from the list of products
+     * @return last product
+     */
     public Product getLastProduct() {
         return productsList.get(productsList.size() - 1);
     }
 
+    /**
+     * load the auction house database
+     * @param mySQLConnection connection to the database
+     */
     public void load(MySQLConnection mySQLConnection) {
         IAdapterAdmin adapter = new LoadDBDataAdmin(mySQLConnection);
         userList = Collections.synchronizedList(new ArrayList<>());
@@ -145,6 +139,10 @@ public class AuctionHouse {
         }
     }
 
+    /**
+     * add a new auction to the list
+     * @param productId id of product
+     */
     private void addNewAuctionToList(int productId) {
         auctionsActive.put(productId, new AuctionBuilder()
                 .withId(productId)
@@ -155,6 +153,9 @@ public class AuctionHouse {
                 .build());
     }
 
+    /**
+     * Generate a random number of brokers and add to the map
+     */
     private void generateBrokers() {
         int noBrokers = Main.random.nextInt(NO_MAX_BROKERS) + 2;
         for (int i = 0; i < noBrokers; i++) {
@@ -163,6 +164,9 @@ public class AuctionHouse {
         }
     }
 
+    /**
+     * create auctions with id of product
+     */
     public void createAuctions() {
         productsList.forEach(product -> addNewAuctionToList(product.getId()));
     }
@@ -177,28 +181,79 @@ public class AuctionHouse {
                 '}';
     }
 
+    /**
+     * Function that calculate the maximum bid bet at a specific step of an auction
+     * @param currentBids bids
+     * @return the maximum of bids
+     */
     public double calculateMaximumBid(List<Double> currentBids) {
         return Collections.max(currentBids);
     }
 
+    /**
+     * delete auction from the auction house
+     * @param idAuction id of auction that must be deleted
+     */
     public void deleteAuctionFromHouse(int idAuction) {
         auctionsActive.remove(idAuction);
     }
 
+    /**
+     * brokers takes commission from clients
+     * @param brokersAndClients brokers and their clients assigned
+     */
     public void payBrokers(Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients) {
         brokersAndClients.forEach((broker, clientsAndBids) ->
                 clientsAndBids.forEach(client -> broker.setAccumulatedSum(broker.getAccumulatedSum() +
                         broker.sumValueCalculator(client.getRight(), client.getLeft()))));
     }
 
+    /**
+     * rip off the connection between brokers and clients at the end of an auction
+     * @param brokers brokers of auction house
+     * @param idAuction id of auction that must be deleted
+     */
     public void ripOffBrokerAuction(Map<Integer, Broker> brokers, int idAuction) {
         brokers.forEach((integer, broker) -> broker.getAuctionAndUserAssigned().remove(idAuction));
     }
 
+    /**
+     * check if there are clients still in auction
+     * @param bids list of bids bet at the step
+     * @return if there are clients still in auction
+     */
     public boolean checkBids(List<Double> bids) {
         for (Double bid : bids) {
             if(bid!=-1) return true;
         }
         return false;
+    }
+
+    public Map<Integer, Auction> getAuctionsActive() {
+        return auctionsActive;
+    }
+
+    public void setAuctionsActive(Map<Integer, Auction> auctionsActive) {
+        this.auctionsActive = auctionsActive;
+    }
+
+    public Map<Integer, Broker> getBrokers() {
+        return brokers;
+    }
+
+    public List<Product> getProductsList() {
+        return productsList;
+    }
+
+    public void setProductsList(List<Product> productsList) {
+        this.productsList = productsList;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }

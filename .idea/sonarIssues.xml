@@ -313,6 +313,31 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/client/strategy/BidContext.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/strategy/CallDouble.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/strategy/CallHalfMore.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/strategy/CallMore.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/client/strategy/Strategy.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/client/strategy/package-info.java">
           <value>
             <set />

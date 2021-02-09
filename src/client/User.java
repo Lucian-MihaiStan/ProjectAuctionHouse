@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * class that implements functionalities of user class
+ */
 public abstract class User {
     private String username;
     private String firstName;
@@ -17,6 +20,38 @@ public abstract class User {
     private int wonAuctions;
     private String email;
     private final Map<Integer, Double> auctionAndMaxBid = new HashMap<>();
+
+    /**
+     * ask the new bid
+     * @param maxCurrentBid maximum current bid
+     * @param maxBid maximum bid imposed by user
+     * @return the new bid
+     */
+    public double askBid(double maxCurrentBid, Double maxBid) {
+        int randomStrategy = Main.random.nextInt(3) + 1;
+        BidContext context;
+        Strategy strategy;
+        if (randomStrategy == 1) strategy = new CallDouble(maxCurrentBid, maxBid);
+        else if (randomStrategy == 2) strategy = new CallHalfMore(maxCurrentBid, maxBid);
+        else strategy = new CallMore(maxCurrentBid, maxBid);
+
+        context = new BidContext(strategy);
+        return context.executeStrategy();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) &&
+                Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, firstName, lastName, address, noParticipation, wonAuctions, email, auctionAndMaxBid);
+    }
 
     public String getEmail() {
         return email;
@@ -74,6 +109,10 @@ public abstract class User {
         this.wonAuctions = wonAuctions;
     }
 
+    public Map<Integer, Double> getAuctionAndMaxBid() {
+        return auctionAndMaxBid;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -85,35 +124,5 @@ public abstract class User {
                 ", wonAuctions=" + wonAuctions +
                 ", email='" + email + '\'' +
                 '}';
-    }
-
-    public Map<Integer, Double> getAuctionAndMaxBid() {
-        return auctionAndMaxBid;
-    }
-
-    public double askBid(double maxCurrentBid, Double maxBid) {
-        int randomStrategy = Main.random.nextInt(3) + 1;
-        BidContext context;
-        Strategy strategy;
-        if (randomStrategy == 1) strategy = new CallDouble(maxCurrentBid, maxBid);
-        else if (randomStrategy == 2) strategy = new CallHalfMore(maxCurrentBid, maxBid);
-        else strategy = new CallMore(maxCurrentBid, maxBid);
-
-        context = new BidContext(strategy);
-        return context.executeStrategy();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(username, user.username) &&
-                Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(username, firstName, lastName, address, noParticipation, wonAuctions, email, auctionAndMaxBid);
     }
 }
