@@ -15,7 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- *
+ * Auction class that implements functionalities of auction
  */
 public class Auction {
     private int productId;
@@ -29,44 +29,6 @@ public class Auction {
 
     private final NotifyHelper notifyHelper = new NotifyHelper();
 
-    public int getNoCurrentParticipants() {
-        return noCurrentParticipants;
-    }
-
-    public void setNoCurrentParticipants(int noCurrentParticipants) { this.noCurrentParticipants = noCurrentParticipants; }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public double getMaxCurrentBid() {
-        return maxCurrentBid;
-    }
-
-    public void setMaxCurrentBid(double maxCurrentBid) {
-        this.maxCurrentBid = maxCurrentBid;
-    }
-
-    public double getMinBid() {
-        return minBid;
-    }
-
-    public void setMinBid(double minBid) {
-        this.minBid = minBid;
-    }
-
-    public void setIdAuction(int idAuction) {
-        this.idAuction = idAuction;
-    }
-
-    public void setNoMaxSteps(int noMaxSteps) {
-        this.noMaxSteps = noMaxSteps;
-    }
-
-    public void setNoParticipants(int noParticipants) {
-        this.noParticipants = noParticipants;
-    }
-
     @Override
     public String toString() {
         return "Auction{" +
@@ -78,27 +40,20 @@ public class Auction {
                 '}';
     }
 
-    public int getIdAuction() {
-        return idAuction;
-    }
-
-    public int getNoParticipants() {
-        return noParticipants;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-
+    /**
+     * starts the auction algorithm
+     * @param brokers brokers of auction house
+     * @param userList all users of the auction house
+     */
     public synchronized void start(Map<Integer, Broker> brokers, List<User> userList) {
         // notify users auction started
         this.notifyHelper.notifyPAuctionStart(brokers, idAuction);
 
+        // get info of the product
         Product productInfo = getProductInfo();
 
+        // create a map of brokers and a list of participants to this auction
         Pair<List<User>, Map<Broker, List<Triple<User, Double, Double>>>> brokersAndClientsAssigned = getBrokersAndClients(brokers, userList);
-
         List<User> clientsParticipating = brokersAndClientsAssigned.getLeft();
         Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients = brokersAndClientsAssigned.getRight();
 
@@ -136,11 +91,21 @@ public class Auction {
         this.notifyHelper.notifyPAuctionWasWon(clientsParticipating, idAuction);
     }
 
+    /**
+     * Get all information of product from the list of products
+     * @return return the product searched
+     */
     public Product getProductInfo() {
         return AuctionHouse.getInstance().getProductsList()
                 .stream().filter(product -> product.getId() == productId).collect(Collectors.toList()).get(0);
     }
 
+    /**
+     * Search the broker winner to be delete the product
+     * @param brokersClients brokers enrolled to this auction
+     * @param winner winner of the auction
+     * @return the broker of the winner
+     */
     private Broker findWinnerBroker(Map<Broker, List<Triple<User, Double, Double>>> brokersClients, User winner) {
         Broker brokerWinner;
         for(Map.Entry<Broker, List<Triple<User, Double, Double>>> entry : brokersClients.entrySet()) {
@@ -166,6 +131,12 @@ public class Auction {
         this.noCurrentParticipants = 0;
     }
 
+    /**
+     * Auction mechanism
+     * @param brokersAndClients map of brokers, clients enrolled to this auction and bids
+     * @param clientsParticipating clients that are participating to this auction
+     * @return the user of this auction or null
+     */
     public User mechanismAuction(Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients, List<User> clientsParticipating) {
         User winner = null;
 
@@ -200,6 +171,11 @@ public class Auction {
         return winner;
     }
 
+    /**
+     * Declare the last user as being the winner
+     * @param brokersAndClients map of brokers
+     * @return the winner
+     */
     private User declareWinnerLastRemaining(Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients) {
         List<Broker> keys = new ArrayList<>(brokersAndClients.keySet());
         Broker lastBroker = keys.get(keys.size() - 1);
@@ -214,10 +190,12 @@ public class Auction {
         return null;
     }
 
-    public int getNoMaxSteps() {
-        return noMaxSteps;
-    }
-
+    /**
+     * Create a map of brokers and a list of clients enrolled to this auction
+     * @param brokers all brokers of auction house
+     * @param userList list of participants
+     * @return a pair of map and list of clients
+     */
     private Pair<List<User>, Map<Broker, List<Triple<User, Double, Double>>>> getBrokersAndClients(Map<Integer, Broker> brokers, List<User> userList) {
         Map<Broker, List<Triple<User, Double, Double>>> brokersAndClients = new HashMap<>();
 
@@ -254,5 +232,59 @@ public class Auction {
     @Override
     public int hashCode() {
         return Objects.hash(productId, noCurrentParticipants, noParticipants, idAuction, noMaxSteps, maxCurrentBid, minBid, notifyHelper);
+    }
+
+    public int getNoMaxSteps() {
+        return noMaxSteps;
+    }
+
+    public int getIdAuction() {
+        return idAuction;
+    }
+
+    public int getNoParticipants() {
+        return noParticipants;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public int getNoCurrentParticipants() {
+        return noCurrentParticipants;
+    }
+
+    public void setNoCurrentParticipants(int noCurrentParticipants) { this.noCurrentParticipants = noCurrentParticipants; }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public double getMaxCurrentBid() {
+        return maxCurrentBid;
+    }
+
+    public void setMaxCurrentBid(double maxCurrentBid) {
+        this.maxCurrentBid = maxCurrentBid;
+    }
+
+    public double getMinBid() {
+        return minBid;
+    }
+
+    public void setMinBid(double minBid) {
+        this.minBid = minBid;
+    }
+
+    public void setIdAuction(int idAuction) {
+        this.idAuction = idAuction;
+    }
+
+    public void setNoMaxSteps(int noMaxSteps) {
+        this.noMaxSteps = noMaxSteps;
+    }
+
+    public void setNoParticipants(int noParticipants) {
+        this.noParticipants = noParticipants;
     }
 }
