@@ -68,7 +68,7 @@ public class NotifierMailAdapter implements INotifierMail {
 
     @Override
     public synchronized void sendWinnerEmail(String winnerEmail, Product productInfo) {
-        sendEmail(winnerEmail, productInfo.toString());
+        sendEmail(winnerEmail, "You won " + productInfo.toString());
     }
 
     @Override

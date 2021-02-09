@@ -33,7 +33,6 @@ public class Painting extends Product {
         return "Painting{" +
                 "id = " + this.getId() + " " +
                 this.getName() + " " +
-                this.getSellingPrice() + " " +
                 this.getMinimumPrice() + " " +
                 this.getYear() + " " +
                 "nameArtist='" + nameArtist + '\'' +

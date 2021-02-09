@@ -19,7 +19,6 @@ public class AddProduct implements ICommand {
     private int year;
     private List<String> restParameters;
 
-
     @Override
     public synchronized void execute(ServerClientThread sct) {
         AuctionHouse auctionHouse = sct.getAuctionHouse();

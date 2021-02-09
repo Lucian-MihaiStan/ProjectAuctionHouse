@@ -42,7 +42,6 @@ public class Main {
                 ServerClientThread socketClientThread = new ServerClientThread(client, counter, clientIP);
                 sctList.add(socketClientThread);
                 socketClientThread.start();
-
             }
         } catch (IOException e) {
             e.printStackTrace();

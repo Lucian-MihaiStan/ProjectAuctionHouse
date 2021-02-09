@@ -44,6 +44,7 @@ public class NotifyHelper {
     }
 
     public void notifyWinner(User winner, Product productInfo) {
+        System.out.println("am trimis");
         INotifierMail iNotifierMail = new NotifierMailAdapter();
         iNotifierMail.sendWinnerEmail(winner.getEmail(), productInfo);
     }

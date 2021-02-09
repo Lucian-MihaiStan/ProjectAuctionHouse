@@ -55,11 +55,20 @@ public class Caller {
         ServerClientThread.Helper resultCommands = ServerClientThread.Helper.getInstance();
         resultCommands.setCommandResult(new StringBuilder());
         sct.getCommands().forEach(iCommand -> {
+            sleepAfterCommand();
             if(iCommand != null) {
                 sct.getAuctionHouse().load(sct.getMySQLConnection());
                 iCommand.execute(sct);
             }
         });
         sct.setCommands(new ArrayList<>());
+    }
+
+    private static void sleepAfterCommand() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

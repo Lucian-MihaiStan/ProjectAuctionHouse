@@ -12,7 +12,7 @@ import socketserver.ServerClientThread;
 
 import java.util.List;
 
-public class CreateUser implements ICommand {
+public class CreateUser implements ICommand, Runnable {
     private String username;
     private String email;
     private String firstName;
@@ -21,6 +21,11 @@ public class CreateUser implements ICommand {
     private List<String> restParameters;
 
     private AuctionHouse auctionHouse;
+
+    @Override
+    public void run() {
+
+    }
 
     @Override
     public synchronized void execute(ServerClientThread sct) {
@@ -118,4 +123,6 @@ public class CreateUser implements ICommand {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }

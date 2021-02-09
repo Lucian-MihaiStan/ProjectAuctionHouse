@@ -27,7 +27,6 @@ public class Furniture extends Product {
         return "Furniture{" +
                 "id = " + this.getId() + " " +
                 this.getName() + " " +
-                this.getSellingPrice() + " " +
                 this.getMinimumPrice() + " " +
                 this.getYear() + " " +
                 "type='" + type + '\'' +

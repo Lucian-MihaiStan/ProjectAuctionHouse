@@ -27,7 +27,6 @@ public class Jewellery extends Product {
         return "Jewellery{" +
                 "id = " + this.getId() + " " +
                 this.getName() + " " +
-                this.getSellingPrice() + " " +
                 this.getMinimumPrice() + " " +
                 this.getYear() + " " +
                 "material='" + material + '\'' +

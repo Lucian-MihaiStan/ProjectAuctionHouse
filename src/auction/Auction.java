@@ -93,6 +93,7 @@ public class Auction {
         if(winner == null) {
             this.restoreAuction();
             this.notifyHelper.notifyPAuctionEnd(clientsParticipating, idAuction);
+            AuctionHouse.getInstance().payBrokers(brokersAndClients);
             AuctionHouse.getInstance().ripOffBrokerAuction(brokers, idAuction);
             return;
         }
@@ -100,6 +101,12 @@ public class Auction {
         Broker broker = findWinnerBroker(brokersAndClients, winner);
 
         // Update data in database
+        System.out.println(broker);
+
+
+        System.out.println("Aici");
+        System.out.println(winner);
+
         if(broker!=null) broker.deleteProduct(productId);
 
         UpdateDataDBAfterAuction updateDataDBAfterAuction = new UpdateDataDBAfterAuction();
@@ -157,6 +164,7 @@ public class Auction {
                 }
             });
             finalCurrentBids = currentBids;
+            System.out.println("Pas " + i + " biduri=" + finalCurrentBids);
             if(AuctionHouse.getInstance().checkBids(currentBids)) {
                 maxCurrentBid = AuctionHouse.getInstance().calculateMaximumBid(currentBids);
                 clientsParticipating.forEach(user -> user.getAuctionAndMaxBid().replace(idAuction, maxCurrentBid));
@@ -166,12 +174,18 @@ public class Auction {
                 break;
             }
         }
+        System.out.println(finalCurrentBids);
+        System.out.println(minBid);
+        System.out.println(winner);
         if(winner == null) {
             double maxim = Collections.max(finalCurrentBids);
+            System.out.println(maxim);
             if(maxim < minBid) return null;
             winner = clientsParticipating.get(finalCurrentBids.indexOf(maxim));
             winner.setWonAuctions(winner.getWonAuctions() + 1);
         }
+
+        System.out.println(winner);
         return winner;
     }
 
@@ -181,10 +195,12 @@ public class Auction {
         List<Triple<User, Double, Double>> last = brokersAndClients.get(lastBroker);
         User lastClient = last.get(last.size() - 1).getLeft();
 
-        if(last.get(last.size() - 1).getRight() > minBid)
+        if(last.get(last.size() - 1).getRight() > minBid){
             lastClient.setWonAuctions(lastClient.getWonAuctions() + 1);
+            return lastClient;
 
-        return lastClient;
+        }
+        return null;
     }
 
     public int getNoMaxSteps() {

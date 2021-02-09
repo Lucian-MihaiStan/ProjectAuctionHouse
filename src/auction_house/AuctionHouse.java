@@ -156,7 +156,7 @@ public class AuctionHouse {
     }
 
     private void generateBrokers() {
-        int noBrokers = Main.random.nextInt(NO_MAX_BROKERS) + 1;
+        int noBrokers = Main.random.nextInt(NO_MAX_BROKERS) + 2;
         for (int i = 0; i < noBrokers; i++) {
             Broker broker = new Broker(i);
             brokers.put(i, broker);
