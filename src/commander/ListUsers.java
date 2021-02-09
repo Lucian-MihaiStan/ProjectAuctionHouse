@@ -3,7 +3,9 @@ package commander;
 import loginsql.MySQLConnection;
 import socketserver.ServerClientThread;
 
-public class ListUsers implements ICommand {
+public class ListUsers implements ICommand, Runnable {
+    private ServerClientThread serverClientThread;
+
     @Override
     public void execute(ServerClientThread sct) {
         MySQLConnection mySQLConnection = sct.getMySQLConnection();
@@ -23,5 +25,15 @@ public class ListUsers implements ICommand {
                 }
         );
         helper.setCommandResult(helper.getCommandResult().append(usersSB));
+    }
+
+    @Override
+    public void setSct(ServerClientThread sct) {
+        this.serverClientThread = sct;
+    }
+
+    @Override
+    public void run() {
+        this.execute(this.serverClientThread);
     }
 }

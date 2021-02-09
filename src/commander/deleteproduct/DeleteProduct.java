@@ -7,8 +7,9 @@ import socketserver.ServerClientThread;
 
 import java.util.List;
 
-public class DeleteProduct implements ICommand {
+public class DeleteProduct implements ICommand, Runnable {
     private final int productId;
+    private ServerClientThread serverClientThread;
 
     public DeleteProduct(int productId) {
         this.productId = productId;
@@ -30,5 +31,15 @@ public class DeleteProduct implements ICommand {
         }
         ServerClientThread.Helper resultCommand = ServerClientThread.Helper.getInstance();
         resultCommand.setCommandResult(resultCommand.getCommandResult().append(sb));
+    }
+
+    @Override
+    public void setSct(ServerClientThread sct) {
+        this.serverClientThread = sct;
+    }
+
+    @Override
+    public void run() {
+        this.execute(this.serverClientThread);
     }
 }

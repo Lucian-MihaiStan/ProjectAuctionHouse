@@ -7,7 +7,7 @@ import socketserver.ServerClientThread;
 
 import java.util.stream.Collectors;
 
-public class DisplayAuction implements ICommand {
+public class DisplayAuction implements ICommand, Runnable {
     private final int auctionId;
     private ServerClientThread sct;
 
@@ -17,11 +17,15 @@ public class DisplayAuction implements ICommand {
 
     @Override
     public synchronized void execute(ServerClientThread sct) {
-        this.sct = sct;
         Auction auctionSearched = sct.getAuctionHouse().getAuctionsActive().get(auctionId);
         String auctionInfo = buildInfo(auctionSearched);
         ServerClientThread.Helper commandResult = ServerClientThread.Helper.getInstance();
         commandResult.setCommandResult(commandResult.getCommandResult().append(auctionInfo));
+    }
+
+    @Override
+    public void setSct(ServerClientThread sct) {
+        this.sct = sct;
     }
 
     private String buildInfo(Auction auctionSearched) {
@@ -61,5 +65,10 @@ public class DisplayAuction implements ICommand {
         }
 
         return info.toString();
+    }
+
+    @Override
+    public void run() {
+        this.execute(this.sct);
     }
 }

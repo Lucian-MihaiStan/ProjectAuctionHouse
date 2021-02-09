@@ -12,12 +12,13 @@ import socketserver.ServerClientThread;
 
 import java.util.List;
 
-public class AddProduct implements ICommand {
+public class AddProduct implements ICommand, Runnable {
     private int productType;
     private String name;
     private double minimumPrice;
     private int year;
     private List<String> restParameters;
+    private ServerClientThread serverClientThread;
 
     @Override
     public synchronized void execute(ServerClientThread sct) {
@@ -35,6 +36,11 @@ public class AddProduct implements ICommand {
         admin.addProduct(product);
         Product lastProduct = auctionHouse.getLastProduct();
         new AddProductSQL(sct.getMySQLConnection()).addProductSQL(lastProduct);
+    }
+
+    @Override
+    public void setSct(ServerClientThread sct) {
+        this.serverClientThread = sct;
     }
 
     private Product initProduct() {
@@ -109,5 +115,10 @@ public class AddProduct implements ICommand {
 
     public void setRestParameters(List<String> restParameters) {
         this.restParameters = restParameters;
+    }
+
+    @Override
+    public void run() {
+        this.execute(serverClientThread);
     }
 }

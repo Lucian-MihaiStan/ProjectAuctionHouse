@@ -22,9 +22,16 @@ public class CreateUser implements ICommand, Runnable {
 
     private AuctionHouse auctionHouse;
 
+    private ServerClientThread sct;
+
+    @Override
+    public void setSct(ServerClientThread sct) {
+        this.sct = sct;
+    }
+
     @Override
     public void run() {
-
+        this.execute(this.sct);
     }
 
     @Override

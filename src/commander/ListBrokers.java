@@ -5,7 +5,9 @@ import socketserver.ServerClientThread;
 
 import java.util.Map;
 
-public class ListBrokers implements ICommand {
+public class ListBrokers implements ICommand, Runnable {
+    private ServerClientThread serverClientThread;
+
     @Override
     public void execute(ServerClientThread sct) {
         ServerClientThread.Helper resultCommand = ServerClientThread.Helper.getInstance();
@@ -27,5 +29,15 @@ public class ListBrokers implements ICommand {
 //            cmdRes.append('|');
 //        });
         resultCommand.setCommandResult(resultCommand.getCommandResult().append(cmdRes));
+    }
+
+    @Override
+    public void setSct(ServerClientThread sct) {
+        this.serverClientThread = sct;
+    }
+
+    @Override
+    public void run() {
+        this.execute(this.serverClientThread);
     }
 }

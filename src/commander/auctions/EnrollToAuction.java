@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 
-public class EnrollToAuction implements ICommand {
+public class EnrollToAuction implements ICommand, Runnable {
     private final int idAuction;
     private final double maximumPrice;
 
@@ -61,6 +61,11 @@ public class EnrollToAuction implements ICommand {
         }
     }
 
+    @Override
+    public void setSct(ServerClientThread sct) {
+        this.sct = sct;
+    }
+
     private void assignToBroker() {
         Map<Integer, Broker> brokers = sct.getAuctionHouse().getBrokers();
         int randomIdBroker = Main.random.nextInt(brokers.keySet().size()) + 1;
@@ -84,5 +89,10 @@ public class EnrollToAuction implements ICommand {
             }
         });
         return result.get();
+    }
+
+    @Override
+    public void run() {
+        this.execute(this.sct);
     }
 }
