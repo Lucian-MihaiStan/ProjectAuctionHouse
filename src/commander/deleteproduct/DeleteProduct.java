@@ -7,14 +7,25 @@ import socketserver.ServerClientThread;
 
 import java.util.List;
 
+/**
+ * delete product
+ */
 public class DeleteProduct implements ICommand, Runnable {
     private final int productId;
     private ServerClientThread serverClientThread;
 
+    /**
+     * delete product command
+     * @param productId id of product
+     */
     public DeleteProduct(int productId) {
         this.productId = productId;
     }
 
+    /**
+     * implements the execution of command
+     * @param sct thread were the message should be printed
+     */
     @Override
     public synchronized void execute(ServerClientThread sct) {
         MySQLConnection mySqlConnection = sct.getMySQLConnection();
@@ -38,6 +49,9 @@ public class DeleteProduct implements ICommand, Runnable {
         this.serverClientThread = sct;
     }
 
+    /**
+     * run method from runnable interface used for multithreading
+     */
     @Override
     public void run() {
         this.execute(this.serverClientThread);

@@ -8,8 +8,16 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * show auctions information display message command
+ */
 public class ShowAuctions implements ICommand, Runnable {
     private ServerClientThread serverClientThread;
+
+    /**
+     * implements the execution of command
+     * @param sct thread were the message should be printed
+     */
     @Override
     public synchronized void execute(ServerClientThread sct) {
         Map<Integer, Auction> auctions = sct.getAuctionHouse().getAuctionsActive();
@@ -43,6 +51,9 @@ public class ShowAuctions implements ICommand, Runnable {
         this.serverClientThread = sct;
     }
 
+    /**
+     * run method from runnable interface used for multithreading
+     */
     @Override
     public void run() {
         this.execute(this.serverClientThread);

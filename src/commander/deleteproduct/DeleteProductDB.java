@@ -6,9 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+/**
+ * delete product from database
+ */
 public class DeleteProductDB {
     private DeleteProductDB() {}
 
+    /**
+     * delete product from database
+     * @param productId product id
+     * @param mySqlConnection connection to database
+     */
     public static void deleteFromDB(int productId, MySQLConnection mySqlConnection) {
         int productType = getProductType(productId, mySqlConnection);
         String deleteFromSubClass = buildQueryString(productId, productType);
@@ -19,7 +28,6 @@ public class DeleteProductDB {
     }
 
     private static void deleteFromProductTable(int productId, MySQLConnection mySqlConnection) {
-
         String deleteQuery = "DELETE FROM auctionhouseproduct.product WHERE id = " + productId;
         try(PreparedStatement preparedStatement = mySqlConnection.getConnection().prepareStatement(deleteQuery)) {
             preparedStatement.execute();

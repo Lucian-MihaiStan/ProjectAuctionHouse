@@ -12,6 +12,9 @@ import socketserver.ServerClientThread;
 
 import java.util.List;
 
+/**
+ * add product command
+ */
 public class AddProduct implements ICommand, Runnable {
     private int productType;
     private String name;
@@ -20,6 +23,10 @@ public class AddProduct implements ICommand, Runnable {
     private List<String> restParameters;
     private ServerClientThread serverClientThread;
 
+    /**
+     * implements the execution of command
+     * @param sct thread were the message should be printed
+     */
     @Override
     public synchronized void execute(ServerClientThread sct) {
         AuctionHouse auctionHouse = sct.getAuctionHouse();
@@ -117,6 +124,9 @@ public class AddProduct implements ICommand, Runnable {
         this.restParameters = restParameters;
     }
 
+    /**
+     * implements the run method of runnable
+     */
     @Override
     public void run() {
         this.execute(serverClientThread);

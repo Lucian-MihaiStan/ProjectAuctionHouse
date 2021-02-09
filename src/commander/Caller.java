@@ -1,7 +1,6 @@
 package commander;
 
 import commander.addproduct.ProductBuilderCommander;
-import commander.auctions.DisplayAuction;
 import commander.auctions.EnrollToAuction;
 import commander.auctions.ShowAuctions;
 import commander.createuser.CreateUserBuilderCommand;
@@ -46,7 +45,6 @@ public class Caller {
             case ENROLL_AUCTION -> new EnrollToAuction(Integer.parseInt(elements.get(1)), Double.parseDouble(elements.get(2)));
             case SHOW_AUCTIONS -> new ShowAuctions();
             case LIST_BROKERS -> new ListBrokers();
-            case AUCTION -> new DisplayAuction(Integer.parseInt(elements.get(1)));
             case EXIT -> null;
         };
     }

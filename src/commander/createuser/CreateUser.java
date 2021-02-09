@@ -12,6 +12,9 @@ import socketserver.ServerClientThread;
 
 import java.util.List;
 
+/**
+ * create user command
+ */
 public class CreateUser implements ICommand, Runnable {
     private String username;
     private String email;
@@ -29,11 +32,18 @@ public class CreateUser implements ICommand, Runnable {
         this.sct = sct;
     }
 
+    /**
+     * run method from runnable interface used for multithreading
+     */
     @Override
     public void run() {
         this.execute(this.sct);
     }
 
+    /**
+     * implements the execution of command
+     * @param sct thread were the message should be printed
+     */
     @Override
     public synchronized void execute(ServerClientThread sct) {
         auctionHouse = sct.getAuctionHouse();
@@ -130,6 +140,4 @@ public class CreateUser implements ICommand, Runnable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
 }

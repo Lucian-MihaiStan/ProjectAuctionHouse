@@ -12,18 +12,30 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
-
+/**
+ * enroll to auction command
+ * user can enroll to an auction via this class
+ */
 public class EnrollToAuction implements ICommand, Runnable {
     private final int idAuction;
     private final double maximumPrice;
 
     private ServerClientThread sct;
 
+    /**
+     * constructor
+     * @param idAuction auction id
+     * @param maximumPrice maximum price the user will bet
+     */
     public EnrollToAuction(int idAuction, double maximumPrice) {
         this.idAuction = idAuction;
         this.maximumPrice = maximumPrice;
     }
 
+    /**
+     * implements the execution of command
+     * @param sct thread were the message should be printed
+     */
     @Override
     public synchronized void execute(ServerClientThread sct) {
         this.sct = sct;
@@ -82,6 +94,12 @@ public class EnrollToAuction implements ICommand, Runnable {
         return notDuplicateCheck(brokers, sct.getMySQLConnection().getUsername());
     }
 
+    /**
+     * check if the user is already enrolled to this auction
+     * @param brokers list of brokers
+     * @param username username of the user that wants to enroll
+     * @return check if the user is already enrolled to this auction
+     */
     public boolean notDuplicateCheck(Map<Integer, Broker> brokers, String username) {
         AtomicBoolean result = new AtomicBoolean(true);
         brokers.forEach((integer, broker) -> {
