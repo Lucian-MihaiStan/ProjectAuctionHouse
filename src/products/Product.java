@@ -2,6 +2,9 @@ package products;
 
 import java.util.Objects;
 
+/**
+ * class that implements functionality of product
+ */
 public abstract class Product {
     private int id;
     private String name;
