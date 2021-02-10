@@ -1233,6 +1233,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/tests/test10.in">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/tests/test2.in">
           <value>
             <set />
@@ -1254,6 +1259,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/tests/test6.in">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/tests/test8.in">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/tests/test9.in">
           <value>
             <set />
           </value>
