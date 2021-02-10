@@ -5,11 +5,13 @@ import products.Product;
 import products.furniture.Furniture;
 import products.jewellery.Jewellery;
 import products.painting.Painting;
-import socketserver.ServerClientThread;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * add product in sql database
+ */
 public class AddProductSQL {
     private final MySQLConnection mySQLConnection;
     private static final String QUERY_CONSTANT = " VALUES ((SELECT id FROM auctionhouseproduct.product WHERE id = (SELECT MAX(id) FROM auctionhouseproduct.product)), ?, ?)";
@@ -17,6 +19,10 @@ public class AddProductSQL {
         this.mySQLConnection = mySQLConnection;
     }
 
+    /**
+     * add product in sql database
+     * @param product product that must be added
+     */
     public void addProductSQL(Product product) {
         int typeProduct;
         if(product instanceof Painting) typeProduct = 1;

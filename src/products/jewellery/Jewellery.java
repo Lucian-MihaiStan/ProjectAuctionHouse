@@ -4,6 +4,9 @@ import products.Product;
 
 import java.util.Objects;
 
+/**
+ * class that implements jewellery functionalities
+ */
 public class Jewellery extends Product {
     private String material;
     private boolean gemstone;

@@ -4,10 +4,16 @@ import products.Product;
 
 import java.util.Objects;
 
+/**
+ * class that implements painting functionalities
+ */
 public class Painting extends Product {
     private String nameArtist;
     private Colors colors;
 
+    /**
+     * enumeration of colors
+     */
     public enum Colors{
         oil,
         tempera,

@@ -5,9 +5,16 @@ import socketserver.ServerClientThread;
 
 import java.util.Map;
 
+/**
+ * display all brokers command
+ */
 public class ListBrokers implements ICommand, Runnable {
     private ServerClientThread serverClientThread;
 
+    /**
+     * implements the execution of command
+     * @param sct thread were the message should be printed
+     */
     @Override
     public void execute(ServerClientThread sct) {
         ServerClientThread.Helper resultCommand = ServerClientThread.Helper.getInstance();
@@ -24,10 +31,6 @@ public class ListBrokers implements ICommand, Runnable {
             cmdRes.append('|');
         });
 
-//        serverClientThread.getAuctionHouse().getBrokersList().forEach(broker ->{
-//            cmdRes.append(broker.toString());
-//            cmdRes.append('|');
-//        });
         resultCommand.setCommandResult(resultCommand.getCommandResult().append(cmdRes));
     }
 
@@ -36,6 +39,9 @@ public class ListBrokers implements ICommand, Runnable {
         this.serverClientThread = sct;
     }
 
+    /**
+     * method run that implements runnable
+     */
     @Override
     public void run() {
         this.execute(this.serverClientThread);

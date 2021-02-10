@@ -11,13 +11,34 @@ import socketserver.ServerClientThread;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <pre>
+ * Gather all commands and store in a list of commands
+ * Purpose: Execute all commands after reading all of them
+ * </pre>
+ */
 public class Caller {
     private Caller() {}
 
+    /**
+     * Gather the commands in a list
+     *
+     * @param parameters List of strings with parameters of command
+     * <pre> The first parameter from the list give information about which command from the list is called
+     * The rest of strings from the list are parameters of each command</pre>
+     */
     public static synchronized void addCommand(List<String> parameters, ServerClientThread sct) {
         sct.getCommands().add(getCommand(parameters));
     }
 
+    /**
+     * <pre>
+     * Parse the command input string
+     * Recognize the pattern of command and instantiate the type of command to store in the list
+     * </pre>
+     * @param elements List of elements which are components of a command
+     * @return an instance of specified command that will be stored in the list of commands
+     */
     private static synchronized ICommand getCommand(List<String> elements) {
         return switch (Features.valueOf(elements.get(0))) {
             case CREATE_USER ->
@@ -48,7 +69,10 @@ public class Caller {
             case EXIT -> null;
         };
     }
-    
+
+    /**
+     * Execute each command on the store
+     */
     public static synchronized void executeCommands(ServerClientThread sct) {
         ServerClientThread.Helper resultCommands = ServerClientThread.Helper.getInstance();
         resultCommands.setCommandResult(new StringBuilder());
@@ -63,6 +87,9 @@ public class Caller {
         sct.setCommands(new ArrayList<>());
     }
 
+    /**
+     * wait a few seconds after each command executed
+     */
     private static void sleepAfterCommand() {
         try {
             Thread.sleep(1000);

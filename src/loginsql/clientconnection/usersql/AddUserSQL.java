@@ -3,14 +3,15 @@ package loginsql.clientconnection.usersql;
 import client.User;
 import client.legalperson.LegalPerson;
 import loginsql.MySQLConnection;
-import socketserver.ServerClientThread;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
+/**
+ * add user in sql database
+ */
 public class AddUserSQL {
     private final MySQLConnection mySQLConnection;
 
@@ -20,6 +21,10 @@ public class AddUserSQL {
         this.mySQLConnection = mySQLConnection;
     }
 
+    /**
+     * add user to sql
+     * @param user user information
+     */
     public void addClientSQL(User user) {
         try {
             mySQLConnection.realizeConnection("root", "lucian2000");
@@ -49,6 +54,10 @@ public class AddUserSQL {
         mySQLConnection.closeConnection();
     }
 
+    /**
+     * grant privileges to user
+     * @param user user to grant privileges
+     */
     private void grantUserPrivileges(User user) {
         String queryGrantPrivileges = "GRANT SELECT ON *.* TO " + user.getUsername() + "@localhost";
         try(PreparedStatement ps = mySQLConnection.getConnection().prepareStatement(queryGrantPrivileges)) {

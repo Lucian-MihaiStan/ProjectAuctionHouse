@@ -3,9 +3,16 @@ package commander;
 import loginsql.MySQLConnection;
 import socketserver.ServerClientThread;
 
+/**
+ * display information about users
+ */
 public class ListUsers implements ICommand, Runnable {
     private ServerClientThread serverClientThread;
 
+    /**
+     * implements the execution of command
+     * @param sct thread were the message should be printed
+     */
     @Override
     public void execute(ServerClientThread sct) {
         MySQLConnection mySQLConnection = sct.getMySQLConnection();
@@ -32,6 +39,9 @@ public class ListUsers implements ICommand, Runnable {
         this.serverClientThread = sct;
     }
 
+    /**
+     * method run that implements runnable
+     */
     @Override
     public void run() {
         this.execute(this.serverClientThread);

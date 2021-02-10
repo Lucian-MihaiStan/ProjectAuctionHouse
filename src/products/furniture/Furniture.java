@@ -4,6 +4,9 @@ import products.Product;
 
 import java.util.Objects;
 
+/**
+ * class that implements furniture functionalities
+ */
 public class Furniture extends Product {
     private String type;
     private String material;

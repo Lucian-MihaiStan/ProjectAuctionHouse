@@ -33,17 +33,4 @@ public class IndividualPerson extends User {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        IndividualPerson that = (IndividualPerson) o;
-        return Objects.equals(birthDate, that.birthDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), birthDate);
-    }
 }

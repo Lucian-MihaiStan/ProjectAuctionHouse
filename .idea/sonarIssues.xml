@@ -593,6 +593,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/employee/IEmployee.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/employee/employee.java">
           <value>
             <set />
@@ -994,6 +999,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/loginsql/clientconnection/MySQLConnectionClient.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/loginsql/clientconnection/TableNamesClient.java">
           <value>
             <set />
           </value>

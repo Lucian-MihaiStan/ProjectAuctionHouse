@@ -109,8 +109,6 @@ O
 src/auction/AuctionBuilder.java,8\4\84e6bfbfa2431dceca4649905229357681547d28
 N
 src/commander/ListBrokers.java,0\2\020d14294f10277d23514f3a761068540fc4c409
-Z
-*src/commander/auctions/DisplayAuction.java,0\3\03b08ade4b66f3f384ca758da9eb47e2deb90f79
 ^
 .src/auction/notifieradapter/INotifierMail.java,c\2\c2e6744e5f41f446d13f2985fbf97fa98c0ac585
 [
@@ -221,3 +219,11 @@ Q
 !src/unittesting/package-info.java,4\c\4c6b4c382ef41c63edff6323b8fe14cccde73416
 X
 (src/auction/updatedata/package-info.java,9\5\95b2689c78cae85d882f3635719b6caaa41d9cd7
+S
+#src/client/strategy/BidContext.java,d\4\d42ec054f86f08f2bf477a414d847b02cb40895b
+U
+%src/client/strategy/CallHalfMore.java,7\2\720fec0ad75856c8e5b7f4c6b20d195dca7b803c
+Q
+!src/client/strategy/CallMore.java,6\d\6d7a8292bd6954274c40aee98c769108312ea4fe
+Q
+!src/client/strategy/Strategy.java,7\4\7419661436b04a61bc63b8720f626953a3d70734
