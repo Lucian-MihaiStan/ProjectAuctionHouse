@@ -13,14 +13,33 @@ import java.util.Random;
 
 import static java.lang.System.*;
 
+/**
+ * server main class
+ * the server runs only the if the main is runned
+ */
 public class Main {
 
+    /**
+     * random variable
+     */
     public static final Random random = new Random();
 
+    /**
+     * auction instance
+     */
     public static final AuctionHouse auctionHouse = AuctionHouse.getInstance();
 
+    /**
+     * list of threads
+     */
     public static final List<ServerClientThread> sctList = new ArrayList<>();
-    
+
+    /**
+     * main entrance of server
+     * @param args arguments of server
+     * @throws SQLException if the connection fails
+     * @throws ClassNotFoundException if the driver is not found
+     */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
         MySQLConnection mySQLConnection = new MySQLConnection();

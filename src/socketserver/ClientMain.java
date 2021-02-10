@@ -8,8 +8,16 @@ import java.util.Scanner;
 
 import static java.lang.System.*;
 
+/**
+ * main of client
+ * this class si run by any client at the start of program
+ */
 public class ClientMain {
 
+    /**
+     * main entrance of program
+     * @param args arguments of main
+     */
     public static void main(String[] args) {
         loginMessages();
         try(Socket socket = new Socket("localhost", 4999)) {

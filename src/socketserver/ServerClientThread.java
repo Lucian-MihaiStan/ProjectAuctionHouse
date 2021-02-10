@@ -15,11 +15,17 @@ import static commander.Caller.addCommand;
 import static commander.Caller.executeCommands;
 import static java.lang.System.*;
 
+/**
+ * client thread
+ */
 public class ServerClientThread extends Thread {
     private final Socket serverClient;
     private final int clientNo;
     private final String hostAddress;
 
+    /**
+     * helper class to print information on the server thread
+     */
     public static class Helper {
         private static Helper instance;
         private StringBuilder commandResult = new StringBuilder();
@@ -41,6 +47,12 @@ public class ServerClientThread extends Thread {
         }
     }
 
+    /**
+     * constructor
+     * @param inSocket socket
+     * @param counter number of client
+     * @param hostAddress ip address of client
+     */
     public ServerClientThread(Socket inSocket, int counter, String hostAddress){
         this.serverClient = inSocket;
         this.clientNo = counter;
@@ -69,6 +81,9 @@ public class ServerClientThread extends Thread {
         addCommand(parameters, this);
     }
 
+    /**
+     * the run method implemented in Thread class
+     */
     @Override
     public void run(){
         BufferedReader inBR;
