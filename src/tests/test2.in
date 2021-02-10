@@ -1,0 +1,68 @@
+run main
+
+run clietnmain
+login client2 client2
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+ENROLL_AUCTION <id2> <max_bid2>
+EXECUTE
+ENROLL_AUCTION <id> <max_bid> // if you try to enroll to the same auction there will be printed a message that you are already enrolled
+EXECUTE
+ADD_PRODUCT 2 REF 200 2000 REF REF
+EXECUTE // the message that you are not administrator will be printed
+
+run clietnmain
+login lucianmihai lucianmihai
+SHOW_AUCTIONS
+EXECUTE
+LIST_PRODUCTS
+EXECUTE
+SHOW
+LIST_BROKERS // will print that this user doesn't have access to this command
+EXECUTE
+LIST_USERS // will print that this user doesn't have access to this command
+EXECUTE
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+
+run clietnmain
+login client1 client1
+SHOW_AUCTIONS
+EXECUTE
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+
+run clietnmain
+login amot21 amot21
+SHOW_AUCTIONS
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+LIST_PRODUCTS
+SHOW
+
+run clietnmain
+login amotEliptic amotEliptic
+SHOW_AUCTIONS
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+LIST_PRODUCTS
+SHOW
+
+run clietnmain
+login lucibig lucibig
+SHOW_AUCTIONS
+EXECUTE
+
+run clietnmain
+login admin admin
+SHOW_AUCTIONS
+LIST_PRODUCTS
+EXECUTE
+ADD_PRODUCT 2 REF 200 2000 REF REF
+EXECUTE
+LIST_USERS
+EXECUTE
+LIST_BROKERS
+EXEXCUTE
+ADD_PRODUCT 1 paitingREF 200 2000 Picasso tempera
+EXECUTE

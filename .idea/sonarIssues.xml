@@ -1198,6 +1198,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/socketserver/test7.in">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/strategy/BidContext.java">
           <value>
             <set />
@@ -1219,6 +1224,36 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/strategy/Strategy.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/tests/test1.in">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/tests/test2.in">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/tests/test3.in">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/tests/test4.in">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/tests/test5.in">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/tests/test6.in">
           <value>
             <set />
           </value>

@@ -29,6 +29,7 @@ Each client can participate to as many auctions as he wants.
 ##### Implementation details
 The client must be sure that he will have enough money to pay randomly associated broker depending on type of user and number of participation at auctions.
 The commissions are not huge but brokers should have a salary.
+The algorithm doesn't allow a user to enroll to the same auction two times.
 
 ### Run and Commands
 Each command should be followed by a command EXECUTE if the client wants to see the message displayed

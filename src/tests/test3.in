@@ -1,0 +1,58 @@
+run main
+
+run clientmain
+login admin admin
+ADD_PRODUCT 1 paitingREF 200 2000 Picasso tempera
+EXECUTE
+LIST_PRODUCTS
+SHOW_AUCTIONS
+
+run clientmain
+login lucibig lucibig
+SHOW_AUCTIONS
+EXECUTE
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+
+run clientmain
+login lucianmihai lucianmihai
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+
+run clientmain
+login client1 client1
+SHOW_AUCTIONS
+EXECUTE
+LIST_PRODUCTS
+EXECUTE
+ENROLL_AUCTION <id> <max_bid>
+ENROLL_AUCTION <id2> <max_bid>
+ENROLL_AUCTION <id3> <max_bid>
+EXECUTE
+SHOW_AUCTIONS
+EXECUTE
+
+run clietnmain
+login client2 client2
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+ENROLL_AUCTION <id2> <max_bid2>
+EXECUTE
+ENROLL_AUCTION <id4> <max_bid4> // if you try to enroll to the same auction there will be printed a message that you are already enrolled
+EXECUTE
+
+run clietnmain
+login amot21 amot21
+SHOW_AUCTIONS
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+LIST_PRODUCTS
+SHOW
+
+run clietnmain
+login amotEliptic amotEliptic
+SHOW_AUCTIONS
+ENROLL_AUCTION <id> <max_bid>
+EXECUTE
+LIST_PRODUCTS
+SHOW

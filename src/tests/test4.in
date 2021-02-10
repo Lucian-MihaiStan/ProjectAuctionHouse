@@ -1,0 +1,63 @@
+run main
+
+run clientmain
+login admin admin
+ADD_PRODUCT 2 REF2 200 2000 REF REF
+ADD_PRODUCT 1 REFpaiting 200 2000 leonardo tempera
+ADD_PRODUCT 3 REF2 200 2000 silver true
+EXECUTE
+LIST_PRODUCTS
+EXECUTE
+
+run clientmain
+login client1 client1
+ENROLL_AUCTION <id1> <max_bid>
+ENROLL_AUCTION <id2> <max_bid>
+ENROLL_AUCTION <id3> <max_bid>
+ENROLL_AUCTION <id4> <max_bid>
+EXECUTE
+LIST_AUCTIONS
+
+run clientmain
+login client2 client2
+ENROLL_AUCTION <id1> <max_bid>
+ENROLL_AUCTION <id2> <max_bid>
+ENROLL_AUCTION <id3> <max_bid>
+ENROLL_AUCTION <id4> <max_bid>
+EXECUTE
+
+run clientmain
+login amot21 amot 21
+ENROLL_AUCTION <id1> <max_bid>
+ENROLL_AUCTION <id2> <max_bid>
+ENROLL_AUCTION <id3> <max_bid>
+ENROLL_AUCTION <id4> <max_bid>
+EXECUTE
+LIST_AUCTIONS
+
+run clientmain
+login lucibig lucibig
+ENROLL_AUCTION <id1> <max_bid>
+ENROLL_AUCTION <id2> <max_bid>
+ENROLL_AUCTION <id3> <max_bid>
+ENROLL_AUCTION <id4> <max_bid>
+EXECUTE
+LIST_AUCTIONS
+
+run clientmain
+login lucianmihai lucianmihai
+ENROLL_AUCTION <id1> <max_bid>
+ENROLL_AUCTION <id2> <max_bid>
+ENROLL_AUCTION <id3> <max_bid>
+ENROLL_AUCTION <id4> <max_bid>
+EXECUTE
+LIST_AUCTIONS
+
+run clientmain
+login amotEliptic amotEliptic
+ENROLL_AUCTION <id1> <max_bid>
+ENROLL_AUCTION <id2> <max_bid>
+ENROLL_AUCTION <id3> <max_bid>
+ENROLL_AUCTION <id4> <max_bid>
+EXECUTE
+LIST_AUCTIONS
