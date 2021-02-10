@@ -20,6 +20,9 @@ import org.junit.jupiter.api.Test;
 import products.Product;
 import products.furniture.Furniture;
 import products.furniture.FurnitureBuilder;
+import products.jewellery.JewelleryBuilder;
+import products.painting.Painting;
+import products.painting.PaintingBuilder;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,6 +57,22 @@ public class AuctionHouseTest {
         productList.add(new FurnitureBuilder().withId(42).withName("WARDROBE").withSellingPrice(-1).withMinimPrice(100).withYear(1990).withType("storage").withMaterial("wood").build());
         productList.add(new FurnitureBuilder().withId(44).withName("BIROU").withSellingPrice(-1).withMinimPrice(300).withYear(2020).withType("DORMITOR").withMaterial("PLASTIC").build());
         productList.add(new FurnitureBuilder().withId(45).withName("BiliardTableJack").withSellingPrice(-1).withMinimPrice(1000).withYear(2020).withType("entertaiment").withMaterial("wood").build());
+        productList.add(new FurnitureBuilder().withId(50).withName("GlassTableCarmen").withSellingPrice(-1).withMinimPrice(600).withYear(2017).withType("table").withMaterial("GlassandSteel").build());
+        productList.add(new FurnitureBuilder().withId(51).withName("CouchGoodNight").withSellingPrice(-1).withMinimPrice(500).withYear(2016).withType("Sitting").withMaterial("Textile").build());
+        productList.add(new FurnitureBuilder().withId(52).withName("BedGoodNight").withSellingPrice(-1).withMinimPrice(900).withYear(2019).withType("Sleeping").withMaterial("wood").build());
+        productList.add(new FurnitureBuilder().withId(59).withName("ActiveTennistable").withSellingPrice(-1).withMinimPrice(650).withYear(2017).withType("entertainment").withMaterial("steelandwood").build());
+        productList.add(new FurnitureBuilder().withId(61).withName("SCAUN").withSellingPrice(-1).withMinimPrice(200).withYear(2015).withType("dormitor").withMaterial("lemn").build());
+        productList.add(new JewelleryBuilder().withId(47).withName("BraceletDiesel").withSellingPrice(-1).withMinimPrice(120).withYear(1930).withMaterial("Leather").withGemstone(false).build());
+        productList.add(new JewelleryBuilder().withId(53).withName("ringPandora").withSellingPrice(-1).withMinimPrice(300).withYear(2017).withMaterial("silver").withGemstone(true).build());
+        productList.add(new JewelleryBuilder().withId(54).withName("BoysPoliceNecklage").withSellingPrice(-1).withMinimPrice(200).withYear(2020).withMaterial("StainlessSteel").withGemstone(false).build());
+        productList.add(new JewelleryBuilder().withId(55).withName("DieselRingBoys").withSellingPrice(-1).withMinimPrice(150).withYear(2019).withMaterial("StainlessSteel").withGemstone(false).build());
+        productList.add(new JewelleryBuilder().withId(58).withName("BBNecklace").withSellingPrice(-1).withMinimPrice(500).withYear(2020).withMaterial("Silver").withGemstone(true).build());
+        productList.add(new JewelleryBuilder().withId(60).withName("RolexWatch").withSellingPrice(-1).withMinimPrice(2000).withYear(2020).withMaterial("Swarovski").withGemstone(true).build());
+        productList.add(new PaintingBuilder().withId(46).withName("MonaLisa").withSellingPrice(-1).withMinimPrice(2000).withYear(1870).withNameArtist("LeonardoDaVinci").withColors(Painting.Colors.tempera).build());
+        productList.add(new PaintingBuilder().withId(48).withName("CarulCuBoi").withSellingPrice(-1).withMinimPrice(420).withYear(1920).withNameArtist("NicolaeGrigorescu").withColors(Painting.Colors.acrylic).build());
+        productList.add(new PaintingBuilder().withId(49).withName("SelfPortrait").withSellingPrice(-1).withMinimPrice(3000).withYear(1850).withNameArtist("VanGogh").withColors(Painting.Colors.oil).build());
+        productList.add(new PaintingBuilder().withId(56).withName("Guernica").withSellingPrice(-1).withMinimPrice(5000).withYear(1940).withNameArtist("PabloPicasso").withColors(Painting.Colors.tempera).build());
+        productList.add(new PaintingBuilder().withId(57).withName("StarryNight").withSellingPrice(-1).withMinimPrice(300).withYear(1882).withNameArtist("VanGogh").withColors(Painting.Colors.oil).build());
         assertEquals(productList, auctionHouse.getProductsList());
     }
 

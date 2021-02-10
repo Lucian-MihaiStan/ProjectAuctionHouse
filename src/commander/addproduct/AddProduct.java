@@ -83,6 +83,7 @@ public class AddProduct implements ICommand, Runnable {
                 .withName(name)
                 .withSellingPrice(-1)
                 .withMinimPrice(minimumPrice)
+                .withYear(year)
                 .withMaterial(HelperAP.setParamJewellery(restParameters).getLeft())
                 .withGemstone(HelperAP.setParamJewellery(restParameters).getRight())
                 .build();
