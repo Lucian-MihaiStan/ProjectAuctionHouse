@@ -88,8 +88,8 @@ public class IndividualPersonBuilder implements UserBuilder<IndividualPerson, In
     }
 
     /**
-     * build an individual person with username
-     * @param username username of the individual person
+     * build an individual person with birtDate
+     * @param birthDate birthDate of the individual person
      * @return individual person builder instance
      */
     public IndividualPersonBuilder withBirthDate(Date birthDate) {
